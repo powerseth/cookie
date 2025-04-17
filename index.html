@@ -1,40 +1,72 @@
-<html>
-  <head>
-    <title>Plant Pod Shop</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  </head>
-  <body>
-    <h1>🌿 Welcome to PlantPod Picker</h1>
-    <label>What kind of plant pod?</label>
-    <select id="type">
-      <option>Indoor</option>
-      <option>Outdoor</option>
-    </select>
-    <br><br>
-    <label>Size:</label>
-    <select id="size">
-      <option>Small</option>
-      <option>Medium</option>
-      <option>Large</option>
-    </select>
-    <br><br>
-    <label>Budget:</label>
-    <input type="range" id="budget" min="10" max="100">
-    <span id="budgetValue">50</span> EUR
-    <br><br>
-    <button onclick="showResults()">Find Pods</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PlantPod Picker 🌿</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--tg-theme-bg-color, #ffffff);
+      color: var(--tg-theme-text-color, #000000);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
 
-    <script>
-      budget.oninput = () => budgetValue.textContent = budget.value;
+    .card {
+      background: var(--tg-theme-secondary-bg-color, #f0f0f0);
+      padding: 24px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
 
-      function showResults() {
-        const type = document.getElementById("type").value;
-        const size = document.getElementById("size").value;
-        const budget = document.getElementById("budget").value;
+    .card h1 {
+      font-size: 1.8em;
+      margin-bottom: 16px;
+    }
 
-        alert(`Here are some ${size} ${type} pods under €${budget}`);
-        Telegram.WebApp.sendData(JSON.stringify({ type, size, budget }));
-      }
-    </script>
-  </body>
+    .btn {
+      background: var(--tg-theme-button-color, #2ea463);
+      color: var(--tg-theme-button-text-color, #fff);
+      border: none;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .btn:active {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="welcome-screen">
+    <h1>🌿 PlantPod Finder</h1>
+    <p>Welcome! Let’s find your perfect plant pod.</p>
+    <button class="btn" onclick="goToStep1()">Start</button>
+  </div>
+
+  <script>
+    function goToStep1() {
+      // This will eventually switch to the next screen
+      alert("Next screen coming soon...");
+    }
+
+    Telegram.WebApp.ready();
+    Telegram.WebApp.expand();
+  </script>
+</body>
 </html>

@@ -1,23 +1,40 @@
-<!DOCTYPE html>
 <html>
-<head>
-  <title>Telegram Cookie Clicker</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-</head>
-<body>
-  <h2>🍪 Cookie Clicker</h2>
-  <p>Clicks: <span id="counter">0</span></p>
-  <button onclick="clickCookie()">🍪 Click Me!</button>
+  <head>
+    <title>Plant Pod Shop</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  </head>
+  <body>
+    <h1>🌿 Welcome to PlantPod Picker</h1>
+    <label>What kind of plant pod?</label>
+    <select id="type">
+      <option>Indoor</option>
+      <option>Outdoor</option>
+    </select>
+    <br><br>
+    <label>Size:</label>
+    <select id="size">
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+    </select>
+    <br><br>
+    <label>Budget:</label>
+    <input type="range" id="budget" min="10" max="100">
+    <span id="budgetValue">50</span> EUR
+    <br><br>
+    <button onclick="showResults()">Find Pods</button>
 
-  <script>
-    const tg = window.Telegram.WebApp;
-    tg.expand();
+    <script>
+      budget.oninput = () => budgetValue.textContent = budget.value;
 
-    let count = 0;
-    function clickCookie() {
-      count++;
-      document.getElementById("counter").innerText = count;
-    }
-  </script>
-</body>
+      function showResults() {
+        const type = document.getElementById("type").value;
+        const size = document.getElementById("size").value;
+        const budget = document.getElementById("budget").value;
+
+        alert(`Here are some ${size} ${type} pods under €${budget}`);
+        Telegram.WebApp.sendData(JSON.stringify({ type, size, budget }));
+      }
+    </script>
+  </body>
 </html>

@@ -1,114 +1,107 @@
 [
   {
-    "name": "TORNADO 🎲",
+    "name": "TORNADO 🎲 9k",
     "puffs": 9000,
     "nicotine": "5%",
     "price": 20,
-    "image": "tornado_9k.png"
+    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/66885e81ee9cc328347f1cdc_%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B1%D0%B5%D0%B7%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20(18).png"
   },
   {
-    "name": "TORNADO 🎲",
+    "name": "TORNADO 🎲 15k",
     "puffs": 15000,
     "nicotine": "2%",
     "price": 20,
-    "image": "tornado_15k.png"
+    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/66870572a00a5ffa6b348a97_photo_2024-06-28_23-05-58.jpg"
   },
   {
-    "name": "TORNADO 🎲",
+    "name": "TORNADO 🎲 20k",
     "puffs": 20000,
     "nicotine": "2.5%",
     "price": 25,
-    "image": "tornado_20k.png"
+    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/6800fd637ad8b0c49e9b4a8d_randm-fumot-tornado-max-20000.jpg.webp"
   },
   {
-    "name": "TORNADO 🎲",
+    "name": "TORNADO 🎲 25k",
     "puffs": 25000,
     "nicotine": "2%",
     "price": 30,
-    "image": "tornado_25k.png"
+    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/68010084b1e19ad8426e31f0_thumb_1284_0_0_0_0_auto.jpg"
   },
   {
-    "name": "TORNADO 🎲",
+    "name": "TORNADO 🎲 30k",
     "puffs": 30000,
     "nicotine": "2%",
     "price": 35,
-    "image": "tornado_30k.png"
+    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/6801015be861afa63bb79692_fumot-tornado-30k-music-829692.webp"
   },
   {
-    "name": "VOZOL Gear ➖",
+    "name": "VOZOL Gear ➖ 10k",
     "puffs": 10000,
     "nicotine": "5%",
     "price": 25,
-    "image": "vozol_gear_10k.png"
+    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/680101749374c38deb8e8f2f_LbjA4HjHKr7DY9FACNgDDQYZWnumvwDpv3hQghwv.webp"
   },
   {
-    "name": "VOZOL Vista plug ➖",
-    "puffs": 15000,
-    "nicotine": "2%",
-    "price": 25,
-    "image": "vozol_vista_15k.png"
-  },
-  {
-    "name": "VOZOL Gear ➖",
+    "name": "VOZOL Gear ➖ 20k",
     "puffs": 20000,
     "nicotine": "2%",
     "price": 25,
-    "image": "vozol_gear_20k.png"
+    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/6801018cb1e19ad8426f1e7d_VOZOL-GEAR-POWER-20000-1%20(1).jpg"
   },
   {
-    "name": "VOZOL Gear ➖",
+    "name": "VOZOL Gear ➖ 25k",
     "puffs": 25000,
     "nicotine": "5%",
     "price": 30,
-    "image": "vozol_gear_25k.png"
+    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/680101fdcf66a1c4c100b096_vozol%2025k.png"
   },
   {
-    "name": "MEDIAMAX PHONEVAPE 🔴",
+    "name": "VOZOL Vista plug ➖ 15k",
+    "puffs": 15000,
+    "nicotine": "2%",
+    "price": 25,
+    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/6801026f9d2ef545721d5d90_Vozol-Vista-Kit.jpg5_.webp"
+  },
+  {
+    "name": "MEDIAMAX PHONEVAPE 🔴 40k",
     "puffs": 40000,
     "nicotine": "2%",
     "price": 30,
-    "image": "mediamax_phonevape_40k.png"
+    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/680102844b38ea60299f8bf7_%E4%B8%BB%E5%9B%BE-1.webp"
   },
   {
-    "name": "FUMOT/CRYSTAL 🎲",
+    "name": "FUMOT/CRYSTAL 🎲 12k",
     "puffs": 12000,
     "nicotine": "2%",
     "price": 20,
-    "image": "fumot_crystal_12k.png"
+    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/680102a07cb5b9af192ac402_Fumot-Crystal-12000-3.jpeg"
   },
   {
-    "name": "FUMOT/CRYSTAL 🎲",
+    "name": "FUMOT/CRYSTAL 🎲 4.5k",
     "puffs": 4500,
     "nicotine": "2%",
     "price": 20,
-    "image": "fumot_crystal_4_5k.png"
+    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/680102d8891db73fae615a83_SKE_Crystal_Super_Max_4500_Puffs_Disposable_Vape_-_Blog_7eeb6280-186a-42c2-a1a9-e11c0b482fda.webp"
   },
   {
-    "name": "FUMOT/CRYSTAL 🎲",
+    "name": "FUMOT/CRYSTAL 🎲 600",
     "puffs": 600,
     "nicotine": "2%",
     "price": 10,
-    "image": "fumot_crystal_600.png"
+    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/680103086570a3c8dc130efc_fumot-randm-crystal-600ec597076-2ce2-4893-86cc-9eab1c467eb0.webp"
   },
   {
-    "name": "IJOY 🎲",
+    "name": "IJOY 🎲 40k",
     "puffs": 40000,
     "nicotine": "2%",
     "price": 30,
-    "image": "ijoy_40k.png"
+    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/68010323d85907bb35fc96c2_ijoy-sd40000-40k-puffs-ai-voice-control-disposable_1200x1200%20(2).webp"
   },
   {
-    "name": "SHISHA VAPE AlFakher 🔵",
+    "name": "SHISHA VAPE AlFakher 🔵 8k",
     "puffs": 8000,
     "nicotine": "6%",
     "price": 20,
-    "image": "shisha_vape_alfakher_8k.png"
-  },
-  {
-    "name": "SHISHA VAPE Ghostmary 🔵",
-    "puffs": 15000,
-    "nicotine": "5%",
-    "price": 25,
-    "image": "shisha_vape_ghostmary_15k.png"
+    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/6801034ea74e06c09e2092fc_Al-Fakher-Crown-Bar-PRO-8K-Al-Fakher-262869460.webp"
   }
 ]

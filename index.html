@@ -3,41 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PlantPod Picker 🌿</title>
+  <title>Vape Portal 🚬✨</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --accent: #9b5de5;
+      --accent2: #00f5d4;
+      --bg: linear-gradient(145deg, #09001a, #1e005a);
+    }
+
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: var(--tg-theme-bg-color, #ffffff);
-      color: var(--tg-theme-text-color, #000000);
+      font-family: 'Orbitron', sans-serif;
+      background: var(--bg);
+      color: #ffffff;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
       padding: 20px;
+      overflow: hidden;
     }
 
     .card {
-      background: var(--tg-theme-secondary-bg-color, #f0f0f0);
+      background: rgba(0, 0, 0, 0.4);
       padding: 24px;
-      border-radius: 16px;
+      border-radius: 20px;
       width: 100%;
       max-width: 400px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(155, 93, 229, 0.5);
     }
 
     .card h1 {
-      font-size: 1.8em;
+      font-size: 2em;
       margin-bottom: 16px;
+      color: var(--accent);
+      animation: glow 2s ease-in-out infinite alternate;
     }
 
     .btn {
-      background: var(--tg-theme-button-color, #2ea463);
-      color: var(--tg-theme-button-text-color, #fff);
+      background: var(--accent2);
+      color: #000;
       border: none;
       padding: 14px 24px;
       border-radius: 12px;
@@ -45,28 +55,81 @@
       font-weight: bold;
       cursor: pointer;
       width: 100%;
+      margin-top: 20px;
+      box-shadow: 0 0 20px var(--accent2);
     }
 
+    .btn-outline {
+      border: 2px solid var(--accent2);
+      color: var(--accent2);
+      background: transparent;
+      border-radius: 12px;
+      padding: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    .btn-outline:active,
     .btn:active {
-      opacity: 0.8;
+      transform: scale(0.98);
+      opacity: 0.9;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px #9b5de5, 0 0 10px #9b5de5, 0 0 15px #9b5de5;
+      }
+      to {
+        text-shadow: 0 0 10px #00f5d4, 0 0 20px #00f5d4, 0 0 30px #00f5d4;
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- Screen 1: Welcome -->
   <div class="card" id="welcome-screen">
-    <h1>🌿 PlantPod Finder</h1>
-    <p>Welcome! Let’s find your perfect plant pod.</p>
-    <button class="btn" onclick="goToStep1()">Start</button>
+    <h1>🚬 VAPE PORTAL 9000</h1>
+    <p>Step into the future of flavor.</p>
+    <button class="btn" onclick="goToStep1()">Enter the Portal</button>
+  </div>
+
+  <!-- Screen 2: Vape Type -->
+  <div class="card" id="type-screen" style="display: none;">
+    <h1>🧪 Choose Your Vape Style</h1>
+    <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;">
+      <button class="btn-outline" onclick="selectType('Disposable')">Disposable</button>
+      <button class="btn-outline" onclick="selectType('Pod System')">Pod System</button>
+      <button class="btn-outline" onclick="selectType('Box Mod')">Box Mod</button>
+      <button class="btn-outline" onclick="selectType('Nicotine-Free')">Nicotine-Free</button>
+    </div>
+    <button class="btn" onclick="goToStep2()">Next</button>
   </div>
 
   <script>
-    function goToStep1() {
-      // This will eventually switch to the next screen
-      alert("Next screen coming soon...");
-    }
-
     Telegram.WebApp.ready();
     Telegram.WebApp.expand();
+
+    let selectedType = null;
+
+    function goToStep1() {
+      document.getElementById("welcome-screen").style.display = "none";
+      document.getElementById("type-screen").style.display = "block";
+    }
+
+    function selectType(type) {
+      selectedType = type;
+      console.log("Selected type:", type);
+    }
+
+    function goToStep2() {
+      if (!selectedType) {
+        alert("Please choose your vape style 💨");
+        return;
+      }
+      alert(`You selected: ${selectedType}\n(Next screen coming soon...)`);
+    }
   </script>
 </body>
 </html>

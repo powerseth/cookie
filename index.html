@@ -1,193 +1,207 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Вейп Магазин</title>
-  <style>
-    :root {
-      --accent: #9b5de5;
-      --accent2: #00f5d4;
-      --bg: linear-gradient(145deg, #09001a, #1e005a);
-      --glow: rgba(155, 93, 229, 0.7);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выбор вейпа</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
 
-    body {
-      margin: 0;
-      font-family: 'Orbitron', 'Arial', sans-serif;
-      background: var(--bg);
-      color: #ffffff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
-      overflow: hidden;
-      animation: fadeIn 1s ease-in-out;
-    }
+        h1 {
+            color: #fff;
+            padding: 20px;
+            background: #3c3c3c;
+            border-bottom: 2px solid #fff;
+        }
 
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
-    }
+        .section {
+            display: none;
+        }
 
-    .card {
-      background: rgba(0, 0, 0, 0.5);
-      padding: 24px;
-      border-radius: 20px;
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 30px var(--glow);
-      transition: transform 0.2s ease;
-    }
+        .section.active {
+            display: block;
+        }
 
-    .card:hover {
-      transform: scale(1.05);
-    }
+        .btn {
+            background: linear-gradient(to right, #6a5fd6, #0000ff);
+            color: white;
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 200px;
+        }
 
-    .card h1 {
-      font-size: 2.5em;
-      margin-bottom: 16px;
-      color: var(--accent);
-      animation: glow 2s ease-in-out infinite alternate;
-    }
+        .btn:hover {
+            background: linear-gradient(to right, #0000ff, #6a5fd6);
+        }
 
-    .card h1 span {
-      color: var(--accent2);
-    }
+        .vape-card {
+            background: #2e2e2e;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            width: calc(33% - 20px);
+            box-sizing: border-box;
+        }
 
-    .btn {
-      background: var(--accent2);
-      color: #000;
-      border: none;
-      padding: 14px 24px;
-      border-radius: 12px;
-      font-size: 1.2em;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
-      margin-top: 20px;
-      box-shadow: 0 0 20px var(--accent2);
-      transition: all 0.3s ease;
-    }
+        .vape-card img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
 
-    .btn:hover {
-      background-color: #ffffff;
-      color: var(--accent);
-      box-shadow: 0 0 30px var(--accent2);
-    }
+        .vape-card span {
+            display: block;
+            margin: 5px 0;
+        }
 
-    .emoji {
-      font-size: 1.5em;
-      color: var(--accent2);
-    }
+        .scrollable-results {
+            max-height: 400px;
+            overflow-y: auto;
+            text-align: center;
+        }
 
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 5px #9b5de5, 0 0 10px #9b5de5, 0 0 15px #9b5de5;
-      }
-      to {
-        text-shadow: 0 0 10px #00f5d4, 0 0 20px #00f5d4, 0 0 30px #00f5d4;
-      }
-    }
+        .vape-card:hover {
+            background: #444;
+        }
 
-    /* Vape Product Cards */
-    .vape-card {
-      background: rgba(0, 0, 0, 0.6);
-      margin: 12px 0;
-      padding: 20px;
-      border-radius: 15px;
-      text-align: left;
-      box-shadow: 0 0 20px rgba(0, 255, 212, 0.5);
-      color: #ffffff;
-      font-size: 1.2em;
-      transition: transform 0.3s ease;
-    }
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .vape-card {
+                width: calc(50% - 20px);
+            }
 
-    .vape-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 30px rgba(0, 255, 212, 0.7);
-    }
+            .btn {
+                width: 160px;
+            }
+        }
 
-    .vape-card h3 {
-      color: var(--accent);
-      font-size: 1.6em;
-      margin: 0;
-    }
+        @media (max-width: 480px) {
+            .vape-card {
+                width: 100%;
+            }
 
-    .vape-card p {
-      margin: 8px 0;
-    }
-
-    .vape-card .price {
-      color: var(--accent2);
-      font-weight: bold;
-      font-size: 1.4em;
-    }
-
-    .vape-card .emoji {
-      font-size: 2em;
-    }
-  </style>
+            .btn {
+                width: 140px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Welcome Screen -->
-  <div class="card" id="welcome-screen">
-    <h1>Добро пожаловать в <span>Вейп Магазин</span> <span class="emoji">🚀</span></h1>
-    <button class="btn" onclick="goToStep1()">Войти в Портал 🌌</button>
-  </div>
+    <h1>Добро пожаловать в Вейп Выбор</h1>
 
-  <!-- Vape List Screen -->
-  <div class="card" id="vape-list-screen" style="display: none;">
-    <h1>🔥 Доступные Вейпы</h1>
-    <div id="vape-container" style="margin-top: 20px;"></div>
-    <button class="btn" onclick="alert('Процесс оформления заказа скоро будет доступен!')">Продолжить ✨</button>
-  </div>
+    <!-- Step 1: Nicotine Strength -->
+    <div class="section active" id="step1">
+        <h2>Выберите крепость никотина</h2>
+        <button class="btn" onclick="chooseNicotine('5%')">5%</button>
+        <button class="btn" onclick="chooseNicotine('2%')">2%</button>
+        <button class="btn" onclick="chooseNicotine('2.5%')">2.5%</button>
+    </div>
 
-  <script>
-    // Go to Step 1: Enter the portal
-    function goToStep1() {
-      document.getElementById("welcome-screen").style.display = "none";
-      document.getElementById("vape-list-screen").style.display = "block";
-      loadVapes();
-    }
+    <!-- Step 2: Puff Range -->
+    <div class="section" id="step2">
+        <h2>Выберите количество затяжек</h2>
+        <button class="btn" onclick="choosePuffs('up to 15k')">До 15k</button>
+        <button class="btn" onclick="choosePuffs('15k-30k')">15k-30k</button>
+        <button class="btn" onclick="choosePuffs('40k+')">40k+</button>
+    </div>
 
-    // Load vapes from the vapes.json file
-    function loadVapes() {
-      fetch("vapes.json")
-        .then(res => res.json())
-        .then(data => {
-          const container = document.getElementById("vape-container");
-          container.innerHTML = "";  // Clear the container first
+    <!-- Step 3: Budget -->
+    <div class="section" id="step3">
+        <h2>Выберите ваш бюджет</h2>
+        <button class="btn" onclick="chooseBudget('€10-')">€10-</button>
+        <button class="btn" onclick="chooseBudget('€10-30€')">€10-30€</button>
+        <button class="btn" onclick="chooseBudget('€30+')">€30+</button>
+    </div>
 
-          // Loop through the vape data and create vape cards
-          data.forEach(vape => {
-            const vapeCard = document.createElement("div");
-            vapeCard.classList.add("vape-card");
+    <!-- Step 4: Vape Results -->
+    <div class="section" id="step4">
+        <h2>Результаты выбора</h2>
+        <div class="scrollable-results" id="vape-results">
+            <!-- Dynamically populated results go here -->
+        </div>
+        <button class="btn" onclick="nextStep()">Продолжить</button>
+    </div>
 
-            vapeCard.innerHTML = `
-              <h3>${vape.name} <span class="emoji">💨</span></h3>
-              <p>Затяжек: ${vape.puffs} 💨</p>
-              <p>Цена: <span class="price">${vape.price}₽</span></p>
-            `;
+    <script>
+        let vapes = [];
+        let nicotine = "";
+        let puffs = "";
+        let budget = "";
 
-            container.appendChild(vapeCard);
-          });
-        })
-        .catch(err => {
-          document.getElementById("vape-container").innerText = "Не удалось загрузить вейпы.";
-          console.error("Ошибка при загрузке vapes.json:", err);
-        });
-    }
-  </script>
+        // Fetch vapes data from the JSON file
+        fetch('vapes.json')
+            .then(response => response.json())
+            .then(data => {
+                vapes = data; // Assign the data from the JSON to the vapes array
+            })
+            .catch(error => console.error('Error loading vape data:', error));
+
+        function nextStep() {
+            alert("Ваш вейп будет выбран, а вкусы отправлены вам.");
+        }
+
+        function showStep(step) {
+            document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+            document.getElementById(step).classList.add('active');
+        }
+
+        function chooseNicotine(strength) {
+            nicotine = strength;
+            showStep('step2');
+        }
+
+        function choosePuffs(range) {
+            puffs = range;
+            showStep('step3');
+        }
+
+        function chooseBudget(range) {
+            budget = range;
+            showStep('step4');
+            filterVapes();
+        }
+
+        function filterVapes() {
+            let filteredVapes = vapes.filter(vape => {
+                return (vape.nicotine === nicotine) && 
+                       ((puffs === "up to 15k" && vape.puffs <= 15000) || 
+                        (puffs === "15k-30k" && vape.puffs > 15000 && vape.puffs <= 30000) || 
+                        (puffs === "40k+" && vape.puffs > 30000)) && 
+                       ((budget === "€10-" && vape.price <= 10) ||
+                        (budget === "€10-30€" && vape.price >= 10 && vape.price <= 30) ||
+                        (budget === "€30+" && vape.price > 30));
+            });
+
+            const resultsContainer = document.getElementById('vape-results');
+            resultsContainer.innerHTML = "";
+
+            filteredVapes.forEach(vape => {
+                const vapeCard = document.createElement('div');
+                vapeCard.className = 'vape-card';
+                vapeCard.innerHTML = `
+                    <img src="${vape.image}" alt="${vape.name}">
+                    <span>${vape.name}</span>
+                    <span>Затяжки: ${vape.puffs}</span>
+                    <span>Никотин: ${vape.nicotine}</span>
+                    <span>Цена: €${vape.price}</span>
+                `;
+                resultsContainer.appendChild(vapeCard);
+            });
+        }
+    </script>
 
 </body>
 </html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Telegram Cookie Clicker</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <h2>🍪 Cookie Clicker</h2>
+  <p>Clicks: <span id="counter">0</span></p>
+  <button onclick="clickCookie()">🍪 Click Me!</button>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.expand();
+
+    let count = 0;
+    function clickCookie() {
+      count++;
+      document.getElementById("counter").innerText = count;
+    }
+  </script>
+</body>
+</html>

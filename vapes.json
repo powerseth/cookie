@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Blueberry Ice",
+    "puffs": "600",
+    "price": "10€"
+  },
+  {
+    "name": "Watermelon Rush",
+    "puffs": "1500",
+    "price": "15€"
+  },
+  {
+    "name": "Mango Peach",
+    "puffs": "800",
+    "price": "12€"
+  },
+  {
+    "name": "Cool Mint",
+    "puffs": "1200",
+    "price": "14€"
+  }
+]

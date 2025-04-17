@@ -9,6 +9,7 @@
       --accent: #9b5de5;
       --accent2: #00f5d4;
       --bg: linear-gradient(145deg, #09001a, #1e005a);
+      --glow: rgba(155, 93, 229, 0.7);
     }
 
     body {
@@ -23,24 +24,43 @@
       min-height: 100vh;
       padding: 20px;
       overflow: hidden;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
     }
 
     .card {
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.5);
       padding: 24px;
       border-radius: 20px;
       width: 100%;
       max-width: 400px;
       text-align: center;
       backdrop-filter: blur(10px);
-      box-shadow: 0 0 30px rgba(155, 93, 229, 0.5);
+      box-shadow: 0 0 30px var(--glow);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
     }
 
     .card h1 {
-      font-size: 2em;
+      font-size: 2.5em;
       margin-bottom: 16px;
       color: var(--accent);
       animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    .card h1 span {
+      color: var(--accent2);
     }
 
     .btn {
@@ -49,12 +69,24 @@
       border: none;
       padding: 14px 24px;
       border-radius: 12px;
-      font-size: 1em;
+      font-size: 1.2em;
       font-weight: bold;
       cursor: pointer;
       width: 100%;
       margin-top: 20px;
       box-shadow: 0 0 20px var(--accent2);
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #ffffff;
+      color: var(--accent);
+      box-shadow: 0 0 30px var(--accent2);
+    }
+
+    .emoji {
+      font-size: 1.5em;
+      color: var(--accent2);
     }
 
     @keyframes glow {
@@ -76,6 +108,12 @@
       box-shadow: 0 0 20px rgba(0, 255, 212, 0.5);
       color: #ffffff;
       font-size: 1.2em;
+      transition: transform 0.3s ease;
+    }
+
+    .vape-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(0, 255, 212, 0.7);
     }
 
     .vape-card h3 {
@@ -93,21 +131,25 @@
       font-weight: bold;
       font-size: 1.4em;
     }
+
+    .vape-card .emoji {
+      font-size: 2em;
+    }
   </style>
 </head>
 <body>
 
   <!-- Welcome Screen -->
   <div class="card" id="welcome-screen">
-    <h1>Добро пожаловать в Вейп Магазин</h1>
-    <button class="btn" onclick="goToStep1()">Войти в Портал</button>
+    <h1>Добро пожаловать в <span>Вейп Магазин</span> <span class="emoji">🚀</span></h1>
+    <button class="btn" onclick="goToStep1()">Войти в Портал 🌌</button>
   </div>
 
   <!-- Vape List Screen -->
   <div class="card" id="vape-list-screen" style="display: none;">
     <h1>🔥 Доступные Вейпы</h1>
     <div id="vape-container" style="margin-top: 20px;"></div>
-    <button class="btn" onclick="alert('Процесс оформления заказа скоро будет доступен!')">Продолжить</button>
+    <button class="btn" onclick="alert('Процесс оформления заказа скоро будет доступен!')">Продолжить ✨</button>
   </div>
 
   <script>
@@ -132,9 +174,9 @@
             vapeCard.classList.add("vape-card");
 
             vapeCard.innerHTML = `
-              <h3>${vape.name}</h3>
-              <p>Затяжек: ${vape.puffs}</p>
-              <p>Цена: <span class="price">${vape.price}</span></p>
+              <h3>${vape.name} <span class="emoji">💨</span></h3>
+              <p>Затяжек: ${vape.puffs} 💨</p>
+              <p>Цена: <span class="price">${vape.price}₽</span></p>
             `;
 
             container.appendChild(vapeCard);

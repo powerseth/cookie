@@ -65,25 +65,45 @@
         text-shadow: 0 0 10px #00f5d4, 0 0 20px #00f5d4, 0 0 30px #00f5d4;
       }
     }
+
+    /* Vape Product Cards */
+    .vape-card {
+      background: rgba(0, 0, 0, 0.6);
+      margin: 12px 0;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: left;
+      box-shadow: 0 0 20px rgba(0, 255, 212, 0.5);
+      color: #ffffff;
+      font-size: 1.2em;
+    }
+
+    .vape-card h3 {
+      color: var(--accent);
+      font-size: 1.6em;
+      margin: 0;
+    }
+
+    .vape-card p {
+      margin: 8px 0;
+    }
+
+    .vape-card .price {
+      color: var(--accent2);
+      font-weight: bold;
+      font-size: 1.4em;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Screen 1: Welcome -->
+  <!-- Welcome Screen -->
   <div class="card" id="welcome-screen">
     <h1>Welcome to the Vape Shop</h1>
     <button class="btn" onclick="goToStep1()">Enter the Portal</button>
   </div>
 
-  <!-- Screen 2: Vape Type Selection -->
-  <div class="card" id="type-screen" style="display: none;">
-    <h1>Choose Your Vape Type</h1>
-    <button class="btn" onclick="selectType('Disposable')">Disposable</button>
-    <button class="btn" onclick="selectType('Rechargeable')">Rechargeable</button>
-    <button class="btn" onclick="goToStep2()">Next</button>
-  </div>
-
-  <!-- Screen 3: Vape List -->
+  <!-- Vape List Screen -->
   <div class="card" id="vape-list-screen" style="display: none;">
     <h1>🔥 Available Vapes</h1>
     <div id="vape-container" style="margin-top: 20px;"></div>
@@ -91,47 +111,32 @@
   </div>
 
   <script>
-    let selectedType = null;
-
+    // Go to Step 1: Enter the portal
     function goToStep1() {
       document.getElementById("welcome-screen").style.display = "none";
-      document.getElementById("type-screen").style.display = "block";
-    }
-
-    function selectType(type) {
-      selectedType = type;
-      console.log("Selected type:", type);
-    }
-
-    function goToStep2() {
-      if (!selectedType) {
-        alert("Please choose your vape type 💨");
-        return;
-      }
-
-      document.getElementById("type-screen").style.display = "none";
       document.getElementById("vape-list-screen").style.display = "block";
       loadVapes();
     }
 
+    // Load vapes from the vapes.json file
     function loadVapes() {
       fetch("vapes.json")
         .then(res => res.json())
         .then(data => {
           const container = document.getElementById("vape-container");
-          container.innerHTML = "";
+          container.innerHTML = "";  // Clear the container first
+
+          // Loop through the vape data and create vape cards
           data.forEach(vape => {
             const vapeCard = document.createElement("div");
-            vapeCard.style.marginBottom = "16px";
-            vapeCard.style.padding = "12px";
-            vapeCard.style.border = "1px solid #00f5d4";
-            vapeCard.style.borderRadius = "10px";
-            vapeCard.style.background = "rgba(255, 255, 255, 0.05)";
+            vapeCard.classList.add("vape-card");
+
             vapeCard.innerHTML = `
-              <h3 style="margin: 0; color: #00f5d4;">${vape.name}</h3>
-              <p style="margin: 4px 0;">Puffs: ${vape.puffs}</p>
-              <p style="margin: 4px 0;">Price: ${vape.price}</p>
+              <h3>${vape.name}</h3>
+              <p>Puffs: ${vape.puffs}</p>
+              <p>Price: <span class="price">${vape.price}</span></p>
             `;
+
             container.appendChild(vapeCard);
           });
         })

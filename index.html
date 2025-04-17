@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vape Shop Portal</title>
+  <title>Вейп Магазин</title>
   <style>
     :root {
       --accent: #9b5de5;
@@ -99,15 +99,15 @@
 
   <!-- Welcome Screen -->
   <div class="card" id="welcome-screen">
-    <h1>Welcome to the Vape Shop</h1>
-    <button class="btn" onclick="goToStep1()">Enter the Portal</button>
+    <h1>Добро пожаловать в Вейп Магазин</h1>
+    <button class="btn" onclick="goToStep1()">Войти в Портал</button>
   </div>
 
   <!-- Vape List Screen -->
   <div class="card" id="vape-list-screen" style="display: none;">
-    <h1>🔥 Available Vapes</h1>
+    <h1>🔥 Доступные Вейпы</h1>
     <div id="vape-container" style="margin-top: 20px;"></div>
-    <button class="btn" onclick="alert('Checkout flow coming soon!')">Continue</button>
+    <button class="btn" onclick="alert('Процесс оформления заказа скоро будет доступен!')">Продолжить</button>
   </div>
 
   <script>
@@ -133,16 +133,16 @@
 
             vapeCard.innerHTML = `
               <h3>${vape.name}</h3>
-              <p>Puffs: ${vape.puffs}</p>
-              <p>Price: <span class="price">${vape.price}</span></p>
+              <p>Затяжек: ${vape.puffs}</p>
+              <p>Цена: <span class="price">${vape.price}</span></p>
             `;
 
             container.appendChild(vapeCard);
           });
         })
         .catch(err => {
-          document.getElementById("vape-container").innerText = "Failed to load vapes.";
-          console.error("Error loading vapes.json:", err);
+          document.getElementById("vape-container").innerText = "Не удалось загрузить вейпы.";
+          console.error("Ошибка при загрузке vapes.json:", err);
         });
     }
   </script>

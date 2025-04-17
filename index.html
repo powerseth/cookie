@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vape Portal 🚬✨</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vape Shop Portal</title>
   <style>
     :root {
       --accent: #9b5de5;
@@ -59,23 +57,6 @@
       box-shadow: 0 0 20px var(--accent2);
     }
 
-    .btn-outline {
-      border: 2px solid var(--accent2);
-      color: var(--accent2);
-      background: transparent;
-      border-radius: 12px;
-      padding: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      font-size: 1em;
-    }
-
-    .btn-outline:active,
-    .btn:active {
-      transform: scale(0.98);
-      opacity: 0.9;
-    }
-
     @keyframes glow {
       from {
         text-shadow: 0 0 5px #9b5de5, 0 0 10px #9b5de5, 0 0 15px #9b5de5;
@@ -90,27 +71,26 @@
 
   <!-- Screen 1: Welcome -->
   <div class="card" id="welcome-screen">
-    <h1>🚬 VAPE PORTAL 9000</h1>
-    <p>Step into the future of flavor.</p>
+    <h1>Welcome to the Vape Shop</h1>
     <button class="btn" onclick="goToStep1()">Enter the Portal</button>
   </div>
 
-  <!-- Screen 2: Vape Type -->
+  <!-- Screen 2: Vape Type Selection -->
   <div class="card" id="type-screen" style="display: none;">
-    <h1>🧪 Choose Your Vape Style</h1>
-    <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;">
-      <button class="btn-outline" onclick="selectType('Disposable')">Disposable</button>
-      <button class="btn-outline" onclick="selectType('Pod System')">Pod System</button>
-      <button class="btn-outline" onclick="selectType('Box Mod')">Box Mod</button>
-      <button class="btn-outline" onclick="selectType('Nicotine-Free')">Nicotine-Free</button>
-    </div>
+    <h1>Choose Your Vape Type</h1>
+    <button class="btn" onclick="selectType('Disposable')">Disposable</button>
+    <button class="btn" onclick="selectType('Rechargeable')">Rechargeable</button>
     <button class="btn" onclick="goToStep2()">Next</button>
   </div>
 
-  <script>
-    Telegram.WebApp.ready();
-    Telegram.WebApp.expand();
+  <!-- Screen 3: Vape List -->
+  <div class="card" id="vape-list-screen" style="display: none;">
+    <h1>🔥 Available Vapes</h1>
+    <div id="vape-container" style="margin-top: 20px;"></div>
+    <button class="btn" onclick="alert('Checkout flow coming soon!')">Continue</button>
+  </div>
 
+  <script>
     let selectedType = null;
 
     function goToStep1() {
@@ -125,11 +105,42 @@
 
     function goToStep2() {
       if (!selectedType) {
-        alert("Please choose your vape style 💨");
+        alert("Please choose your vape type 💨");
         return;
       }
-      alert(`You selected: ${selectedType}\n(Next screen coming soon...)`);
+
+      document.getElementById("type-screen").style.display = "none";
+      document.getElementById("vape-list-screen").style.display = "block";
+      loadVapes();
+    }
+
+    function loadVapes() {
+      fetch("vapes.json")
+        .then(res => res.json())
+        .then(data => {
+          const container = document.getElementById("vape-container");
+          container.innerHTML = "";
+          data.forEach(vape => {
+            const vapeCard = document.createElement("div");
+            vapeCard.style.marginBottom = "16px";
+            vapeCard.style.padding = "12px";
+            vapeCard.style.border = "1px solid #00f5d4";
+            vapeCard.style.borderRadius = "10px";
+            vapeCard.style.background = "rgba(255, 255, 255, 0.05)";
+            vapeCard.innerHTML = `
+              <h3 style="margin: 0; color: #00f5d4;">${vape.name}</h3>
+              <p style="margin: 4px 0;">Puffs: ${vape.puffs}</p>
+              <p style="margin: 4px 0;">Price: ${vape.price}</p>
+            `;
+            container.appendChild(vapeCard);
+          });
+        })
+        .catch(err => {
+          document.getElementById("vape-container").innerText = "Failed to load vapes.";
+          console.error("Error loading vapes.json:", err);
+        });
     }
   </script>
+
 </body>
 </html>

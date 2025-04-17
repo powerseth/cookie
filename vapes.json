@@ -1,22 +1,114 @@
 [
   {
-    "name": "Blueberry Ice",
-    "puffs": "600",
-    "price": "10€"
+    "name": "TORNADO 🎲",
+    "puffs": 9000,
+    "nicotine": "5%",
+    "price": 20,
+    "image": "tornado_9k.png"
   },
   {
-    "name": "Watermelon Rush",
-    "puffs": "1500",
-    "price": "15€"
+    "name": "TORNADO 🎲",
+    "puffs": 15000,
+    "nicotine": "2%",
+    "price": 20,
+    "image": "tornado_15k.png"
   },
   {
-    "name": "Mango Peach",
-    "puffs": "800",
-    "price": "12€"
+    "name": "TORNADO 🎲",
+    "puffs": 20000,
+    "nicotine": "2.5%",
+    "price": 25,
+    "image": "tornado_20k.png"
   },
   {
-    "name": "Cool Mint",
-    "puffs": "1200",
-    "price": "14€"
+    "name": "TORNADO 🎲",
+    "puffs": 25000,
+    "nicotine": "2%",
+    "price": 30,
+    "image": "tornado_25k.png"
+  },
+  {
+    "name": "TORNADO 🎲",
+    "puffs": 30000,
+    "nicotine": "2%",
+    "price": 35,
+    "image": "tornado_30k.png"
+  },
+  {
+    "name": "VOZOL Gear ➖",
+    "puffs": 10000,
+    "nicotine": "5%",
+    "price": 25,
+    "image": "vozol_gear_10k.png"
+  },
+  {
+    "name": "VOZOL Vista plug ➖",
+    "puffs": 15000,
+    "nicotine": "2%",
+    "price": 25,
+    "image": "vozol_vista_15k.png"
+  },
+  {
+    "name": "VOZOL Gear ➖",
+    "puffs": 20000,
+    "nicotine": "2%",
+    "price": 25,
+    "image": "vozol_gear_20k.png"
+  },
+  {
+    "name": "VOZOL Gear ➖",
+    "puffs": 25000,
+    "nicotine": "5%",
+    "price": 30,
+    "image": "vozol_gear_25k.png"
+  },
+  {
+    "name": "MEDIAMAX PHONEVAPE 🔴",
+    "puffs": 40000,
+    "nicotine": "2%",
+    "price": 30,
+    "image": "mediamax_phonevape_40k.png"
+  },
+  {
+    "name": "FUMOT/CRYSTAL 🎲",
+    "puffs": 12000,
+    "nicotine": "2%",
+    "price": 20,
+    "image": "fumot_crystal_12k.png"
+  },
+  {
+    "name": "FUMOT/CRYSTAL 🎲",
+    "puffs": 4500,
+    "nicotine": "2%",
+    "price": 20,
+    "image": "fumot_crystal_4_5k.png"
+  },
+  {
+    "name": "FUMOT/CRYSTAL 🎲",
+    "puffs": 600,
+    "nicotine": "2%",
+    "price": 10,
+    "image": "fumot_crystal_600.png"
+  },
+  {
+    "name": "IJOY 🎲",
+    "puffs": 40000,
+    "nicotine": "2%",
+    "price": 30,
+    "image": "ijoy_40k.png"
+  },
+  {
+    "name": "SHISHA VAPE AlFakher 🔵",
+    "puffs": 8000,
+    "nicotine": "6%",
+    "price": 20,
+    "image": "shisha_vape_alfakher_8k.png"
+  },
+  {
+    "name": "SHISHA VAPE Ghostmary 🔵",
+    "puffs": 15000,
+    "nicotine": "5%",
+    "price": 25,
+    "image": "shisha_vape_ghostmary_15k.png"
   }
 ]

@@ -238,40 +238,4 @@
       "Cherry Fiesta"
     ]
   },
-  {
-    "name": "Adalya 250000",
-    "puffs": 0,
-    "nicotine": "",
-    "price": 0,
-    "image": "",
-    "flavours": [
-      "Love 66",
-      "Mi Amor (Banana Raspberry)",
-      "Blue Ice (Blueberry Ice)",
-      "Lady Killer (Peach Mint)",
-      "Watermelon Ice"
-    ]
-  },
-  {
-    "name": "Adalya 16000",
-    "puffs": 0,
-    "nicotine": "",
-    "price": 0,
-    "image": "",
-    "flavours": [
-      "Mint Point",
-      "Cola Dragon"
-    ]
-  },
-  {
-    "name": "Hayati 15000",
-    "puffs": 0,
-    "nicotine": "",
-    "price": 0,
-    "image": "",
-    "flavours": [
-      "Hberg / Pman",
-      "Strawberry Grapefruit / Strawberry Dragonfruit"
-    ]
-  }
 ]

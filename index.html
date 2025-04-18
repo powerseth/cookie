@@ -1,282 +1,260 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚬 VAPE PORTAL 9000</title>
-    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Zilla+Slab:wght@400;500&display=swap" rel="stylesheet">
+    <title>🚬 Vape 9000 🛸</title>
     <style>
         body {
-            font-family: 'Zilla Slab', serif;
-            background: linear-gradient(to right, #8E2DE2, #4A00E0);
-            color: #fff;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background: #111;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .welcome-screen {
             text-align: center;
-            height: 100vh;
-            overflow: hidden;
+            padding: 50px;
+            background: linear-gradient(to right, #8e2de2, #4a00e0);
+            font-size: 2em;
+            color: #fff;
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 30px #ff00ff; }
+            100% { text-shadow: 0 0 20px #fff, 0 0 30px #ff00ff, 0 0 40px #ff00ff; }
+        }
+
+        .filters {
+            position: sticky;
+            top: 0;
+            background: #1e1e1e;
+            padding: 10px;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            justify-content: space-around;
+            border-bottom: 1px solid #333;
         }
 
-        h1 {
-            font-size: 2.5em;
-            text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+        .filters select {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin: 5px;
+            border-radius: 5px;
         }
 
-        .content {
+        .product-list {
             padding: 20px;
-            flex-grow: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
         }
 
-        .button {
-            background-color: #fff;
-            color: #4A00E0;
-            border: 2px solid #4A00E0;
-            border-radius: 30px;
-            padding: 15px 30px;
-            margin: 10px;
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: 0.3s ease;
-        }
-
-        .button:hover {
-            background-color: #4A00E0;
-            color: #fff;
-            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.7);
-            transform: scale(1.1);
-        }
-
-        .button:active {
-            transform: scale(0.9);
-        }
-
-        .vape-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .vape-item {
-            background-color: #fff;
-            color: #4A00E0;
-            border: 2px solid #4A00E0;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 10px;
-            width: 180px;
+        .product-card {
+            background: #222;
+            border-radius: 8px;
+            padding: 20px;
             text-align: center;
-            cursor: pointer;
-            transition: 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
 
-        .vape-item:hover {
-            background-color: #4A00E0;
-            color: #fff;
-            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.7);
+        .product-card:hover {
             transform: scale(1.05);
         }
 
-        .vape-item:active {
-            transform: scale(0.95);
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
         }
 
-        .sticky-header {
-            position: sticky;
-            top: 0;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 10px;
+        .product-card h3 {
+            color: #ff00ff;
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        .product-card p {
+            color: #ddd;
+            margin: 10px 0;
+        }
+
+        .product-card button {
+            background: #ff00ff;
             color: #fff;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
-        .footer {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 20px;
+        .product-card button:hover {
+            background: #d400d4;
+        }
+
+        .cart {
+            background: #333;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .cart h2 {
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .cart-items {
+            margin-bottom: 15px;
+        }
+
+        .cart-items p {
+            color: #fff;
+            margin: 5px 0;
         }
 
         .cart-button {
-            background-color: #fff;
-            color: #4A00E0;
-            border: 2px solid #4A00E0;
-            border-radius: 30px;
-            padding: 15px 30px;
-            margin: 10px;
-            font-size: 1.2em;
+            background: #ff00ff;
+            color: #fff;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
         }
 
         .cart-button:hover {
-            background-color: #4A00E0;
-            color: #fff;
-            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.7);
-            transform: scale(1.1);
-        }
-
-        .cart-button:active {
-            transform: scale(0.9);
-        }
-
-        .back-button {
-            background-color: transparent;
-            border: none;
-            color: #fff;
-            font-size: 1.2em;
-            cursor: pointer;
-            text-decoration: underline;
+            background: #d400d4;
         }
     </style>
 </head>
 <body>
 
     <!-- Welcome Screen -->
-    <div class="content" id="welcomeScreen">
-        <h1>🚬 VAPE PORTAL 9000</h1>
-        <p>Step into the future of flavor.</p>
-        <button class="button" id="startBtn">Начать</button>
+    <div class="welcome-screen">
+        🚬 Vape 9000 🛸 <br>
+        Step into the future of flavor.
     </div>
 
-    <!-- Screen 1: Nicotine Strength -->
-    <div class="content" id="screen1" style="display:none;">
-        <h1>Выберите крепость никотина</h1>
-        <div class="vape-list">
-            <div class="vape-item">5% <button class="button" onclick="selectNicotine('5%')">Выбрать</button></div>
-            <div class="vape-item">2% <button class="button" onclick="selectNicotine('2%')">Выбрать</button></div>
-            <div class="vape-item">0% <button class="button" onclick="selectNicotine('0%')">Выбрать</button></div>
-        </div>
-        <div class="footer">
-            <button class="cart-button" onclick="goToChannel()">Перейти в канал</button>
-            <button class="back-button" onclick="goBack()">Назад</button>
-        </div>
+    <!-- Filters Section (Sticky Header) -->
+    <div class="filters">
+        <select id="nicotine">
+            <option value="all">Nicotine Strength</option>
+            <option value="2">2%</option>
+            <option value="5">5%</option>
+            <option value="6">6%</option>
+        </select>
+        <select id="puffs">
+            <option value="all">Puff Amount</option>
+            <option value="10000">Up to 10k</option>
+            <option value="20000">10k-20k</option>
+            <option value="30000">20k-30k</option>
+            <option value="40000">40k+</option>
+        </select>
+        <select id="price">
+            <option value="all">Price Range</option>
+            <option value="10">€10-€20</option>
+            <option value="20">€20-€30</option>
+            <option value="30">€30+</option>
+        </select>
     </div>
 
-    <!-- Screen 2: Puff Amount -->
-    <div class="content" id="screen2" style="display:none;">
-        <h1>Сколько затяжек вам нужно?</h1>
-        <div class="vape-list">
-            <div class="vape-item">до 15k <button class="button" onclick="selectPuffs('до 15k')">Выбрать</button></div>
-            <div class="vape-item">15k-30k <button class="button" onclick="selectPuffs('15k-30k')">Выбрать</button></div>
-            <div class="vape-item">40k+ <button class="button" onclick="selectPuffs('40k+')">Выбрать</button></div>
-        </div>
-        <div class="footer">
-            <button class="cart-button" onclick="goToChannel()">Перейти в канал</button>
-            <button class="back-button" onclick="goBack()">Назад</button>
-        </div>
+    <!-- Product List -->
+    <div class="product-list" id="product-list">
+        <!-- Products will be displayed here dynamically -->
     </div>
 
-    <!-- Screen 3: Vape Selection -->
-    <div class="content" id="screen3" style="display:none;">
-        <h1>Выберите ваш вейп</h1>
-        <div class="vape-list">
-            <!-- Example vape selection dynamically generated -->
-            <div class="vape-item" onclick="selectVape('TORNADO 9k')">TORNADO 9k</div>
-            <div class="vape-item" onclick="selectVape('VOZOL Gear 10k')">VOZOL Gear 10k</div>
-            <!-- Add more vapes here -->
-        </div>
-        <p>Флavours будут отправлены вам после оформления заказа.</p>
-        <div class="footer">
-            <button class="cart-button" onclick="addToCart()">Добавить в корзину</button>
-            <button class="back-button" onclick="goBack()">Назад</button>
-        </div>
-    </div>
-
-    <!-- Cart Screen -->
-    <div class="content" id="cartScreen" style="display:none;">
-        <h1>Ваша корзина</h1>
-        <ul id="cartList">
-            <!-- Cart items will appear here -->
-        </ul>
-        <p>Нажмите "Отправить", чтобы оформить заказ.</p>
-        <div class="footer">
-            <button class="cart-button" onclick="submitOrder()">Отправить заказ</button>
-            <button class="back-button" onclick="goBack()">Назад</button>
-        </div>
+    <!-- Cart Section -->
+    <div class="cart" id="cart">
+        <h2>Your Cart</h2>
+        <div class="cart-items" id="cart-items"></div>
+        <button class="cart-button" onclick="sendToCart()">Send to Stas</button>
     </div>
 
     <script>
-        // Store user choices
-        let selectedNicotine = '';
-        let selectedPuffs = '';
-        let selectedVape = '';
+        const products = [
+            { name: 'TORNADO 9k', nicotine: 5, puffs: 9000, price: 20, image: 'https://example.com/vape1.png' },
+            { name: 'TORNADO 15k', nicotine: 2, puffs: 15000, price: 20, image: 'https://example.com/vape2.png' },
+            { name: 'VOZOL Gear 10k', nicotine: 5, puffs: 10000, price: 25, image: 'https://example.com/vape3.png' },
+            { name: 'MEDIAMAX 40k', nicotine: 2, puffs: 40000, price: 30, image: 'https://example.com/vape4.png' }
+        ];
+
         let cart = [];
 
-        // Show the welcome screen
-        document.getElementById('startBtn').addEventListener('click', function() {
-            document.getElementById('welcomeScreen').style.display = 'none';
-            document.getElementById('screen1').style.display = 'block';
-        });
+        // Display products based on filters
+        function filterProducts() {
+            const nicotine = document.getElementById('nicotine').value;
+            const puffs = document.getElementById('puffs').value;
+            const price = document.getElementById('price').value;
 
-        // Select nicotine strength
-        function selectNicotine(nicotine) {
-            selectedNicotine = nicotine;
-            document.getElementById('screen1').style.display = 'none';
-            document.getElementById('screen2').style.display = 'block';
+            const filteredProducts = products.filter(product => {
+                return (
+                    (nicotine === 'all' || product.nicotine == nicotine) &&
+                    (puffs === 'all' || product.puffs >= puffs) &&
+                    (price === 'all' || product.price <= price)
+                );
+            });
+
+            displayProducts(filteredProducts);
         }
 
-        // Select puff amount
-        function selectPuffs(puffs) {
-            selectedPuffs = puffs;
-            document.getElementById('screen2').style.display = 'none';
-            document.getElementById('screen3').style.display = 'block';
-        }
+        // Display products in the list
+        function displayProducts(products) {
+            const productList = document.getElementById('product-list');
+            productList.innerHTML = '';
 
-        // Select vape
-        function selectVape(vape) {
-            selectedVape = vape;
-            document.getElementById('screen3').style.display = 'none';
-            document.getElementById('cartScreen').style.display = 'block';
-            cart.push(vape);
-            updateCart();
-        }
-
-        // Add to cart
-        function addToCart() {
-            cart.push(selectedVape);
-            updateCart();
-        }
-
-        // Update cart
-        function updateCart() {
-            const cartList = document.getElementById('cartList');
-            cartList.innerHTML = '';
-            cart.forEach(item => {
-                const li = document.createElement('li');
-                li.textContent = item;
-                cartList.appendChild(li);
+            products.forEach(product => {
+                const productCard = `
+                    <div class="product-card">
+                        <img src="${product.image}" alt="${product.name}">
+                        <h3>${product.name}</h3>
+                        <p>Nicotine: ${product.nicotine}%</p>
+                        <p>Puffs: ${product.puffs}</p>
+                        <p>Price: €${product.price}</p>
+                        <button onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
+                    </div>
+                `;
+                productList.innerHTML += productCard;
             });
         }
 
-        // Submit order
-        function submitOrder() {
-            alert('Ваш заказ отправлен!');
-            // Reset the cart
+        // Add product to cart
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCart();
+        }
+
+        // Update cart display
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            cartItems.innerHTML = '';
+
+            cart.forEach(item => {
+                cartItems.innerHTML += `<p>${item.name} - €${item.price}</p>`;
+            });
+        }
+
+        // Send cart to Stas (this will just log the cart for now)
+        function sendToCart() {
+            alert('Your cart has been sent to Stas!');
+            console.log(cart);
             cart = [];
             updateCart();
-            document.getElementById('cartScreen').style.display = 'none';
-            document.getElementById('welcomeScreen').style.display = 'block';
         }
 
-        // Go back to previous screen
-        function goBack() {
-            if (document.getElementById('screen1').style.display !== 'none') {
-                document.getElementById('welcomeScreen').style.display = 'block';
-                document.getElementById('screen1').style.display = 'none';
-            } else if (document.getElementById('screen2').style.display !== 'none') {
-                document.getElementById('screen1').style.display = 'block';
-                document.getElementById('screen2').style.display = 'none';
-            } else if (document.getElementById('screen3').style.display !== 'none') {
-                document.getElementById('screen2').style.display = 'block';
-                document.getElementById('screen3').style.display = 'none';
-            }
-        }
+        // Initial load of products
+        filterProducts();
 
-        // Go to the channel
-        function goToChannel() {
-            window.open("https://t.me/stas_vape", "_blank");
-        }
+        // Add event listeners to filter dropdowns
+        document.getElementById('nicotine').addEventListener('change', filterProducts);
+        document.getElementById('puffs').addEventListener('change', filterProducts);
+        document.getElementById('price').addEventListener('change', filterProducts);
     </script>
 </body>
 </html>

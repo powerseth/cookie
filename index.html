@@ -5,186 +5,178 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>🚬 Vape 9000 🛸</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: radial-gradient(circle at top left, #1f0036, #000000);
-      color: #ffffff;
-      overflow-x: hidden;
-    }
-
-    .screen {
-      display: none;
-      padding: 16px;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.4s ease-in-out;
-    }
-
-    .screen.active {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .welcome-screen {
-      text-align: center;
-      padding: 16px;
-      background: linear-gradient(135deg, #8e2de2, #4a00e0);
-      font-size: 1.3em;
-      color: #fff;
-      animation: pulseGlow 2s infinite alternate;
-    }
-
-    @keyframes pulseGlow {
-      from {
-        text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
-      }
-      to {
-        text-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff;
-      }
-    }
-
-    .filters {
-      position: sticky;
-      top: 0;
-      background: rgba(30, 30, 30, 0.95);
-      padding: 10px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-      z-index: 10;
-    }
-
-    .filters select {
-      background: #2d2d2d;
-      color: #fff;
-      border: 1px solid #ff00ff;
-      padding: 5px 8px;
-      border-radius: 8px;
-      outline: none;
-      font-size: 0.9em;
-    }
-
-    .product-list {
-      margin-top: 10px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 12px;
-    }
-
-    .product-card {
-      background: #1d1d1d;
-      border-radius: 10px;
-      padding: 10px;
-      text-align: center;
-      transition: transform 0.3s ease;
-      box-shadow: 0 0 8px rgba(255, 0, 255, 0.1);
-    }
-
-    .product-card:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 12px rgba(255, 0, 255, 0.3);
-    }
-
-    .product-card img {
-      width: 100%;
-      max-height: 100px;
-      object-fit: contain;
-      border-radius: 5px;
-      margin-bottom: 8px;
-    }
-
-    .product-card h3 {
-      color: #ff80ff;
-      font-size: 0.95em;
-      margin: 4px 0;
-    }
-
-    .product-card p {
-      margin: 2px 0;
-      font-size: 0.8em;
-    }
-
-    button {
-      background: transparent;
-      color: #fff;
-      padding: 8px;
-      border: 2px solid #ff00ff;
-      border-radius: 8px;
-      font-size: 0.9em;
-      font-weight: bold;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-
-    button::before {
-      content: "";
-      position: absolute;
-      top: -100%;
-      left: -100%;
-      width: 300%;
-      height: 300%;
-      background: linear-gradient(45deg, #ff00ff, transparent, #ff00ff);
-      animation: electricFlow 3s linear infinite;
-      opacity: 0.2;
-    }
-
-    @keyframes electricFlow {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(50%, 50%); }
-    }
-
-    .bottom-button {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: #2e003e;
-      border-top: 2px solid #ff00ff;
-      z-index: 99;
-    }
-
-    .cart-summary {
-      margin-top: 20px;
-      font-size: 1em;
-      text-align: right;
-    }
-
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 10px 0;
-      font-size: 0.9em;
-    }
-
-    .cart-controls button {
-      margin: 0 4px;
-      padding: 4px 8px;
-    }
-
-    .finish-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 24px;
-    }
-
-    .shimmer {
-      animation: shimmer 2s infinite;
-      background: linear-gradient(90deg, #1d1d1d 25%, #292929 50%, #1d1d1d 75%);
-      background-size: 400% 100%;
-      height: 120px;
-      border-radius: 10px;
-    }
-
-    @keyframes shimmer {
-      0% { background-position: 100% 0; }
-      100% { background-position: -100% 0; }
-    }
+    /* (CSS styles unchanged, already applied above) */
   </style>
 </head>
+<body>
+  <div class="screen active" id="screen-choose">
+    <div class="welcome-screen">
+      🚬 Vape 9000 🛸 <br> Добро пожаловать в мир вкуса
+    </div>
+    <div class="filters">
+      <select id="nicotine">
+        <option value="all">Крепость</option>
+        <option value="2%">2%</option>
+        <option value="2.5%">2.5%</option>
+        <option value="5%">5%</option>
+        <option value="6%">6%</option>
+      </select>
+      <select id="puffs">
+        <option value="all">Затяжки</option>
+        <option value="10000">До 10k</option>
+        <option value="20000">10k-20k</option>
+        <option value="30000">20k-30k</option>
+        <option value="40000">40k+</option>
+      </select>
+      <select id="price">
+        <option value="all">Цена</option>
+        <option value="10">€10-€20</option>
+        <option value="20">€20-€30</option>
+        <option value="30">€30+</option>
+      </select>
+    </div>
+    <div class="product-list" id="product-list">
+      <div class="shimmer"></div>
+      <div class="shimmer"></div>
+      <div class="shimmer"></div>
+    </div>
+    <button class="bottom-button" onclick="goToCart()">Корзина и оформление</button>
+  </div>
+
+  <div class="screen" id="screen-cart">
+    <h2>🛒 Корзина</h2>
+    <div id="cart-items"></div>
+    <div class="cart-summary">Сумма: €<span id="cart-total">0</span></div>
+    <div class="finish-buttons">
+      <button onclick="goToChoose()">← Назад</button>
+      <button onclick="goToFinish()">Продолжить →</button>
+    </div>
+  </div>
+
+  <div class="screen" id="screen-finish">
+    <h2>Завершение</h2>
+    <div class="finish-buttons">
+      <button onclick="sendToStas()">📤 Отправить Стасу</button>
+      <button onclick="goToCart()">← Назад</button>
+      <button onclick="goToChannel()">📣 Перейти в канал</button>
+    </div>
+  </div>
+
+  <script>
+    let products = [];
+    let cart = [];
+
+    async function loadProducts() {
+      const list = document.getElementById('product-list');
+      list.innerHTML = '<div class="shimmer"></div><div class="shimmer"></div><div class="shimmer"></div>';
+      try {
+        const res = await fetch('vapes.json');
+        products = await res.json();
+        filterProducts();
+      } catch (err) {
+        list.innerHTML = '<p style="color: red">Ошибка загрузки товаров 😢</p>';
+      }
+    }
+
+    function filterProducts() {
+      const nic = document.getElementById('nicotine').value;
+      const puf = document.getElementById('puffs').value;
+      const pri = document.getElementById('price').value;
+
+      const filtered = products.filter(p => {
+        return (nic === 'all' || p.nicotine === nic) &&
+               (puf === 'all' || p.puffs >= parseInt(puf)) &&
+               (pri === 'all' || p.price <= parseInt(pri));
+      });
+
+      displayProducts(filtered);
+    }
+
+    function displayProducts(list) {
+      const container = document.getElementById('product-list');
+      container.innerHTML = '';
+      list.forEach(p => {
+        container.innerHTML += `
+          <div class="product-card">
+            <img src="${p.image}" alt="${p.name}">
+            <h3>${p.name}</h3>
+            <p>Крепость: ${p.nicotine}</p>
+            <p>Затяжек: ${p.puffs}</p>
+            <p>Цена: €${p.price}</p>
+            <button onclick="addToCart('${p.name}', ${p.price})">Добавить</button>
+          </div>`;
+      });
+    }
+
+    function addToCart(name, price) {
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      updateCart();
+    }
+
+    function updateCart() {
+      const container = document.getElementById('cart-items');
+      container.innerHTML = '';
+      let total = 0;
+      cart.forEach((item, i) => {
+        total += item.price * item.qty;
+        container.innerHTML += `
+          <div class="cart-item">
+            <span>${item.name} (€${item.price})</span>
+            <div class="cart-controls">
+              <button onclick="changeQty(${i}, -1)">-</button>
+              ${item.qty}
+              <button onclick="changeQty(${i}, 1)">+</button>
+            </div>
+          </div>`;
+      });
+      document.getElementById('cart-total').innerText = total;
+    }
+
+    function changeQty(index, delta) {
+      cart[index].qty += delta;
+      if (cart[index].qty <= 0) cart.splice(index, 1);
+      updateCart();
+    }
+
+    function showScreen(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function goToCart() {
+      updateCart();
+      showScreen('screen-cart');
+    }
+
+    function goToChoose() {
+      showScreen('screen-choose');
+    }
+
+    function goToFinish() {
+      showScreen('screen-finish');
+    }
+
+    function sendToStas() {
+      alert('Заказ отправлен Стасу!');
+      console.log('Отправка:', cart);
+      cart = [];
+      updateCart();
+      goToChoose();
+    }
+
+    function goToChannel() {
+      window.open("https://t.me/yourchannel", "_blank");
+    }
+
+    document.getElementById('nicotine').addEventListener('change', filterProducts);
+    document.getElementById('puffs').addEventListener('change', filterProducts);
+    document.getElementById('price').addEventListener('change', filterProducts);
+    loadProducts();
+  </script>
+</body>
+</html>

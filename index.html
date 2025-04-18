@@ -136,8 +136,6 @@
   </style>
 </head>
 <body>
-
-  <!-- Screen 1: Выбор -->
   <div class="screen active" id="screen-choose">
     <div class="welcome-screen">
       🚬 Vape 9000 🛸 <br> Добро пожаловать в мир вкуса
@@ -146,9 +144,10 @@
     <div class="filters">
       <select id="nicotine">
         <option value="all">Крепость</option>
-        <option value="2">2%</option>
-        <option value="5">5%</option>
-        <option value="6">6%</option>
+        <option value="2%">2%</option>
+        <option value="2.5%">2.5%</option>
+        <option value="5%">5%</option>
+        <option value="6%">6%</option>
       </select>
       <select id="puffs">
         <option value="all">Затяжки</option>
@@ -166,11 +165,9 @@
     </div>
 
     <div class="product-list" id="product-list"></div>
-
     <button class="bottom-button" onclick="goToCart()">Корзина и оформление</button>
   </div>
 
-  <!-- Screen 2: Корзина -->
   <div class="screen" id="screen-cart">
     <h2>🛒 Корзина</h2>
     <div id="cart-items"></div>
@@ -181,7 +178,6 @@
     </div>
   </div>
 
-  <!-- Screen 3: Завершение -->
   <div class="screen" id="screen-finish">
     <h2>Завершение</h2>
     <div class="finish-buttons">
@@ -192,13 +188,7 @@
   </div>
 
   <script>
-    const products = [
-      { name: 'TORNADO 9k', nicotine: 5, puffs: 9000, price: 20, image: 'https://example.com/vape1.png' },
-      { name: 'TORNADO 15k', nicotine: 2, puffs: 15000, price: 20, image: 'https://example.com/vape2.png' },
-      { name: 'VOZOL Gear 10k', nicotine: 5, puffs: 10000, price: 25, image: 'https://example.com/vape3.png' },
-      { name: 'MEDIAMAX 40k', nicotine: 2, puffs: 40000, price: 30, image: 'https://example.com/vape4.png' }
-    ];
-
+    const products = JSON.parse(`__PRODUCTS__`);
     let cart = [];
 
     function displayProducts(filtered) {
@@ -209,7 +199,7 @@
           <div class="product-card">
             <img src="${p.image}" alt="${p.name}">
             <h3>${p.name}</h3>
-            <p>Крепость: ${p.nicotine}%</p>
+            <p>Крепость: ${p.nicotine}</p>
             <p>Затяжек: ${p.puffs}</p>
             <p>Цена: €${p.price}</p>
             <button onclick="addToCart('${p.name}', ${p.price})">Добавить</button>
@@ -224,9 +214,9 @@
       const pri = document.getElementById('price').value;
 
       const filtered = products.filter(p => {
-        return (nic === 'all' || p.nicotine == nic) &&
-               (puf === 'all' || p.puffs >= puf) &&
-               (pri === 'all' || p.price <= pri);
+        return (nic === 'all' || p.nicotine === nic) &&
+               (puf === 'all' || p.puffs >= parseInt(puf)) &&
+               (pri === 'all' || p.price <= parseInt(pri));
       });
 
       displayProducts(filtered);
@@ -300,11 +290,11 @@
       window.open("https://t.me/yourchannel", "_blank");
     }
 
-    // Init
-    filterProducts();
     document.getElementById('nicotine').addEventListener('change', filterProducts);
     document.getElementById('puffs').addEventListener('change', filterProducts);
     document.getElementById('price').addEventListener('change', filterProducts);
+
+    filterProducts();
   </script>
 </body>
 </html>

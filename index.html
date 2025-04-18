@@ -1,191 +1,187 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>⚡ Vape Nebula</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <title>Vape Nebula</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
     body {
-      background: radial-gradient(#0f0c29, #302b63, #24243e);
-      margin: 0;
       font-family: 'Orbitron', sans-serif;
-      color: #fff;
-      overflow-x: hidden;
+      background: linear-gradient(120deg, #1e1e2f, #2c3e50);
+      color: #f1f1f1;
+      margin: 0;
+      padding: 0;
     }
-    .filters, .vape-list, .flavour-list, .cart {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      padding: 1rem;
+    .container {
+      padding: 20px;
     }
-    .card {
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 1rem;
-      padding: 1rem;
-      width: 160px;
+    h1 {
       text-align: center;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      font-size: 2rem;
+      color: #00d1ff;
+      margin-bottom: 10px;
     }
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+    .product {
+      background: #292c3c;
+      border-radius: 15px;
+      padding: 15px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 0 10px rgba(0, 209, 255, 0.2);
     }
-    .card img {
-      width: 100%;
-      border-radius: 0.5rem;
-      margin-bottom: 0.5rem;
+    .product img {
+      max-width: 180px;
+      border-radius: 10px;
+    }
+    .product-info {
+      text-align: center;
+    }
+    .flavour-select {
+      margin-top: 10px;
+    }
+    select, button {
+      font-family: inherit;
+      margin-top: 5px;
+      padding: 5px 10px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
     }
     button {
-      background: #00f2ff;
-      color: #000;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
+      background: #00d1ff;
+      color: black;
       cursor: pointer;
-      font-weight: bold;
-      margin: 0.5rem;
-      animation: glow 1.5s infinite alternate;
     }
-    @keyframes glow {
-      from { box-shadow: 0 0 5px #00f2ff; }
-      to { box-shadow: 0 0 20px #00f2ff; }
+    button:hover {
+      background: #00bcd4;
+    }
+    .cart {
+      background: #1a1c2b;
+      border-top: 2px solid #00d1ff;
+      padding: 20px;
+    }
+    .cart h2 {
+      color: #00d1ff;
+    }
+    .cart-item {
+      margin-bottom: 10px;
+    }
+    .checkout {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .checkout a {
+      background: #00ffae;
+      color: #000;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 12px;
+      display: inline-block;
+    }
+    .checkout a:hover {
+      background: #00d89c;
     }
   </style>
 </head>
 <body>
-  <h1 style="text-align:center">⚡ Эпичный Вейп Шоп Nebula ⚡</h1>
-
-  <div class="filters">
-    <select id="nicotineFilter">
-      <option value="">Никотин %</option>
-      <option value="2">2%</option>
-      <option value="2.5">2.5%</option>
-      <option value="5">5%</option>
-      <option value="6">6%</option>
-    </select>
-    <select id="puffFilter">
-      <option value="">Затяжек</option>
-      <option value="0-10">0–10k</option>
-      <option value="10-20">10k–20k</option>
-      <option value="20-30">20k–30k</option>
-      <option value="30-50">30k–50k</option>
-    </select>
-    <select id="priceFilter">
-      <option value="">Цена</option>
-      <option value="low">Сначала дешевые</option>
-      <option value="high">Сначала дорогие</option>
-    </select>
-  </div>
-
-  <div id="vapeList" class="vape-list"></div>
-  <div id="flavourList" class="flavour-list" style="display:none;"></div>
-  <div id="cart" class="cart"></div>
-
-  <div style="text-align:center; margin-top: 2rem;">
-    <button onclick="goToCart()">🛒 Перейти в корзину</button>
-    <button onclick="sendToStas()">✅ Оформить заказ</button>
+  <div class="container">
+    <h1>Vape Nebula</h1>
+    <div id="products">Loading...</div>
+    <div class="cart">
+      <h2>🛒 Cart</h2>
+      <div id="cart-items"></div>
+      <div class="checkout" id="checkout"></div>
+    </div>
   </div>
 
   <script>
+    const cart = [];
 
-<script>
-let vapes = [];
-let cart = [];
+    async function fetchVapes() {
+      const res = await fetch('./vapes.json');
+      const vapes = await res.json();
+      renderProducts(vapes);
+    }
 
-const vapeListEl = document.getElementById('vapeList');
-const flavourListEl = document.getElementById('flavourList');
-const cartEl = document.getElementById('cart');
+    const productsContainer = document.getElementById('products');
+    const cartItems = document.getElementById('cart-items');
+    const checkoutDiv = document.getElementById('checkout');
 
-document.getElementById('nicotineFilter').onchange = renderVapes;
-document.getElementById('puffFilter').onchange = renderVapes;
-document.getElementById('priceFilter').onchange = renderVapes;
+    function renderProducts(vapes) {
+      productsContainer.innerHTML = '';
+      vapes.forEach((vape, index) => {
+        const product = document.createElement('div');
+        product.className = 'product';
 
-fetch('vapes.json')
-  .then(res => res.json())
-  .then(data => {
-    vapes = data;
-    renderVapes();
-  });
+        const image = `<img src="${vape.image || 'https://via.placeholder.com/180x180?text=No+Image'}" alt="${vape.name}" />`;
+        const info = `
+          <div class="product-info">
+            <h3>${vape.name}</h3>
+            <p>${vape.puffs ? vape.puffs + ' puffs' : ''} ${vape.nicotine ? ' | ' + vape.nicotine : ''} ${vape.price ? '| €' + vape.price : ''}</p>
+          </div>
+        `;
 
-function renderVapes() {
-  const nicotine = document.getElementById('nicotineFilter').value;
-  const puff = document.getElementById('puffFilter').value;
-  const sort = document.getElementById('priceFilter').value;
-  let filtered = [...vapes];
+        const flavourOptions = vape.flavours.map(f => `<option value="${f}">${f}</option>`).join('');
+        const flavourSelect = `
+          <div class="flavour-select">
+            <label>Flavour:</label>
+            <select id="flavour-${index}">${flavourOptions}</select>
+          </div>
+        `;
 
-  if (nicotine) filtered = filtered.filter(v => parseFloat(v.nicotine) === parseFloat(nicotine));
-  if (puff) {
-    const [min, max] = puff.split('-').map(Number);
-    filtered = filtered.filter(v => v.puffs >= min * 1000 && v.puffs <= max * 1000);
-  }
-  if (sort) filtered.sort((a, b) => sort === 'low' ? a.price - b.price : b.price - a.price);
+        const addButton = `<button onclick="addToCart(${index})">Add to Cart</button>`;
 
-  vapeListEl.innerHTML = '';
-  filtered.forEach(vape => {
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.innerHTML = `<img src="${vape.image}" alt="${vape.name}" />
-      <div>${vape.name}<br>${vape.nicotine} / ${vape.puffs} затяжек<br>€${vape.price}</div>`;
-    card.onclick = () => showFlavours(vape);
-    vapeListEl.appendChild(card);
-  });
-}
+        product.innerHTML = image + info + flavourSelect + addButton;
+        productsContainer.appendChild(product);
+      });
 
-function showFlavours(vape) {
-  vapeListEl.style.display = 'none';
-  flavourListEl.style.display = 'flex';
-  flavourListEl.innerHTML = '';
-  const flavours = vape.flavours || [];
-  flavours.forEach(flavour => {
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.innerText = flavour;
-    card.onclick = () => addToCart(vape, flavour);
-    flavourListEl.appendChild(card);
-  });
+      window.vapes = vapes; // for global access in addToCart
+    }
 
-  const backBtn = document.createElement('button');
-  backBtn.textContent = 'Назад';
-  backBtn.onclick = () => {
-    flavourListEl.style.display = 'none';
-    vapeListEl.style.display = 'flex';
-  };
-  flavourListEl.appendChild(backBtn);
-}
+    function addToCart(index) {
+      const vape = window.vapes[index];
+      const flavour = document.getElementById(`flavour-${index}`).value;
+      const key = `${vape.name} - ${flavour}`;
+      const existing = cart.find(item => item.key === key);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ key, name: vape.name, flavour, price: vape.price, qty: 1 });
+      }
+      renderCart();
+    }
 
-function addToCart(vape, flavour) {
-  const existing = cart.find(i => i.vape === vape.name && i.flavour === flavour);
-  if (existing) existing.qty++;
-  else cart.push({ vape: vape.name, flavour, price: vape.price, qty: 1 });
-  updateCart();
-}
+    function removeFromCart(key) {
+      const idx = cart.findIndex(item => item.key === key);
+      if (idx > -1) cart.splice(idx, 1);
+      renderCart();
+    }
 
-function updateCart() {
-  cartEl.innerHTML = '<h2>🛒 Корзина</h2>';
-  let total = 0;
-  cart.forEach(item => {
-    const div = document.createElement('div');
-    div.className = 'card';
-    div.innerHTML = `<strong>${item.vape}</strong> - ${item.flavour} x${item.qty} (€${item.price})`;
-    total += item.price * item.qty;
-    cartEl.appendChild(div);
-  });
-  const totalDiv = document.createElement('div');
-  totalDiv.innerHTML = `<h3>Итого: €${total.toFixed(2)}</h3>`;
-  cartEl.appendChild(totalDiv);
-}
+    function renderCart() {
+      cartItems.innerHTML = '';
+      cart.forEach(item => {
+        const line = document.createElement('div');
+        line.className = 'cart-item';
+        line.innerHTML = `
+          ${item.name} - ${item.flavour} | €${item.price} x ${item.qty}
+          <button onclick="removeFromCart('${item.key}')">Remove</button>
+        `;
+        cartItems.appendChild(line);
+      });
 
-function goToCart() {
-  document.getElementById('cart').scrollIntoView({ behavior: 'smooth' });
-}
+      if (cart.length > 0) {
+        const message = cart.map(item => `${item.qty}x ${item.name} (${item.flavour})`).join('%0A');
+        const url = `https://t.me/stas_vape?text=🛒%20Order:%0A${message}`;
+        checkoutDiv.innerHTML = `<a href="${url}" target="_blank">Send to Stas</a>`;
+      } else {
+        checkoutDiv.innerHTML = '';
+      }
+    }
 
-function sendToStas() {
-  window.location.href = 'https://t.me/stas_vape_nl';
-}
-</script>
+    fetchVapes();
+  </script>
 </body>
 </html>

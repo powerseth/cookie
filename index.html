@@ -23,16 +23,35 @@
       margin: 10px 0;
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .vape-item img {
+      max-width: 150px;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 10px;
     }
     .vape-item h3 {
       margin: 0 0 10px;
       font-size: 18px;
+      text-align: center;
+    }
+    .vape-item p {
+      margin: 5px 0;
+      font-size: 14px;
     }
     .vape-item select, .vape-item button {
       padding: 8px;
       margin: 5px 0;
       border-radius: 5px;
       border: 1px solid #ccc;
+      width: 100%;
+      max-width: 200px;
+    }
+    .vape-item select:disabled {
+      background: #e0e0e0;
     }
     .vape-item button {
       background: #28a745;
@@ -59,6 +78,7 @@
     }
     #cart li {
       margin: 5px 0;
+      font-size: 14px;
     }
     #cart:empty {
       display: none;
@@ -87,15 +107,23 @@
       .then(response => response.json())
       .then(vapes => {
         const vapeList = document.getElementById('vape-list');
-        vapes.forEach(vape => {
+        vapes.forEach((vape, index) => {
           const vapeDiv = document.createElement('div');
           vapeDiv.className = 'vape-item';
+          const flavorOptions = vape.flavours.length > 0 
+            ? vape.flavours.map(flavor => `<option value="${flavor}">${flavor}</option>`).join('')
+            : '<option value="No Flavor">No Flavor Available</option>';
+          const isFlavorDisabled = vape.flavours.length === 0 ? 'disabled' : '';
           vapeDiv.innerHTML = `
-            <h3>${vape.name} - $${vape.price.toFixed(2)}</h3>
-            <select id="flavor-${vape.id}">
-              ${vape.flavors.map(flavor => `<option value="${flavor}">${flavor}</option>`).join('')}
+            <img src="${vape.image}" alt="${vape.name}">
+            <h3>${vape.name}</h3>
+            <p>Puffs: ${vape.puffs}</p>
+            <p>Nicotine: ${vape.nicotine}</p>
+            <p>Price: $${vape.price.toFixed(2)}</p>
+            <select id="flavor-${index}" ${isFlavorDisabled}>
+              ${flavorOptions}
             </select>
-            <button onclick="addToCart(${vape.id}, '${vape.name}', ${vape.price}, document.getElementById('flavor-${vape.id}').value)">Add to Cart</button>
+            <button onclick="addToCart(${index}, '${vape.name}', ${vape.price}, document.getElementById('flavor-${index}').value, ${vape.puffs}, '${vape.nicotine}')">Add to Cart</button>
           `;
           vapeList.appendChild(vapeDiv);
         });
@@ -103,8 +131,8 @@
       .catch(error => console.error('Error loading vapes:', error));
 
     // Add to cart
-    function addToCart(id, name, price, flavor) {
-      cart.push({ id, name, price, flavor });
+    function addToCart(id, name, price, flavor, puffs, nicotine) {
+      cart.push({ id, name, price, flavor, puffs, nicotine });
       updateCart();
     }
 
@@ -117,7 +145,7 @@
 
       cart.forEach((item, index) => {
         const li = document.createElement('li');
-        li.textContent = `${item.name} (${item.flavor}) - $${item.price.toFixed(2)}`;
+        li.textContent = `${item.name} (${item.flavor}, ${item.puffs} Puffs, ${item.nicotine}) - $${item.price.toFixed(2)}`;
         cartItems.appendChild(li);
         total += item.price;
       });
@@ -140,7 +168,7 @@
       if (cart.length === 0) return;
 
       const orderDetails = cart.map(item => 
-        `${item.name} (${item.flavor}) - $${item.price.toFixed(2)}`
+        `${item.name} (${item.flavor}, ${item.puffs} Puffs, ${item.nicotine}) - $${item.price.toFixed(2)}`
       ).join('\n');
       const total = cart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
       const message = `New Order:\n${orderDetails}\n\nTotal: $${total}`;

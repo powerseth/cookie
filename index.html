@@ -93,360 +93,99 @@
   <script>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const vapes = 
-[
-  {
-    "name": "TORNADO 🎲 9k",
-    "puffs": 9000,
-    "nicotine": "5%",
-    "price": 20,
-    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/66885e81ee9cc328347f1cdc_%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B1%D0%B5%D0%B7%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20(18).png"
-  },
-  {
-    "name": "TORNADO 🎲 15k",
-    "puffs": 15000,
-    "nicotine": "2%",
-    "price": 20,
-    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/66870572a00a5ffa6b348a97_photo_2024-06-28_23-05-58.jpg"
-  },
-  {
-    "name": "TORNADO 🎲 20k",
-    "puffs": 20000,
-    "nicotine": "2.5%",
-    "price": 25,
-    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/6800fd637ad8b0c49e9b4a8d_randm-fumot-tornado-max-20000.jpg.webp"
-  },
-  {
-    "name": "TORNADO 🎲 25k",
-    "puffs": 25000,
-    "nicotine": "2%",
-    "price": 30,
-    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/68010084b1e19ad8426e31f0_thumb_1284_0_0_0_0_auto.jpg"
-  },
-  {
-    "name": "TORNADO 🎲 30k",
-    "puffs": 30000,
-    "nicotine": "2%",
-    "price": 35,
-    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/6801015be861afa63bb79692_fumot-tornado-30k-music-829692.webp"
-  },
-  {
-    "name": "VOZOL Gear ➖ 10k",
-    "puffs": 10000,
-    "nicotine": "5%",
-    "price": 25,
-    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/680101749374c38deb8e8f2f_LbjA4HjHKr7DY9FACNgDDQYZWnumvwDpv3hQghwv.webp"
-  },
-  {
-    "name": "VOZOL Gear ➖ 20k",
-    "puffs": 20000,
-    "nicotine": "2%",
-    "price": 25,
-    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/6801018cb1e19ad8426f1e7d_VOZOL-GEAR-POWER-20000-1%20(1).jpg"
-  },
-  {
-    "name": "VOZOL Gear ➖ 25k",
-    "puffs": 25000,
-    "nicotine": "5%",
-    "price": 30,
-    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/680101fdcf66a1c4c100b096_vozol%2025k.png"
-  },
-  {
-    "name": "VOZOL Vista plug ➖ 15k",
-    "puffs": 15000,
-    "nicotine": "2%",
-    "price": 25,
-    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/6801026f9d2ef545721d5d90_Vozol-Vista-Kit.jpg5_.webp"
-  },
-  {
-    "name": "MEDIAMAX PHONEVAPE 🔴 40k",
-    "puffs": 40000,
-    "nicotine": "2%",
-    "price": 30,
-    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/680102844b38ea60299f8bf7_%E4%B8%BB%E5%9B%BE-1.webp"
-  },
-  {
-    "name": "FUMOT/CRYSTAL 🎲 12k",
-    "puffs": 12000,
-    "nicotine": "2%",
-    "price": 20,
-    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/680102a07cb5b9af192ac402_Fumot-Crystal-12000-3.jpeg"
-  },
-  {
-    "name": "FUMOT/CRYSTAL 🎲 4.5k",
-    "puffs": 4500,
-    "nicotine": "2%",
-    "price": 20,
-    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/680102d8891db73fae615a83_SKE_Crystal_Super_Max_4500_Puffs_Disposable_Vape_-_Blog_7eeb6280-186a-42c2-a1a9-e11c0b482fda.webp"
-  },
-  {
-    "name": "FUMOT/CRYSTAL 🎲 600",
-    "puffs": 600,
-    "nicotine": "2%",
-    "price": 10,
-    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/680103086570a3c8dc130efc_fumot-randm-crystal-600ec597076-2ce2-4893-86cc-9eab1c467eb0.webp"
-  },
-  {
-    "name": "IJOY 🎲 40k",
-    "puffs": 40000,
-    "nicotine": "2%",
-    "price": 30,
-    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/68010323d85907bb35fc96c2_ijoy-sd40000-40k-puffs-ai-voice-control-disposable_1200x1200%20(2).webp"
-  },
-  {
-    "name": "SHISHA VAPE AlFakher 🔵 8k",
-    "puffs": 8000,
-    "nicotine": "6%",
-    "price": 20,
-    "image": "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/6801034ea74e06c09e2092fc_Al-Fakher-Crown-Bar-PRO-8K-Al-Fakher-262869460.webp"
+let vapes = [];
+let cart = [];
+
+const vapeListEl = document.getElementById('vapeList');
+const flavourListEl = document.getElementById('flavourList');
+const cartEl = document.getElementById('cart');
+
+document.getElementById('nicotineFilter').onchange = renderVapes;
+document.getElementById('puffFilter').onchange = renderVapes;
+document.getElementById('priceFilter').onchange = renderVapes;
+
+fetch('vapes.json')
+  .then(res => res.json())
+  .then(data => {
+    vapes = data;
+    renderVapes();
+  });
+
+function renderVapes() {
+  const nicotine = document.getElementById('nicotineFilter').value;
+  const puff = document.getElementById('puffFilter').value;
+  const sort = document.getElementById('priceFilter').value;
+  let filtered = [...vapes];
+
+  if (nicotine) filtered = filtered.filter(v => parseFloat(v.nicotine) === parseFloat(nicotine));
+  if (puff) {
+    const [min, max] = puff.split('-').map(Number);
+    filtered = filtered.filter(v => v.puffs >= min * 1000 && v.puffs <= max * 1000);
   }
-]
-;
+  if (sort) filtered.sort((a, b) => sort === 'low' ? a.price - b.price : b.price - a.price);
 
-  const flavoursByVape = {
-  "VOZOL Vista plug ➖ 15k": [
-    "Sour Apple",
-    "Kiwi Passionfruit Guava",
-    "Cherry Cola",
-    "Blue Razz Ice"
-  ],
-  "VOZOL Gear ➖ 25k": [
-    "Berry Mint",
-    "Grape Mint",
-    "Blue Razz Ice",
-    "Blackberry Ice",
-    "Berry Ice",
-    "Blueberry Ice",
-    "Blackcurrant Ice"
-  ],
-  "VOZOL Gear ➖ 10k": [
-    "Strawberry Ice Cream",
-    "Watermelon Bubblegum"
-  ],
-  "IJOY 🎲 40k": [
-    "Strawberry Kiwi",
-    "Peach Mango Watermelon",
-    "Cherry Lemon",
-    "Peach Ice",
-    "Kiwi Passionfruit Guava",
-    "Cotton Candy",
-    "Watermelon Ice"
-  ],
-  "MEDIAMAX PHONEVAPE 🔴 40k": [
-    "Strawberry Watermelon Ice",
-    "Strawberry Ice",
-    "Cherry Strawberry Raspberry",
-    "Fizzy Cherry Cola",
-    "Watermelon Ice",
-    "Blue Razz Cherry",
-    "Blueberry Raspberry",
-    "Peach Mango Watermelon",
-    "Strawberry Kiwi",
-    "Blueberry Watermelon"
-  ],
-  "Adalya 250000": [
-    "Love 66",
-    "Mi Amor (Banana Raspberry)",
-    "Blue Ice (Blueberry Ice)",
-    "Lady Killer (Peach Mint)",
-    "Watermelon Ice"
-  ],
-  "Adalya 16000": [
-    "Mint Point",
-    "Cola Dragon"
-  ],
-  "FUMOT/CRYSTAL 🎲 12k": [
-    "Fruity Fusion",
-    "Watermelon Bubblegum"
-  ],
-  "Hayati 15000": [
-    "Hberg / Pman",
-    "Strawberry Grapefruit / Strawberry Dragonfruit"
-  ],
-  "FUMOT/CRYSTAL 🎲 4.5k": [
-    "Lemon & Lime",
-    "Blueberry Cherry Cranberry",
-    "Strawberry Raspberry Cherry",
-    "Fresh Menthol Mojito",
-    "Juicy Blueberry",
-    "Watermelon Strawberry",
-    "Apple Watermelon",
-    "Cola Ice"
-  ],
-  "FUMOT/CRYSTAL 🎲 600": [
-    "Rainbow",
-    "Blueberry Sour Raspberry",
-    "Blueberry Peach Ice",
-    "Starfruit Mulberry Lemon",
-    "Lemon & Lime",
-    "Pineapple Peach Mango",
-    "Kiwi Passionfruit Guava",
-    "Blue Razz Lemonade",
-    "Apple Peach"
-  ],
-  "TORNADO 🎲 30k": [
-    "Peachy Mango Pineapple",
-    "Blueberry on Ice",
-    "Strawberry Grape",
-    "Cola Ice",
-    "Cherry Cola",
-    "Double Apple",
-    "Dr Blue",
-    "Cherry Ice",
-    "Strawberry Ice",
-    "Strawberry Watermelon"
-  ],
-  "TORNADO 🎲 25k": [
-    "Double Apple",
-    "Black Ice",
-    "Strawberry Ice",
-    "Miami Mint",
-    "Cherry Cola",
-    "Blueberry on Ice"
-  ],
-  "TORNADO 🎲 20k": [
-    "Pineapple Ice",
-    "Blue Razz Ice",
-    "Grape Ice",
-    "Sour Apple"
-  ],
-  "TORNADO 🎲 15k": [
-    "Apple Peach Pear",
-    "Banana Ice",
-    "Blueberry Bubblegum",
-    "Blueberry on Ice",
-    "Blue Razz Lemonade",
-    "Blueberry Raspberry",
-    "Cola Ice",
-    "Dragon Fruit",
-    "Grape Ice",
-    "Gummy Bear",
-    "Mango on Ice",
-    "Peach Blueberry Candy",
-    "Peach Mango",
-    "Peach Ice",
-    "Pineapple Ice",
-    "Red Energy Ice",
-    "Strawberry Kiwi",
-    "Strawberry Banana",
-    "Strawberry Redbull",
-    "Strawberry Watermelon Lemonade",
-    "Watermelon Ice"
-  ],
-  "Randm 🎲 9k": [
-    "Ice Pop",
-    "Rainbow Candy",
-    "Mixed Berries",
-    "Blueberry Sour Raspberry",
-    "Guava Ice"
-  ],
-  "Al Fakher 🔵 8000": [
-    "Peach Ice",
-    "Lemon Mint",
-    "Space Dream",
-    "Blueberry Gum",
-    "Gum Mint",
-    "Cherry Fiesta",
-    "Berry Blue",
-    "Magic Love",
-    "Hubba",
-    "Grape Mint"
-  ]
-};
+  vapeListEl.innerHTML = '';
+  filtered.forEach(vape => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `<img src="${vape.image}" alt="${vape.name}" />
+      <div>${vape.name}<br>${vape.nicotine} / ${vape.puffs} затяжек<br>€${vape.price}</div>`;
+    card.onclick = () => showFlavours(vape);
+    vapeListEl.appendChild(card);
+  });
+}
 
-  let cart = [];
-  const vapeListEl = document.getElementById('vapeList');
-  const flavourListEl = document.getElementById('flavourList');
-  const cartEl = document.getElementById('cart');
+function showFlavours(vape) {
+  vapeListEl.style.display = 'none';
+  flavourListEl.style.display = 'flex';
+  flavourListEl.innerHTML = '';
+  const flavours = vape.flavours || [];
+  flavours.forEach(flavour => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerText = flavour;
+    card.onclick = () => addToCart(vape, flavour);
+    flavourListEl.appendChild(card);
+  });
 
-  document.getElementById('nicotineFilter').onchange = renderVapes;
-  document.getElementById('puffFilter').onchange = renderVapes;
-  document.getElementById('priceFilter').onchange = renderVapes;
+  const backBtn = document.createElement('button');
+  backBtn.textContent = 'Назад';
+  backBtn.onclick = () => {
+    flavourListEl.style.display = 'none';
+    vapeListEl.style.display = 'flex';
+  };
+  flavourListEl.appendChild(backBtn);
+}
 
-  function renderVapes() {
-    const nicotine = document.getElementById('nicotineFilter').value;
-    const puff = document.getElementById('puffFilter').value;
-    const sort = document.getElementById('priceFilter').value;
-    let filtered = [...vapes]; console.log('Loaded', vapes.length, 'vapes');
+function addToCart(vape, flavour) {
+  const existing = cart.find(i => i.vape === vape.name && i.flavour === flavour);
+  if (existing) existing.qty++;
+  else cart.push({ vape: vape.name, flavour, price: vape.price, qty: 1 });
+  updateCart();
+}
 
-    if (nicotine) filtered = filtered.filter(v => v.nicotine.replace('%','') === nicotine);
-    if (puff) {
-      const [min, max] = puff.split('-').map(Number);
-      filtered = filtered.filter(v => v.puffs >= min * 1000 && v.puffs <= max * 1000);
-    }
-    if (sort) filtered.sort((a, b) => sort === 'low' ? a.price - b.price : b.price - a.price);
+function updateCart() {
+  cartEl.innerHTML = '<h2>🛒 Корзина</h2>';
+  let total = 0;
+  cart.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.innerHTML = `<strong>${item.vape}</strong> - ${item.flavour} x${item.qty} (€${item.price})`;
+    total += item.price * item.qty;
+    cartEl.appendChild(div);
+  });
+  const totalDiv = document.createElement('div');
+  totalDiv.innerHTML = `<h3>Итого: €${total.toFixed(2)}</h3>`;
+  cartEl.appendChild(totalDiv);
+}
 
-    vapeListEl.innerHTML = ''; console.log('Rendering vapes...');
-    filtered.forEach(vape => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `<img src="${vape.image}" alt="${vape.name}" />
-        <div>${vape.name}<br>${vape.nicotine} / ${vape.puffs} затяжек<br>€${vape.price}</div>`;
-      card.onclick = () => showFlavours(vape);
-      vapeListEl.appendChild(card); console.log('Rendered:', vape.name);
-    });
-  }
+function goToCart() {
+  document.getElementById('cart').scrollIntoView({ behavior: 'smooth' });
+}
 
-  function showFlavours(vape) {
-    vapeListEl.style.display = 'none';
-    flavourListEl.style.display = 'flex';
-    flavourListEl.innerHTML = '';
-    const flavours = flavoursByVape[vape.name] || [];
-    flavours.forEach(flavour => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerText = flavour;
-      card.onclick = () => addToCart(vape, flavour);
-      flavourListEl.appendChild(card);
-    });
-
-    const backBtn = document.createElement('button');
-    backBtn.textContent = 'Назад';
-    backBtn.onclick = () => {
-      flavourListEl.style.display = 'none';
-      vapeListEl.style.display = 'flex';
-    };
-    flavourListEl.appendChild(backBtn);
-
-    const cartBtn = document.createElement('button');
-    cartBtn.textContent = '🛒 В корзину';
-    cartBtn.onclick = () => goToCart();
-    flavourListEl.appendChild(cartBtn);
-  }
-
-  function addToCart(vape, flavour) {
-    const existing = cart.find(i => i.vape === vape.name && i.flavour === flavour);
-    if (existing) existing.qty++;
-    else cart.push({ vape: vape.name, flavour, price: vape.price, qty: 1 });
-    updateCart();
-  }
-
-  function updateCart() {
-    cartEl.innerHTML = '<h2>🛒 Корзина</h2>';
-    let total = 0;
-    cart.forEach(item => {
-      const div = document.createElement('div');
-      div.className = 'card';
-      div.innerHTML = `<strong>${item.vape}</strong> - ${item.flavour} x${item.qty} (€${item.price})`;
-      total += item.price * item.qty;
-      cartEl.appendChild(div);
-    });
-    const totalDiv = document.createElement('div');
-    totalDiv.innerHTML = `<h3>Итого: €${total.toFixed(2)}</h3>`;
-    cartEl.appendChild(totalDiv);
-  }
-
-  function goToCart() {
-    document.getElementById('cart').scrollIntoView({ behavior: 'smooth' });
-  }
-
-  function sendToStas() {
-    window.location.href = 'https://t.me/stas_vape_nl';
-  }
-
-  console.log('Calling renderVapes'); renderVapes();
-});
+function sendToStas() {
+  window.location.href = 'https://t.me/stas_vape_nl';
+}
 </script>
 </body>
 </html>

@@ -1,0 +1,154 @@
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom right, #120048, #310061, #8a00a2);
+  color: #fff;
+  padding: 0;
+  overflow-x: hidden;
+  transition: all 0.3s ease;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #fff;
+  padding: 1rem;
+  animation: vaporwaveFade 3s infinite;
+  text-shadow: 0 0 5px #fff, 0 0 15px #ff00f2;
+  margin-bottom: 1.5rem;
+}
+
+/* Vaporwave animation */
+@keyframes vaporwaveFade {
+  0% { text-shadow: 0 0 5px #fff, 0 0 10px #ff00f2, 0 0 20px #ff00f2, 0 0 40px #00ffe7; }
+  50% { text-shadow: 0 0 10px #fff, 0 0 20px #ff00f2, 0 0 30px #ff00f2, 0 0 60px #00ffe7; }
+  100% { text-shadow: 0 0 5px #fff, 0 0 10px #ff00f2, 0 0 20px #ff00f2, 0 0 40px #00ffe7; }
+}
+
+/* Vape List */
+.vape-list, .flavour-list, .cart {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  width: 220px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 15px #ff00f2, 0 0 20px #000 inset;
+  animation: float 3s ease-in-out infinite;
+  border: 2px solid #000;
+}
+
+.card:hover, .card.selected {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.card-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #ff00f2, #00ffe7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 5px #000;
+  margin-bottom: 0.5rem;
+}
+
+.card hr {
+  border: none;
+  border-top: 1px solid #fff;
+  margin: 0.5rem 0;
+}
+
+.card-description {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #ccc;
+}
+
+.card-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ff00f2;
+}
+
+/* Button Styling */
+button {
+  background: #ff00f2;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  margin: 1.5rem 0;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #ff66cc;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Cart */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 1rem;
+  width: 100%;
+  max-width: 450px;
+  transition: background 0.3s ease;
+}
+
+.cart-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.cart-controls button {
+  margin: 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+/* Cart Total */
+.cart-total {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 1.5rem;
+  color: #ff00f2;
+  text-align: right;
+}
+
+/* Floating Animation */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}

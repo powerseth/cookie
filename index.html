@@ -97,7 +97,7 @@
       display: flex;
       flex-direction: row;
       gap: 2rem;
-      animation: scroll 32s linear infinite;
+      animation: scroll 30s steps(28) infinite;
       white-space: nowrap;
     }
 
@@ -175,6 +175,7 @@
       margin: 1rem auto;
       display: block;
       box-shadow: 0 0 10px #ff00f2;
+      cursor: pointer;
     }
 
     .card-name {
@@ -288,6 +289,51 @@
       text-align: right;
     }
 
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 80vh;
+    }
+
+    .modal-content img {
+      width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 20px #ff00f2;
+    }
+
+    .close-button {
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      background: #ff00f2;
+      color: #000;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .close-button:hover {
+      background: #00ffe7;
+    }
+
     @media (max-width: 600px) {
       h1 {
         font-size: 1.5rem;
@@ -308,7 +354,7 @@
       }
 
       .scrolling-text-container {
-        animation: scroll 24s linear infinite;
+        animation: scroll 30s steps(28) infinite;
       }
 
       .filter-header {
@@ -351,7 +397,7 @@
       }
 
       .cart {
-        padding: 1rem;
+        padding: 0.75rem;
         margin: 0.5rem;
       }
 
@@ -360,35 +406,60 @@
       }
 
       .cart-item {
-        max-width: 90vw;
+        max-width: 95vw;
         padding: 0.75rem;
+        margin: 0.5rem auto;
+        border: 1px solid #ff00f2;
       }
 
       .cart-item-name {
-        font-size: 0.9rem;
+        font-size: 1rem;
       }
 
       .cart-item-price {
-        font-size: 0.8rem;
-      }
-
-      .delivery-fee {
-        font-size: 0.9rem;
-        padding-right: 0.75rem;
-      }
-
-      button {
-        padding: 0.5rem 1rem;
         font-size: 0.9rem;
       }
 
       .cart-controls button {
-        padding: 0.4rem 0.8rem;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
       }
 
-      .btn-row {
-        flex-wrap: wrap;
+      .delivery-fee {
+        font-size: 1rem;
+        text-align: center;
+        padding: 0;
+      }
+
+      .cart .btn-row {
+        flex-direction: column;
         gap: 0.5rem;
+        align-items: center;
+      }
+
+      .cart .btn-row button {
+        width: 100%;
+        max-width: 95vw;
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+      }
+
+      .cart .total {
+        text-align: center;
+        font-size: 1.1rem;
+      }
+
+      .modal-content {
+        max-width: 85vw;
+        max-height: 70vh;
+      }
+
+      .close-button {
+        top: -30px;
+        right: -30px;
+        width: 30px;
+        height: 30px;
+        font-size: 1.2rem;
       }
     }
   </style>
@@ -430,6 +501,16 @@
     </div>
   </div>
   <div id="filterHeader" class="filter-header">
+    <select id="markFilter">
+      <option value="All">Все Марки</option>
+      <option value="ALIENVAPE">ALIENVAPE</option>
+      <option value="TORNADO">TORNADO</option>
+      <option value="VOZOL">VOZOL</option>
+      <option value="MEDIAMAX">MEDIAMAX</option>
+      <option value="FUMOT">FUMOT</option>
+      <option value="IJOY">IJOY</option>
+      <option value="SHISHA VAPE">SHISHA VAPE</option>
+    </select>
     <select id="nicotineFilter">
       <option value="All">Все Никотин</option>
       <option value="2%">2%</option>
@@ -667,11 +748,14 @@
     const vapeListEl = document.getElementById('vapeList');
     const flavourListEl = document.getElementById('flavourList');
     const cartEl = document.getElementById('cart');
+    const filterHeaderEl = document.getElementById('filterHeader');
+    const markFilter = document.getElementById('markFilter');
     const nicotineFilter = document.getElementById('nicotineFilter');
     const puffFilter = document.getElementById('puffFilter');
     const priceFilter = document.getElementById('priceFilter');
 
     function renderVapes() {
+      const mark = markFilter.value;
       const nicotine = nicotineFilter.value;
       const puffs = puffFilter.value;
       const price = priceFilter.value;
@@ -680,6 +764,7 @@
       vapes
         .filter(vape => {
           return (
+            (mark === 'All' || vape.name.includes(mark)) &&
             (nicotine === 'All' || vape.nicotine === nicotine) &&
             (puffs === 'All' || vape.puffs.toString() === puffs) &&
             (price === 'All' || vape.price.toString() === price)
@@ -700,9 +785,31 @@
         });
     }
 
+    function showImageModal(src, alt) {
+      const modal = document.createElement('div');
+      modal.className = 'modal';
+      modal.innerHTML = `
+        <div class="modal-content">
+          <img src="${src}" alt="${alt}">
+          <button class="close-button">×</button>
+        </div>
+      `;
+      document.body.appendChild(modal);
+
+      const closeModal = () => {
+        modal.remove();
+      };
+
+      modal.querySelector('.close-button').onclick = closeModal;
+      modal.onclick = (e) => {
+        if (e.target === modal) closeModal();
+      };
+    }
+
     function showFlavours(vape) {
       vapeListEl.style.display = 'none';
       cartEl.style.display = 'none';
+      filterHeaderEl.style.display = 'none';
       flavourListEl.style.display = 'flex';
       flavourListEl.innerHTML = '';
 
@@ -715,6 +822,7 @@
       vapeImage.className = 'vape-image';
       vapeImage.src = vape.image;
       vapeImage.alt = vape.name;
+      vapeImage.onclick = () => showImageModal(vape.image, vape.name);
       flavourListEl.appendChild(vapeImage);
 
       const selectedFlavours = new Set();
@@ -784,11 +892,13 @@
       flavourListEl.style.display = 'none';
       cartEl.style.display = 'none';
       vapeListEl.style.display = 'flex';
+      filterHeaderEl.style.display = 'flex';
     }
 
     function showCart() {
       vapeListEl.style.display = 'none';
       flavourListEl.style.display = 'none';
+      filterHeaderEl.style.display = 'none';
       cartEl.style.display = 'flex';
       updateCart();
     }
@@ -881,6 +991,7 @@
 
       if (cart.length) {
         const totalDiv = document.createElement('div');
+        totalDiv.className = 'total';
         totalDiv.style.marginTop = '1rem';
         totalDiv.style.fontSize = '1.1rem';
         totalDiv.style.fontFamily = "'Roboto', sans-serif";
@@ -926,6 +1037,7 @@
       updateCart();
     }
 
+    markFilter.onchange = renderVapes;
     nicotineFilter.onchange = renderVapes;
     puffFilter.onchange = renderVapes;
     priceFilter.onchange = renderVapes;

@@ -605,6 +605,8 @@
       const fullMessage = `NEW ORDER\n${message}\nИТОГО: €${total.toFixed(2)}`;
       const encodedMessage = encodeURIComponent(fullMessage);
       window.open(`https://t.me/stas_vape_nl?text=${encodedMessage}`, "_blank");
+      cart = [];
+      updateCart();
     }
 
     renderVapes();

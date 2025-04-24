@@ -34,6 +34,43 @@
       text-shadow: 0 0 5px #000, 0 0 15px #000;
     }
 
+    h2.vape-heading {
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.8rem;
+      text-align: center;
+      margin: 1rem 0;
+      background: linear-gradient(to right, #8a00a2, #00b7eb, #ff69b4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 10px #ff00f2, 0 0 20px #00ffe7, 0 0 30px #8a00a2;
+    }
+
+    .filter-header {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      margin: 1rem;
+      box-shadow: 0 0 10px #ff00f2;
+    }
+
+    .filter-header select {
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      border: 2px solid #ff00f2;
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .filter-header select:hover {
+      border-color: #00ffe7;
+    }
+
     .vape-list, .flavour-list, .cart {
       display: flex;
       flex-wrap: wrap;
@@ -65,6 +102,14 @@
       border-radius: 0.5rem;
       margin-bottom: 0.5rem;
       object-fit: cover;
+    }
+
+    .flavour-list img.vape-image {
+      max-width: 200px;
+      border-radius: 0.5rem;
+      margin: 1rem auto;
+      display: block;
+      box-shadow: 0 0 10px #ff00f2;
     }
 
     .card-name {
@@ -173,6 +218,23 @@
         font-size: 1.5rem;
       }
 
+      h2.vape-heading {
+        font-size: 1.4rem;
+      }
+
+      .filter-header {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin: 0.5rem;
+        padding: 0.75rem;
+      }
+
+      .filter-header select {
+        width: 100%;
+        font-size: 0.9rem;
+        padding: 0.4rem;
+      }
+
       .card {
         width: 150px;
         padding: 0.75rem;
@@ -195,9 +257,13 @@
         padding: 0.75rem;
       }
 
-      button {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
+      .flavour-list img.vape-image {
+        max-width: 150px;
+      }
+
+      .cart {
+        padding: 1rem;
+        margin: 0.5rem;
       }
 
       .cart h2 {
@@ -205,17 +271,69 @@
       }
 
       .cart-item {
+        max-width: 90vw;
         padding: 0.75rem;
       }
 
       .cart-item-name {
-        font-size: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .cart-item-price {
+        font-size: 0.8rem;
+      }
+
+      button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+
+      .cart-controls button {
+        padding: 0.4rem 0.8rem;
+      }
+
+      .btn-row {
+        flex-wrap: wrap;
+        gap: 0.5rem;
       }
     }
   </style>
 </head>
 <body>
   <h1>⚡ STAS_VAPE ⚡</h1>
+  <div id="filterHeader" class="filter-header">
+    <select id="nicotineFilter">
+      <option value="All">Все Никотин</option>
+      <option value="2%">2%</option>
+      <option value="2.5%">2.5%</option>
+      <option value="5%">5%</option>
+      <option value="6%">6%</option>
+    </select>
+    <select id="puffFilter">
+      <option value="All">Все Затяжки</option>
+      <option value="600">600</option>
+      <option value="1000">1000</option>
+      <option value="4500">4500</option>
+      <option value="8000">8000</option>
+      <option value="9000">9000</option>
+      <option value="10000">10000</option>
+      <option value="12000">12000</option>
+      <option value="15000">15000</option>
+      <option value="20000">20000</option>
+      <option value="25000">25000</option>
+      <option value="30000">30000</option>
+      <option value="40000">40000</option>
+    </select>
+    <select id="priceFilter">
+      <option value="All">Все Цены</option>
+      <option value="10">€10</option>
+      <option value="20">€20</option>
+      <option value="25">€25</option>
+      <option value="30">€30</option>
+      <option value="35">€35</option>
+      <option value="40">€40</option>
+    </select>
+  </div>
   <div id="vapeList" class="vape-list"></div>
   <div id="flavourList" class="flavour-list" style="display:none;"></div>
   <div id="cart" class="cart" style="display:none;"></div>
@@ -391,27 +509,67 @@
       }
     ];
 
+    const flavourEmojis = {
+      "Amnesia Haze": "🌿", "Mango Kush": "🥭", "Super Lemon Haze": "🍋", "Girl Scout Cookies": "🍪", "Grape Ape": "🍇",
+      "Ice Pop": "🧊", "Blueberry Sour Raspberry": "🫐", "Rainbow Candy": "🌈", "Guava Ice": "🥑", "Mixed Berries": "🍓",
+      "Apple Peach Pear": "🍎", "Banana Ice": "🍌", "Blueberry Bubblegum": "🫐", "Blueberry on Ice": "🫐", "Blue Razz Lemonade": "🫐",
+      "Blueberry Raspberry": "🫐", "Cola Ice": "🥤", "Dragon Fruit": "🐉", "Grape Ice": "🍇", "Gummy Bear": "🐻",
+      "Mango on Ice": "🥭", "Peach Blueberry Candy": "🍑", "Peach Mango": "🍑", "Peach Ice": "🍑", "Pineapple Ice": "🍍",
+      "Red Energy Ice": "⚡", "Strawberry Kiwi": "🍓", "Strawberry Banana": "🍓", "Strawberry Redbull": "🍓", "Strawberry Watermelon Lemonade": "🍓",
+      "Watermelon Ice": "🍉", "Pineapple Ice": "🍍", "Blue Razz Ice": "🫐", "Sour Apple": "🍏", "Double Apple": "🍎",
+      "Black Ice": "🖤", "Strawberry Ice": "🍓", "Miami Mint": "🌿", "Cherry Cola": "🍒", "Peachy Mango Pineapple": "🍑",
+      "Strawberry Grape": "🍓", "Dr Blue": "🫐", "Cherry Ice": "🍒", "Strawberry Watermelon": "🍓", "Strawberry Ice Cream": "🍓",
+      "Watermelon Bubblegum": "🍉", "Berry Mint": "🍓", "Grape Mint": "🍇", "Blackberry Ice": "🫐", "Berry Ice": "🍓",
+      "Blueberry Ice": "🫐", "Blackcurrant Ice": "🫐", "Kiwi Passionfruit Guava": "🥝", "Strawberry Watermelon Ice": "🍓",
+      "Cherry Strawberry Raspberry": "🍒", "Fizzy Cherry Cola": "🍒", "Blue Razz Cherry": "🫐", "Peach Mango Watermelon": "🍑",
+      "Blueberry Watermelon": "🫐", "Fruity Fusion": "🍈", "Lemon & Lime": "🍋", "Blueberry Cherry Cranberry": "🫐",
+      "Strawberry Raspberry Cherry": "🍓", "Fresh Menthol Mojito": "🌿", "Juicy Blueberry": "🫐", "Apple Watermelon": "🍎",
+      "Rainbow": "🌈", "Blueberry Peach Ice": "🫐", "Starfruit Mulberry Lemon": "🍋", "Pineapple Peach Mango": "🍍",
+      "Blue Razz Lemonade": "🫐", "Apple Peach": "🍎", "Cherry Lemon": "🍒", "Cotton Candy": "🍬", "Berry Blue": "🫐",
+      "Hubba": "🍬", "Gum Mint": "🌿", "Space Dream": "🌌", "Magic Love": "💖", "Blueberry Gum": "🫐",
+      "Lemon Mint": "🍋", "Cherry Fiesta": "🍒", "Banana Cake": "🍌", "Blueberry Lemon Green Apple": "🫐",
+      "Blueberry Raspberry Hard Candy": "🫐", "Blueberry Raspberry Sour": "🫐", "Pear Ice": "🍐", "Jelly Candies": "🍬",
+      "Chewy Bear Blue Razz": "🐻", "Strawberry Raspberry Cherry Ice": "🍓", "Lychee Hami Melon": "🍈", "Mister Blue": "🫐",
+      "Peach Berries": "🍑", "Pina Colada": "🍍", "Blue Razz": "🫐", "Skittles": "🍬", "Blended Berries": "🍓",
+      "Cherry": "🍒", "Cherry Lime Eurasiatour": "🍒", "Cherry Berries": "🍒"
+    };
+
     let cart = [];
 
     const vapeListEl = document.getElementById('vapeList');
     const flavourListEl = document.getElementById('flavourList');
     const cartEl = document.getElementById('cart');
+    const nicotineFilter = document.getElementById('nicotineFilter');
+    const puffFilter = document.getElementById('puffFilter');
+    const priceFilter = document.getElementById('priceFilter');
 
     function renderVapes() {
+      const nicotine = nicotineFilter.value;
+      const puffs = puffFilter.value;
+      const price = priceFilter.value;
+
       vapeListEl.innerHTML = '';
-      vapes.forEach(vape => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <img src="${vape.image}" alt="${vape.name}">
-          <div class="card-name">${vape.name}</div>
-          <div class="card-description">Никотин: ${vape.nicotine}</div>
-          <div class="card-description">Затяжек: ${vape.puffs}</div>
-          <div class="card-price">€${vape.price}</div>
-        `;
-        card.onclick = () => showFlavours(vape);
-        vapeListEl.appendChild(card);
-      });
+      vapes
+        .filter(vape => {
+          return (
+            (nicotine === 'All' || vape.nicotine === nicotine) &&
+            (puffs === 'All' || vape.puffs.toString() === puffs) &&
+            (price === 'All' || vape.price.toString() === price)
+          );
+        })
+        .forEach(vape => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <img src="${vape.image}" alt="${vape.name}">
+            <div class="card-name">${vape.name}</div>
+            <div class="card-description">Никотин: ${vape.nicotine}</div>
+            <div class="card-description">Затяжек: ${vape.puffs}</div>
+            <div class="card-price">€${vape.price}</div>
+          `;
+          card.onclick = () => showFlavours(vape);
+          vapeListEl.appendChild(card);
+        });
     }
 
     function showFlavours(vape) {
@@ -419,6 +577,17 @@
       cartEl.style.display = 'none';
       flavourListEl.style.display = 'flex';
       flavourListEl.innerHTML = '';
+
+      const heading = document.createElement('h2');
+      heading.className = 'vape-heading';
+      heading.textContent = `Выберите вкус для ${vape.name}`;
+      flavourListEl.appendChild(heading);
+
+      const vapeImage = document.createElement('img');
+      vapeImage.className = 'vape-image';
+      vapeImage.src = vape.image;
+      vapeImage.alt = vape.name;
+      flavourListEl.appendChild(vapeImage);
 
       const selectedFlavours = new Set();
 
@@ -437,7 +606,8 @@
         vape.flavours.forEach(flavour => {
           const card = document.createElement('div');
           card.className = 'card';
-          card.innerText = flavour;
+          const emoji = flavourEmojis[flavour] || '🍬';
+          card.innerText = `${emoji} ${flavour}`;
           card.onclick = () => {
             if (selectedFlavours.has(flavour)) {
               selectedFlavours.delete(flavour);
@@ -558,6 +728,7 @@
       cartEl.appendChild(itemsWrap);
 
       const btnRow = document.createElement('div');
+      btnRow.className = 'btn-row';
       btnRow.style.marginTop = '2rem';
       btnRow.style.display = 'flex';
       btnRow.style.justifyContent = 'space-between';
@@ -599,15 +770,19 @@
       let total = 0;
       const messageLines = cart.map(item => {
         total += item.qty * item.price;
-        return `${item.vape} - ${item.flavour} x${item.qty}`;
+        return `${item.vape} - ${item.flavour} x${item.qty} (€${item.price}/шт)`;
       });
       const message = messageLines.join("\n");
-      const fullMessage = `NEW ORDER\n${message}\nИТОГО: €${total.toFixed(2)}`;
+      const fullMessage = `NEW ORDER\n${message}\n\nИТОГО: €${total.toFixed(2)}`;
       const encodedMessage = encodeURIComponent(fullMessage);
       window.open(`https://t.me/stas_vape_nl?text=${encodedMessage}`, "_blank");
       cart = [];
       updateCart();
     }
+
+    nicotineFilter.onchange = renderVapes;
+    puffFilter.onchange = renderVapes;
+    priceFilter.onchange = renderVapes;
 
     renderVapes();
   </script>  

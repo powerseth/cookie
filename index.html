@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vape Nebula</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
   <style>
     @keyframes vaporwaveFade {
       0% { text-shadow: 0 0 5px #fff, 0 0 10px #ff00f2, 0 0 20px #ff00f2, 0 0 40px #00ffe7; }
@@ -63,6 +64,7 @@
       width: 100%;
       border-radius: 0.5rem;
       margin-bottom: 0.5rem;
+      object-fit: cover;
     }
 
     .card-name {
@@ -90,11 +92,16 @@
       background: #ff00f2;
       color: #000;
       font-weight: bold;
-      border: personally none;
-      padding: 0.5rem 1rem;
+      border: none;
+      padding: 0.75rem 1.5rem;
       border-radius: 0.5rem;
       cursor: pointer;
       margin: 1rem;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: #00ffe7;
     }
 
     button:disabled {
@@ -102,19 +109,108 @@
       cursor: not-allowed;
     }
 
+    .cart {
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 1rem;
+      box-shadow: 0 0 20px #ff00f2;
+    }
+
+    .cart h2 {
+      font-family: 'Roboto', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      text-shadow: 0 0 10px #ff00f2;
+      margin-bottom: 1.5rem;
+    }
+
     .cart-item {
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+      border-radius: 1rem;
+      padding: 1rem;
+      width: 100%;
+      max-width: 500px;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 10px #00ffe7;
+    }
+
+    .cart-item-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 1rem;
-      padding: 0.5rem 1rem;
-      width: 100%;
-      max-width: 400px;
+      margin-bottom: 0.5rem;
+    }
+
+    .cart-item-name {
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .cart-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .cart-controls button {
-      margin: 0 0.3rem;
+      padding: 0.5rem 1rem;
+      margin: 0;
+    }
+
+    .cart-item-price {
+      font-size: 0.9rem;
+      color: #00ffe7;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .card {
+        width: 150px;
+        padding: 0.75rem;
+      }
+
+      .card-name {
+        font-size: 1rem;
+      }
+
+      .card-description {
+        font-size: 0.75rem;
+      }
+
+      .card-price {
+        font-size: 0.9rem;
+      }
+
+      .vape-list, .flavour-list, .cart {
+        gap: 0.75rem;
+        padding: 0.75rem;
+      }
+
+      button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+      }
+
+      .cart h2 {
+        font-size: 1.5rem;
+      }
+
+      .cart-item {
+        padding: 0.75rem;
+      }
+
+      .cart-item-name {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -126,6 +222,14 @@
 
   <script>
     const vapes = [
+      {
+        name: "ALIENVAPE HHC",
+        puffs: 1000,
+        nicotine: "5%",
+        price: 40,
+        image: "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/680aafeefe28e1cc08e135f8_photo_2025-04-24_23-40-57.jpg",
+        flavours: ["Amnesia Haze", "Mango Kush", "Super Lemon Haze", "Girl Scout Cookies", "Grape Ape"]
+      },
       {
         name: "TORNADO 9K",
         puffs: 9000,
@@ -145,6 +249,21 @@
           "Blueberry Raspberry", "Cola Ice", "Dragon Fruit", "Grape Ice", "Gummy Bear", "Mango on Ice",
           "Peach Blueberry Candy", "Peach Mango", "Peach Ice", "Pineapple Ice", "Red Energy Ice",
           "Strawberry Kiwi", "Strawberry Banana", "Strawberry Redbull", "Strawberry Watermelon Lemonade", "Watermelon Ice"
+        ]
+      },
+      {
+        name: "TORNADO 20K ЭКРАН",
+        puffs: 20000,
+        nicotine: "2%",
+        price: 25,
+        image: "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/680aaf695af58317502f0ad5_fumot-tornado-20000-rechargeable-battery_1200x1200.webp",
+        flavours: [
+          "Banana Cake", "Blueberry Lemon Green Apple", "Blueberry Raspberry", "Blueberry Raspberry Hard Candy",
+          "Blueberry Raspberry Sour", "Pear Ice", "Jelly Candies", "Chewy Bear Blue Razz", "Kiwi Passionfruit Guava",
+          "Strawberry Watermelon", "Strawberry Kiwi", "Strawberry Ice", "Strawberry Raspberry Cherry Ice",
+          "Strawberry Ice Cream", "Lychee Hami Melon", "Mixed Berries", "Mister Blue", "Peach Mango Watermelon",
+          "Peach Berries", "Pina Colada", "Blue Razz", "Skittles", "Blended Berries", "Watermelon Ice",
+          "Cherry", "Cherry Lime Eurasiatour", "Cherry Cola", "Cherry Berries"
         ]
       },
       {
@@ -231,7 +350,7 @@
         puffs: 4500,
         nicotine: "2%",
         price: 20,
-        image: "https://cdn.prod.website-Files.com/6685befcece47fe6d2a75ef8/680102d8891db73fae615a83_SKE_Crystal_Super_Max_4500_Puffs_Disposable_Vape_-_Blog_7eeb6280-186a-42c2-a1a9-e11c0b482fda.webp",
+        image: "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/680102d8891db73fae615a83_SKE_Crystal_Super_Max_4500_Puffs_Disposable_Vape_-_Blog_7eeb6280-186a-42c2-a1a9-e11c0b482fda.webp",
         flavours: [
           "Lemon & Lime", "Blueberry Cherry Cranberry", "Strawberry Raspberry Cherry", "Fresh Menthol Mojito",
           "Juicy Blueberry", "Watermelon Strawberry", "Apple Watermelon", "Cola Ice"
@@ -346,12 +465,14 @@
       addBtn.textContent = "➕ В корзину";
       addBtn.disabled = vape.flavours.length === 0;
       addBtn.onclick = () => {
-        if (vape.flavours.length > 0) {
-          selectedFlavours.forEach(flavour => {
-            cart.push({ vape: vape.name, flavour, price: vape.price, qty: 1 });
-          });
-          showCart();
+        if (vape.flavours.length > 0 && selectedFlavours.size === 0) {
+          alert("Пожалуйста, выберите хотя бы один вкус!");
+          return;
         }
+        selectedFlavours.forEach(flavour => {
+          cart.push({ vape: vape.name, flavour, price: vape.price, qty: 1 });
+        });
+        showCart();
       };
 
       bottomButtons.appendChild(backBtn);
@@ -386,24 +507,17 @@
 
       cart.forEach((item, i) => {
         const itemContainer = document.createElement('div');
-        itemContainer.style.display = 'flex';
-        itemContainer.style.flexDirection = 'column';
-        itemContainer.style.background = 'rgba(255,255,255,0.05)';
-        itemContainer.style.borderRadius = '12px';
-        itemContainer.style.padding = '1rem';
+        itemContainer.className = 'cart-item';
 
         const topRow = document.createElement('div');
-        topRow.style.display = 'flex';
-        topRow.style.justifyContent = 'space-between';
-        topRow.style.alignItems = 'center';
+        topRow.className = 'cart-item-top';
 
         const name = document.createElement('div');
+        name.className = 'cart-item-name';
         name.innerHTML = `<strong>${item.vape}</strong><br>${item.flavour}`;
 
         const controls = document.createElement('div');
-        controls.style.display = 'flex';
-        controls.style.alignItems = 'center';
-        controls.style.gap = '0.5rem';
+        controls.className = 'cart-controls';
 
         const minus = document.createElement('button');
         minus.textContent = '−';
@@ -432,9 +546,7 @@
         itemContainer.appendChild(topRow);
 
         const price = document.createElement('div');
-        price.style.marginTop = '0.5rem';
-        price.style.fontSize = '0.9rem';
-        price.style.opacity = '0.7';
+        price.className = 'cart-item-price';
         price.textContent = `€${item.price} / шт`;
 
         itemContainer.appendChild(price);
@@ -460,6 +572,7 @@
         const totalDiv = document.createElement('div');
         totalDiv.style.marginTop = '1rem';
         totalDiv.style.fontSize = '1.1rem';
+        totalDiv.style.fontFamily = "'Roboto', sans-serif";
         totalDiv.innerHTML = `<strong>Итого: €${total.toFixed(2)}</strong>`;
         cartEl.appendChild(totalDiv);
 
@@ -470,6 +583,7 @@
       } else {
         const emptyMsg = document.createElement('p');
         emptyMsg.style.marginTop = '1rem';
+        emptyMsg.style.fontFamily = "'Roboto', sans-serif";
         emptyMsg.textContent = 'Корзина пуста.';
         cartEl.appendChild(emptyMsg);
       }
@@ -478,14 +592,19 @@
     }
 
     function sendOrder() {
-      if (cart.length === 0) return alert("Корзина пуста!");
+      if (cart.length === 0) {
+        alert("Корзина пуста!");
+        return;
+      }
       let total = 0;
-      const message = cart.map(c => {
-        total += c.qty * c.price;
-        return `${c.vape} - ${c.flavour} x${c.qty}`;
-      }).join("%0A");
-      const fullMessage = `NEW ORDER%0A${message}%0AИТОГО: €${total.toFixed(2)}`;
-      window.open(`https://t.me/stas_vape_nl?start=order_${encodeURIComponent(fullMessage)}`, "_blank");
+      const messageLines = cart.map(item => {
+        total += item.qty * item.price;
+        return `${item.vape} - ${item.flavour} x${item.qty}`;
+      });
+      const message = messageLines.join("\n");
+      const fullMessage = `NEW ORDER\n${message}\nИТОГО: €${total.toFixed(2)}`;
+      const encodedMessage = encodeURIComponent(fullMessage);
+      window.open(`https://t.me/stas_vape_nl?text=${encodedMessage}`, "_blank");
     }
 
     renderVapes();

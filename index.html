@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vape Nebula</title>
-  <link href="https://fonts. googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
   <style>
     @keyframes vaporwaveFade {
       0% { text-shadow: 0 0 5px #fff, 0 0 10px #ff00f2, 0 0 20px #ff00f2, 0 0 40px #00ffe7; }
@@ -149,6 +149,8 @@
       justify-content: center;
       gap: 1rem;
       padding: 1rem;
+      visibility: visible;
+      opacity: 1;
     }
 
     .card {
@@ -161,6 +163,8 @@
       transition: 0.3s;
       border: 2px solid #000;
       animation: float 3s ease-in-out infinite;
+      opacity: 1;
+      visibility: visible;
     }
 
     .card:hover, .card.selected {
@@ -197,6 +201,7 @@
     .card-description {
       font-family: 'Roboto', sans-serif;
       font-size: 0.9rem;
+      font-weight: normal;
       margin-bottom: 0.3rem;
       text-shadow: 0 0 3px #000;
     }
@@ -272,6 +277,9 @@
       font-family: 'Roboto', sans-serif;
       font-size: 1.1rem;
       font-weight: 700;
+      background: linear-gradient(to right, #ff00f2, #00ffe7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .cart-controls {
@@ -287,8 +295,10 @@
 
     .cart-item-price {
       font-size: 0.9rem;
-      color: #00ffe7;
-      opacity: 0.9;
+      background: linear-gradient(to right, #ff00f2, #00ffe7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 3px #000;
     }
 
     .delivery-fee {
@@ -305,6 +315,24 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff00f2, #00ffe7);
+      box-shadow: 0 0 10px #ff00f2, 0 0 20px #00ffe7;
+      animation: neonPulse 2s infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .contact-button {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
       width: 60px;
       height: 60px;
       border-radius: 50%;
@@ -489,6 +517,14 @@
         font-size: 1.2rem;
       }
 
+      .contact-button {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        left: 15px;
+        font-size: 1.2rem;
+      }
+
       .modal-content {
         max-width: 85vw;
         max-height: 70vh;
@@ -615,6 +651,7 @@
   <div id="flavourList" class="flavour-list" style="display:none;"></div>
   <div id="cart" class="cart" style="display:none;"></div>
   <div class="cart-button" onclick="showCart()">🛒</div>
+  <div class="contact-button" onclick="window.open('https://t.me/stas_vape_nl', '_blank')">👑</div>
 
   <script>
     const vapes = [
@@ -801,13 +838,14 @@
       "Blueberry Ice": "🫐", "Blackcurrant Ice": "🫐", "Kiwi Passionfruit Guava": "🥝", "Strawberry Watermelon Ice": "🍓",
       "Cherry Strawberry Raspberry": "🍒", "Fizzy Cherry Cola": "🍒", "Blue Razz Cherry": "🫐", "Peach Mango Watermelon": "🍑",
       "Blueberry Watermelon": "🫐", "Fruity Fusion": "🍈", "Lemon & Lime": "🍋", "Blueberry Cherry Cranberry": "🫐",
-      "Strawberry Raspberry Cherry": "🍓", "Fresh Menthol Mojito": "🌿", "Juicy Blueberry": "🫐", "Apple Watermelon": "🍎",
-      "Rainbow": "🌈", "Blueberry Peach Ice": "🫐", "Starfruit Mulberry Lemon": "🍋", "Pineapple Peach Mango": "🍍",
-      "Blue Razz Lemonade": "🫐", "Apple Peach": "🍎", "Cherry Lemon": "🍒", "Cotton Candy": "🍬", "Berry Blue": "🫐",
-      "Hubba": "🍬", "Gum Mint": "🌿", "Space Dream": "🌌", "Magic Love": "💖", "Blueberry Gum": "🫐",
-      "Lemon Mint": "🍋", "Cherry Fiesta": "🍒", "Banana Cake": "🍌", "Blueberry Lemon Green Apple": "🫐",
-      "Blueberry Raspberry Hard Candy": "🫐", "Blueberry Raspberry Sour": "🫐", "Pear Ice": "🍐", "Jelly Candies": "🍬",
-      "Chewy Bear Blue Razz": "🐻", "Strawberry Raspberry Cherry Ice": "🍓", "Lychee Hami Melon": "🍈", "Mister Blue": "🫐",
+      "Strawberry Raspberry Cherry": "🍓", "Fresh Menthol Mojito": "🌿", "Juicy Blueberry": "🫐", "Watermelon Strawberry": "🍓",
+      "Apple Watermelon": "🍎", "Rainbow": "🌈", "Blueberry Peach Ice": "🫐", "Starfruit Mulberry Lemon": "🍋",
+      "Pineapple Peach Mango": "🍍", "Blue Razz Lemonade": "🫐", "Apple Peach": "🍎", "Cherry Lemon": "🍒",
+      "Cotton Candy": "🍬", "Berry Blue": "🫐", "Hubba": "🍬", "Gum Mint": "🌿", "Space Dream": "🌌",
+      "Magic Love": "💖", "Blueberry Gum": "🫐", "Lemon Mint": "🍋", "Cherry Fiesta": "🍒",
+      "Banana Cake": "🍌", "Blueberry Lemon Green Apple": "🫐", "Blueberry Raspberry Hard Candy": "🫐",
+      "Blueberry Raspberry Sour": "🫐", "Pear Ice": "🍐", "Jelly Candies": "🍬", "Chewy Bear Blue Razz": "🐻",
+      "Strawberry Raspberry Cherry Ice": "🍓", "Lychee Hami Melon": "🍈", "Mister Blue": "🫐",
       "Peach Berries": "🍑", "Pina Colada": "🍍", "Blue Razz": "🫐", "Skittles": "🍬", "Blended Berries": "🍓",
       "Cherry": "🍒", "Cherry Lime Eurasiatour": "🍒", "Cherry Berries": "🍒"
     };
@@ -826,295 +864,351 @@
     const neonColors = ['#ff00f2', '#00ffe7', '#8a00a2', '#00ff00', '#00b7eb'];
 
     function renderVapes() {
-      const mark = markFilter.value;
-      const nicotine = nicotineFilter.value;
-      const puffs = puffFilter.value;
-      const price = priceFilter.value;
+      try {
+        const mark = markFilter.value;
+        const nicotine = nicotineFilter.value;
+        const puffs = puffFilter.value;
+        const price = priceFilter.value;
 
-      vapeListEl.innerHTML = '';
-      vapes
-        .filter(vape => {
-          return (
-            (mark === 'All' || vape.name.includes(mark)) &&
-            (nicotine === 'All' || vape.nicotine === nicotine) &&
-            (puffs === 'All' || vape.puffs.toString() === puffs) &&
-            (price === 'All' || vape.price.toString() === price)
-          );
-        })
-        .forEach((vape, index) => {
-          const card = document.createElement('div');
-          card.className = 'card';
-          card.style.boxShadow = `0 0 10px ${neonColors[index % neonColors.length]}`;
-          card.innerHTML = `
-            <img src="${vape.image}" alt="${vape.name}">
-            <div class="card-name">${vape.name}</div>
-            <div class="card-description">Никотин: ${vape.nicotine}</div>
-            <div class="card-description">Затяжек: ${vape.puffs}</div>
-            <div class="card-price">€${vape.price}</div>
-          `;
-          card.onclick = () => showFlavours(vape);
-          vapeListEl.appendChild(card);
+        console.log('Filters:', { mark, nicotine, puffs, price });
+
+        vapeListEl.innerHTML = '';
+        const filteredVapes = vapes.filter(vape => {
+          const matchMark = mark === 'All' || vape.name.includes(mark);
+          const matchNicotine = nicotine === 'All' || vape.nicotine === nicotine;
+          const matchPuffs = puffs === 'All' || vape.puffs.toString() === puffs;
+          const matchPrice = price === 'All' || vape.price.toString() === price;
+          return matchMark && matchNicotine && matchPuffs && matchPrice;
         });
+
+        console.log('Filtered vapes:', filteredVapes.length);
+
+        if (filteredVapes.length === 0) {
+          const noVapesMsg = document.createElement('p');
+          noVapesMsg.textContent = 'Нет вейпов, соответствующих фильтрам';
+          noVapesMsg.style.margin = '1rem';
+          noVapesMsg.style.fontFamily = "'Roboto', sans-serif";
+          noVapesMsg.style.textShadow = '0 0 5px #000';
+          vapeListEl.appendChild(noVapesMsg);
+        } else {
+          filteredVapes.forEach((vape, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.style.boxShadow = `0 0 10px ${neonColors[index % neonColors.length]}`;
+            card.innerHTML = `
+              <img src="${vape.image}" alt="${vape.name}">
+              <div class="card-name">${vape.name}</div>
+              <div class="card-description">Никотин: ${vape.nicotine}</div>
+              <div class="card-description">Затяжек: ${vape.puffs}</div>
+              <div class="card-price">€${vape.price}</div>
+            `;
+            card.onclick = () => showFlavours(vape);
+            vapeListEl.appendChild(card);
+          });
+        }
+      } catch (error) {
+        console.error('Error in renderVapes:', error);
+        const errorMsg = document.createElement('p');
+        errorMsg.textContent = 'Ошибка при загрузке вейпов. Пожалуйста, попробуйте позже.';
+        errorMsg.style.margin = '1rem';
+        errorMsg.style.fontFamily = "'Roboto', sans-serif";
+        errorMsg.style.textShadow = '0 0 5px #000';
+        vapeListEl.appendChild(errorMsg);
+      }
     }
 
     function showImageModal(src, alt) {
-      const modal = document.createElement('div');
-      modal.className = 'modal';
-      modal.innerHTML = `
-        <div class="modal-content">
-          <img src="${src}" alt="${alt}">
-          <button class="close-button">×</button>
-        </div>
-      `;
-      document.body.appendChild(modal);
+      try {
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.innerHTML = `
+          <div class="modal-content">
+            <img src="${src}" alt="${alt}">
+            <button class="close-button">×</button>
+          </div>
+        `;
+        document.body.appendChild(modal);
 
-      const closeModal = () => {
-        modal.remove();
-      };
+        const closeModal = () => {
+          modal.remove();
+        };
 
-      modal.querySelector('.close-button').onclick = closeModal;
-      modal.onclick = (e) => {
-        if (e.target === modal) closeModal();
-      };
+        modal.querySelector('.close-button').onclick = closeModal;
+        modal.onclick = (e) => {
+          if (e.target === modal) closeModal();
+        };
+      } catch (error) {
+        console.error('Error in showImageModal:', error);
+      }
     }
 
     function showFlavours(vape) {
-      vapeListEl.style.display = 'none';
-      cartEl.style.display = 'none';
-      filterHeaderEl.style.display = 'none';
-      flavourListEl.style.display = 'flex';
-      flavourListEl.innerHTML = '';
+      try {
+        vapeListEl.style.display = 'none';
+        cartEl.style.display = 'none';
+        filterHeaderEl.style.display = 'none';
+        flavourListEl.style.display = 'flex';
+        flavourListEl.innerHTML = '';
 
-      const heading = document.createElement('h2');
-      heading.className = 'vape-heading';
-      heading.textContent = `Выберите вкус для ${vape.name}`;
-      flavourListEl.appendChild(heading);
+        const heading = document.createElement('h2');
+        heading.className = 'vape-heading';
+        heading.textContent = `Выберите вкус для ${vape.name}`;
+        flavourListEl.appendChild(heading);
 
-      const vapeImage = document.createElement('img');
-      vapeImage.className = 'vape-image';
-      vapeImage.src = vape.image;
-      vapeImage.alt = vape.name;
-      vapeImage.onclick = () => showImageModal(vape.image, vape.name);
-      flavourListEl.appendChild(vapeImage);
+        const vapeImage = document.createElement('img');
+        vapeImage.className = 'vape-image';
+        vapeImage.src = vape.image;
+        vapeImage.alt = vape.name;
+        vapeImage.onclick = () => showImageModal(vape.image, vape.name);
+        flavourListEl.appendChild(vapeImage);
 
-      const selectedFlavours = new Set();
+        const selectedFlavours = new Set();
 
-      const flavourWrap = document.createElement('div');
-      flavourWrap.style.flexWrap = "wrap";
-      flavourWrap.style.display = "flex";
-      flavourWrap.style.justifyContent = "center";
-      flavourWrap.style.gap = "1rem";
+        const flavourWrap = document.createElement('div');
+        flavourWrap.style.flexWrap = "wrap";
+        flavourWrap.style.display = "flex";
+        flavourWrap.style.justifyContent = "center";
+        flavourWrap.style.gap = "1rem";
 
-      if (vape.flavours.length === 0) {
-        const noFlavoursMsg = document.createElement('p');
-        noFlavoursMsg.textContent = 'Нет доступных вкусов.';
-        noFlavoursMsg.style.margin = '1rem';
-        flavourWrap.appendChild(noFlavoursMsg);
-      } else {
-        vape.flavours.forEach(flavour => {
-          const card = document.createElement('div');
-          card.className = 'card';
-          const emoji = flavourEmojis[flavour] || '🍬';
-          card.innerText = `${emoji} ${flavour}`;
-          card.onclick = () => {
-            if (selectedFlavours.has(flavour)) {
-              selectedFlavours.delete(flavour);
-              card.classList.remove('selected');
-            } else {
-              selectedFlavours.add(flavour);
-              card.classList.add('selected');
-            }
-          };
-          flavourWrap.appendChild(card);
-        });
-      }
-
-      const bottomButtons = document.createElement('div');
-      bottomButtons.style.width = "100%";
-      bottomButtons.style.display = "flex";
-      bottomButtons.style.justifyContent = "space-between";
-      bottomButtons.style.marginTop = "20px";
-
-      const backBtn = document.createElement('button');
-      backBtn.textContent = "⬅ Назад";
-      backBtn.onclick = () => goBack();
-
-      const addBtn = document.createElement('button');
-      addBtn.textContent = "➕ В корзину";
-      addBtn.disabled = vape.flavours.length === 0;
-      addBtn.onclick = () => {
-        if (vape.flavours.length > 0 && selectedFlavours.size === 0) {
-          alert("Пожалуйста, выберите хотя бы один вкус!");
-          return;
+        if (vape.flavours.length === 0) {
+          const noFlavoursMsg = document.createElement('p');
+          noFlavoursMsg.textContent = 'Нет доступных вкусов.';
+          noFlavoursMsg.style.margin = '1rem';
+          flavourWrap.appendChild(noFlavoursMsg);
+        } else {
+          vape.flavours.forEach(flavour => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            const emoji = flavourEmojis[flavour] || '🍬';
+            card.innerText = `${emoji} ${flavour}`;
+            card.onclick = () => {
+              if (selectedFlavours.has(flavour)) {
+                selectedFlavours.delete(flavour);
+                card.classList.remove('selected');
+              } else {
+                selectedFlavours.add(flavour);
+                card.classList.add('selected');
+              }
+            };
+            flavourWrap.appendChild(card);
+          });
         }
-        selectedFlavours.forEach(flavour => {
-          cart.push({ vape: vape.name, flavour, price: vape.price, qty: 1 });
-        });
-        showCart();
-      };
 
-      bottomButtons.appendChild(backBtn);
-      bottomButtons.appendChild(addBtn);
+        const bottomButtons = document.createElement('div');
+        bottomButtons.style.width = "100%";
+        bottomButtons.style.display = "flex";
+        bottomButtons.style.justifyContent = "space-between";
+        bottomButtons.style.marginTop = "20px";
 
-      flavourListEl.appendChild(flavourWrap);
-      flavourListEl.appendChild(bottomButtons);
+        const backBtn = document.createElement('button');
+        backBtn.textContent = "⬅ Назад";
+        backBtn.onclick = () => goBack();
+
+        const addBtn = document.createElement('button');
+        addBtn.textContent = "➕ В корзину";
+        addBtn.disabled = vape.flavours.length === 0;
+        addBtn.onclick = () => {
+          if (vape.flavours.length > 0 && selectedFlavours.size === 0) {
+            alert("Пожалуйста, выберите хотя бы один вкус!");
+            return;
+          }
+          selectedFlavours.forEach(flavour => {
+            cart.push({ vape: vape.name, flavour, price: vape.price, qty: 1 });
+          });
+          showCart();
+        };
+
+        bottomButtons.appendChild(backBtn);
+        bottomButtons.appendChild(addBtn);
+
+        flavourListEl.appendChild(flavourWrap);
+        flavourListEl.appendChild(bottomButtons);
+      } catch (error) {
+        console.error('Error in showFlavours:', error);
+      }
     }
 
     function goBack() {
-      flavourListEl.style.display = 'none';
-      cartEl.style.display = 'none';
-      vapeListEl.style.display = 'flex';
-      filterHeaderEl.style.display = 'flex';
+      try {
+        flavourListEl.style.display = 'none';
+        cartEl.style.display = 'none';
+        vapeListEl.style.display = 'flex';
+        filterHeaderEl.style.display = 'flex';
+        renderVapes();
+      } catch (error) {
+        console.error('Error in goBack:', error);
+      }
     }
 
     function showCart() {
-      vapeListEl.style.display = 'none';
-      flavourListEl.style.display = 'none';
-      filterHeaderEl.style.display = 'none';
-      cartEl.style.display = 'flex';
-      updateCart();
+      try {
+        vapeListEl.style.display = 'none';
+        flavourListEl.style.display = 'none';
+        filterHeaderEl.style.display = 'none';
+        cartEl.style.display = 'flex';
+        updateCart();
+      } catch (error) {
+        console.error('Error in showCart:', error);
+      }
     }
 
     function updateCart() {
-      cartEl.innerHTML = '<h2>🛒 Корзина ✨</h2>';
-      let total = 0;
-      let totalQty = 0;
+      try {
+        cartEl.innerHTML = '<h2>🛒 Корзина ✨</h2>';
+        let total = 0;
+        let totalQty = 0;
 
-      const itemsWrap = document.createElement('div');
-      itemsWrap.style.width = '100%';
-      itemsWrap.style.display = 'flex';
-      itemsWrap.style.flexDirection = 'column';
-      itemsWrap.style.gap = '1rem';
+        const itemsWrap = document.createElement('div');
+        itemsWrap.style.width = '100%';
+        itemsWrap.style.display = 'flex';
+        itemsWrap.style.flexDirection = 'column';
+        itemsWrap.style.gap = '1rem';
 
-      cart.forEach((item, i) => {
-        const itemContainer = document.createElement('div');
-        itemContainer.className = 'cart-item';
+        cart.forEach((item, i) => {
+          const itemContainer = document.createElement('div');
+          itemContainer.className = 'cart-item';
 
-        const topRow = document.createElement('div');
-        topRow.className = 'cart-item-top';
+          const topRow = document.createElement('div');
+          topRow.className = 'cart-item-top';
 
-        const name = document.createElement('div');
-        name.className = 'cart-item-name';
-        name.innerHTML = `<strong>🧨 ${item.vape}</strong><br>${item.flavour}`;
+          const name = document.createElement('div');
+          name.className = 'cart-item-name';
+          name.innerHTML = `<strong>🧨 ${item.vape}</strong><br>${item.flavour}`;
 
-        const controls = document.createElement('div');
-        controls.className = 'cart-controls';
+          const controls = document.createElement('div');
+          controls.className = 'cart-controls';
 
-        const minus = document.createElement('button');
-        minus.textContent = '−';
-        minus.onclick = () => {
-          if (item.qty > 1) item.qty--;
-          else cart.splice(i, 1);
-          updateCart();
-        };
+          const minus = document.createElement('button');
+          minus.textContent = '−';
+          minus.onclick = () => {
+            if (item.qty > 1) item.qty--;
+            else cart.splice(i, 1);
+            updateCart();
+          };
 
-        const qty = document.createElement('span');
-        qty.textContent = item.qty;
+          const qty = document.createElement('span');
+          qty.textContent = item.qty;
 
-        const plus = document.createElement('button');
-        plus.textContent = '+';
-        plus.onclick = () => {
-          item.qty++;
-          updateCart();
-        };
+          const plus = document.createElement('button');
+          plus.textContent = '+';
+          plus.onclick = () => {
+            item.qty++;
+            updateCart();
+          };
 
-        controls.appendChild(minus);
-        controls.appendChild(qty);
-        controls.appendChild(plus);
+          controls.appendChild(minus);
+          controls.appendChild(qty);
+          controls.appendChild(plus);
 
-        topRow.appendChild(name);
-        topRow.appendChild(controls);
-        itemContainer.appendChild(topRow);
+          topRow.appendChild(name);
+          topRow.appendChild(controls);
+          itemContainer.appendChild(topRow);
 
-        const price = document.createElement('div');
-        price.className = 'cart-item-price';
-        price.textContent = `€${item.price} / шт`;
+          const price = document.createElement('div');
+          price.className = 'cart-item-price';
+          price.textContent = `€${item.price} / шт`;
 
-        itemContainer.appendChild(price);
-        itemsWrap.appendChild(itemContainer);
+          itemContainer.appendChild(price);
+          itemsWrap.appendChild(itemContainer);
 
-        total += item.price * item.qty;
-        totalQty += item.qty;
-      });
+          total += item.price * item.qty;
+          totalQty += item.qty;
+        });
 
-      cartEl.appendChild(itemsWrap);
+        cartEl.appendChild(itemsWrap);
 
-      const deliveryFee = totalQty < 3 ? 10 : 0;
-      if (deliveryFee > 0) {
-        const deliveryDiv = document.createElement('div');
-        deliveryDiv.className = 'delivery-fee';
-        deliveryDiv.textContent = `Доставка (от 3 штук бесплатная доставка): €${deliveryFee.toFixed(2)}`;
-        cartEl.appendChild(deliveryDiv);
+        const deliveryFee = totalQty < 3 ? 10 : 0;
+        if (deliveryFee > 0) {
+          const deliveryDiv = document.createElement('div');
+          deliveryDiv.className = 'delivery-fee';
+          deliveryDiv.textContent = `Доставка (от 3 штук бесплатная доставка): €${deliveryFee.toFixed(2)}`;
+          cartEl.appendChild(deliveryDiv);
+        }
+
+        total += deliveryFee;
+
+        const btnRow = document.createElement('div');
+        btnRow.className = 'btn-row';
+        btnRow.style.marginTop = '2rem';
+        btnRow.style.display = 'flex';
+        btnRow.style.justifyContent = 'space-between';
+        btnRow.style.width = '100%';
+
+        const backButton = document.createElement('button');
+        backButton.textContent = '⬅ Назад';
+        backButton.onclick = () => goBack();
+        btnRow.appendChild(backButton);
+
+        if (cart.length) {
+          const totalDiv = document.createElement('div');
+          totalDiv.className = 'total';
+          totalDiv.style.marginTop = '1rem';
+          totalDiv.style.fontSize = '1.1rem';
+          totalDiv.style.fontFamily = "'Roboto', sans-serif";
+          totalDiv.innerHTML = `<strong>Итого: €${total.toFixed(2)}</strong>`;
+          cartEl.appendChild(totalDiv);
+
+          const sendBtn = document.createElement('button');
+          sendBtn.textContent = '📨 Отправить заказ 🚀';
+          sendBtn.onclick = () => sendOrder();
+          btnRow.appendChild(sendBtn);
+        } else {
+          const emptyMsg = document.createElement('p');
+          emptyMsg.style.marginTop = '1rem';
+          emptyMsg.style.fontFamily = "'Roboto', sans-serif";
+          emptyMsg.textContent = 'Корзина пуста 😢';
+          cartEl.appendChild(emptyMsg);
+        }
+
+        cartEl.appendChild(btnRow);
+      } catch (error) {
+        console.error('Error in updateCart:', error);
       }
-
-      total += deliveryFee;
-
-      const btnRow = document.createElement('div');
-      btnRow.className = 'btn-row';
-      btnRow.style.marginTop = '2rem';
-      btnRow.style.display = 'flex';
-      btnRow.style.justifyContent = 'space-between';
-      btnRow.style.width = '100%';
-
-      const backButton = document.createElement('button');
-      backButton.textContent = '⬅ Назад';
-      backButton.onclick = () => goBack();
-      btnRow.appendChild(backButton);
-
-      if (cart.length) {
-        const totalDiv = document.createElement('div');
-        totalDiv.className = 'total';
-        totalDiv.style.marginTop = '1rem';
-        totalDiv.style.fontSize = '1.1rem';
-        totalDiv.style.fontFamily = "'Roboto', sans-serif";
-        totalDiv.innerHTML = `<strong>Итого: €${total.toFixed(2)}</strong>`;
-        cartEl.appendChild(totalDiv);
-
-        const sendBtn = document.createElement('button');
-        sendBtn.textContent = '📨 Отправить заказ 🚀';
-        sendBtn.onclick = () => sendOrder();
-        btnRow.appendChild(sendBtn);
-      } else {
-        const emptyMsg = document.createElement('p');
-        emptyMsg.style.marginTop = '1rem';
-        emptyMsg.style.fontFamily = "'Roboto', sans-serif";
-        emptyMsg.textContent = 'Корзина пуста 😢';
-        cartEl.appendChild(emptyMsg);
-      }
-
-      cartEl.appendChild(btnRow);
     }
 
     function sendOrder() {
-      if (cart.length === 0) {
-        alert("Корзина пуста!");
-        return;
+      try {
+        if (cart.length === 0) {
+          alert("Корзина пуста!");
+          return;
+        }
+        let total = 0;
+        let totalQty = 0;
+        const messageLines = cart.map(item => {
+          total += item.qty * item.price;
+          totalQty += item.qty;
+          return `${item.vape} - ${item.flavour} x${item.qty} (€${item.price}/шт)`;
+        });
+        if (totalQty < 3) {
+          messageLines.push(`Доставка (от 3 штук бесплатная доставка): €10`);
+          total += 10;
+        }
+        const message = messageLines.join("\n");
+        const fullMessage = `NEW ORDER\n${message}\n\nИТОГО: €${total.toFixed(2)}`;
+        const encodedMessage = encodeURIComponent(fullMessage);
+        window.open(`https://t.me/stas_vape_nl?text=${encodedMessage}`, "_blank");
+        cart = [];
+        updateCart();
+      } catch (error) {
+        console.error('Error in sendOrder:', error);
       }
-      let total = 0;
-      let totalQty = 0;
-      const messageLines = cart.map(item => {
-        total += item.qty * item.price;
-        totalQty += item.qty;
-        return `${item.vape} - ${item.flavour} x${item.qty} (€${item.price}/шт)`;
-      });
-      if (totalQty < 3) {
-        messageLines.push(`Доставка (от 3 штук бесплатная доставка): €10`);
-        total += 10;
-      }
-      const message = messageLines.join("\n");
-      const fullMessage = `NEW ORDER\n${message}\n\nИТОГО: €${total.toFixed(2)}`;
-      const encodedMessage = encodeURIComponent(fullMessage);
-      window.open(`https://t.me/stas_vape_nl?text=${encodedMessage}`, "_blank");
-      cart = [];
-      updateCart();
     }
 
-    markFilter.onchange = renderVapes;
-    nicotineFilter.onchange = renderVapes;
-    puffFilter.onchange = renderVapes;
-    priceFilter.onchange = renderVapes;
+    // Attach event listeners
+    try {
+      markFilter.onchange = renderVapes;
+      nicotineFilter.onchange = renderVapes;
+      puffFilter.onchange = renderVapes;
+      priceFilter.onchange = renderVapes;
 
-    renderVapes();
+      // Initial render
+      window.onload = () => {
+        console.log('Page loaded, rendering vapes');
+        renderVapes();
+      };
+    } catch (error) {
+      console.error('Error setting up event listeners:', error);
+    }
   </script>  
 </body>
 </html>

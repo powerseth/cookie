@@ -134,12 +134,25 @@
       animation: neonPulse 2s infinite;
     }
 
+    .filter-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .filter-icon {
+      font-size: 1.2rem;
+      color: #fff;
+      text-shadow: 0 0 5px #ff00f2, 0 0 10px #00ffe7;
+      padding: 0.2rem;
+    }
+
     .filter-header select {
       background: rgba(0, 0, 0, 0.5);
       color: #fff;
       border: 2px solid #ff00f2;
       border-radius: 0.5rem;
-      padding: 0.5rem;
+      padding: 0.5rem 0.75rem;
       font-size: 1rem;
       cursor: pointer;
       transition: border-color 0.2s;
@@ -439,10 +452,18 @@
         box-shadow: 0 0 8px #ff00f2, 0 0 15px #00ffe7;
       }
 
+      .filter-item {
+        gap: 0.3rem;
+      }
+
+      .filter-icon {
+        font-size: 1rem;
+      }
+
       .filter-header select {
         width: 100%;
         font-size: 0.9rem;
-        padding: 0.4rem;
+        padding: 0.4rem 0.6rem;
       }
 
       .card {
@@ -604,50 +625,62 @@
     </div>
   </div>
   <div id="filterHeader" class="filter-header">
-    <select id="markFilter">
-      <option value="All">Все Марки</option>
-      <option value="ALIENVAPE">ALIENVAPE</option>
-      <option value="TORNADO">TORNADO</option>
-      <option value="VOZOL">VOZOL</option>
-      <option value="MEDIAMAX">MEDIAMAX</option>
-      <option value="FUMOT">FUMOT</option>
-      <option value="IJOY">IJOY</option>
-      <option value="SHISHA VAPE">SHISHA VAPE</option>
-      <option value="HAYATI">HAYATI</option>
-    </select>
-    <select id="nicotineFilter">
-      <option value="All">Все Никотин</option>
-      <option value="2%">2%</option>
-      <option value="2.5%">2.5%</option>
-      <option value="5%">5%</option>
-      <option value="6%">6%</option>
-    </select>
-    <select id="puffFilter">
-      <option value="All">Все Затяжки</option>
-      <option value="600">600</option>
-      <option value="1000">1000</option>
-      <option value="4500">4500</option>
-      <option value="5000">5000</option>
-      <option value="8000">8000</option>
-      <option value="9000">9000</option>
-      <option value="10000">10000</option>
-      <option value="12000">12000</option>
-      <option value="15000">15000</option>
-      <option value="20000">20000</option>
-      <option value="25000">25000</option>
-      <option value="30000">30000</option>
-      <option value="40000">40000</option>
-    </select>
-    <select id="priceFilter">
-      <option value="All">Все Цены</option>
-      <option value="10">€10</option>
-      <option value="15">€15</option>
-      <option value="20">€20</option>
-      <option value="25">€25</option>
-      <option value="30">€30</option>
-      <option value="35">€35</option>
-      <option value="40">€40</option>
-    </select>
+    <div class="filter-item">
+      <span class="filter-icon">🏷️</span>
+      <select id="markFilter">
+        <option value="All">Все Марки</option>
+        <option value="ALIENVAPE">ALIENVAPE</option>
+        <option value="TORNADO">TORNADO</option>
+        <option value="VOZOL">VOZOL</option>
+        <option value="MEDIAMAX">MEDIAMAX</option>
+        <option value="FUMOT">FUMOT</option>
+        <option value="IJOY">IJOY</option>
+        <option value="SHISHA VAPE">SHISHA VAPE</option>
+        <option value="HAYATI">HAYATI</option>
+      </select>
+    </div>
+    <div class="filter-item">
+      <span class="filter-icon">%</span>
+      <select id="nicotineFilter">
+        <option value="All">Все Никотин</option>
+        <option value="2%">2%</option>
+        <option value="2.5%">2.5%</option>
+        <option value="5%">5%</option>
+        <option value="6%">6%</option>
+      </select>
+    </div>
+    <div class="filter-item">
+      <span class="filter-icon">💨</span>
+      <select id="puffFilter">
+        <option value="All">Все Затяжки</option>
+        <option value="600">600</option>
+        <option value="1000">1000</option>
+        <option value="4500">4500</option>
+        <option value="5000">5000</option>
+        <option value="8000">8000</option>
+        <option value="9000">9000</option>
+        <option value="10000">10000</option>
+        <option value="12000">12000</option>
+        <option value="15000">15000</option>
+        <option value="20000">20000</option>
+        <option value="25000">25000</option>
+        <option value="30000">30000</option>
+        <option value="40000">40000</option>
+      </select>
+    </div>
+    <div class="filter-item">
+      <span class="filter-icon">€</span>
+      <select id="priceFilter">
+        <option value="All">Все Цены</option>
+        <option value="10">€10</option>
+        <option value="15">€15</option>
+        <option value="20">€20</option>
+        <option value="25">€25</option>
+        <option value="30">€30</option>
+        <option value="35">€35</option>
+        <option value="40">€40</option>
+      </select>
+    </div>
   </div>
   <div id="vapeList" class="vape-list"></div>
   <div id="flavourList" class="flavour-list" style="display:none;"></div>

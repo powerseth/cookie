@@ -18,6 +18,12 @@
       100% { transform: translateY(0); }
     }
 
+    @keyframes infoFloat {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-1px); }
+      100% { transform: translateY(0); }
+    }
+
     @keyframes scroll {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
@@ -103,7 +109,7 @@
       display: flex;
       flex-direction: row;
       gap: 2rem;
-      animation: scroll 12s linear infinite;
+      animation: scroll 3s linear infinite;
       white-space: nowrap;
     }
 
@@ -186,6 +192,26 @@
       display: block;
       box-shadow: 0 0 10px #ff00f2;
       cursor: pointer;
+    }
+
+    .info-icon {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background: #ff00f2;
+      color: #000;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-left: 1rem;
+      transition: background 0.2s;
+      animation: infoFloat 2s ease-in-out infinite;
+    }
+
+    .info-icon:hover {
+      background: #00ffe7;
     }
 
     .card-name {
@@ -296,7 +322,7 @@
 
     .delivery-fee {
       font-family: 'Roboto', sans-serif;
-      font-size: 1rem;
+      font-size: 1.1rem;
       color: #ff00f2;
       margin-top: 1rem;
       width: 100%;
@@ -405,7 +431,7 @@
       }
 
       .scrolling-text-container {
-        animation: scroll 12s linear infinite;
+        animation: scroll 3s linear infinite;
       }
 
       .filter-header {
@@ -534,6 +560,13 @@
         height: 30px;
         font-size: 1.2rem;
       }
+
+      .info-icon {
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -611,6 +644,7 @@
       <option value="FUMOT">FUMOT</option>
       <option value="IJOY">IJOY</option>
       <option value="SHISHA VAPE">SHISHA VAPE</option>
+      <option value="HAYATI">HAYATI</option>
     </select>
     <select id="nicotineFilter">
       <option value="All">Все Никотин</option>
@@ -624,6 +658,7 @@
       <option value="600">600</option>
       <option value="1000">1000</option>
       <option value="4500">4500</option>
+      <option value="5000">5000</option>
       <option value="8000">8000</option>
       <option value="9000">9000</option>
       <option value="10000">10000</option>
@@ -637,6 +672,7 @@
     <select id="priceFilter">
       <option value="All">Все Цены</option>
       <option value="10">€10</option>
+      <option value="15">€15</option>
       <option value="20">€20</option>
       <option value="25">€25</option>
       <option value="30">€30</option>
@@ -818,6 +854,14 @@
           "Berry Blue", "Hubba", "Gum Mint", "Grape Mint", "Space Dream",
           "Magic Love", "Peach Ice", "Blueberry Gum", "Lemon Mint", "Cherry Fiesta"
         ]
+      },
+      {
+        name: "HAYATI Twist 5K",
+        puffs: 5000,
+        nicotine: "2%",
+        price: 15,
+        image: "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/680b5e76158e6c535ea33158_Hayati_Twist_5000_Disposable_Vape.webp",
+        flavours: ["Passionfruit Lemon Lime", "Kiwi Lemon", "Summer Dream", "Strawberry Gummy Bear", "Strawberry Kiwi"]
       }
     ];
 
@@ -844,7 +888,8 @@
       "Blueberry Raspberry Sour": "🫐", "Pear Ice": "🍐", "Jelly Candies": "🍬", "Chewy Bear Blue Razz": "🐻",
       "Strawberry Raspberry Cherry Ice": "🍓", "Lychee Hami Melon": "🍈", "Mister Blue": "🫐",
       "Peach Berries": "🍑", "Pina Colada": "🍍", "Blue Razz": "🫐", "Skittles": "🍬", "Blended Berries": "🍓",
-      "Cherry": "🍒", "Cherry Lime Eurasiatour": "🍒", "Cherry Berries": "🍒"
+      "Cherry": "🍒", "Cherry Lime Eurasiatour": "🍒", "Cherry Berries": "🍒",
+      "Passionfruit Lemon Lime": "🍋", "Kiwi Lemon": "🥝", "Summer Dream": "☀️", "Strawberry Gummy Bear": "🍓", "Strawberry Kiwi": "🍓"
     };
 
     let cart = [];
@@ -947,10 +992,27 @@
         flavourListEl.style.display = 'flex';
         flavourListEl.innerHTML = '';
 
+        const headingWrapper = document.createElement('div');
+        headingWrapper.style.display = 'flex';
+        headingWrapper.style.alignItems = 'center';
+        headingWrapper.style.justifyContent = 'center';
+        headingWrapper.style.width = '100%';
+
         const heading = document.createElement('h2');
         heading.className = 'vape-heading';
         heading.textContent = `Выберите вкус для ${vape.name}`;
-        flavourListEl.appendChild(heading);
+        headingWrapper.appendChild(heading);
+
+        if (vape.name.includes('ALIENVAPE')) {
+          const infoIcon = document.createElement('a');
+          infoIcon.className = 'info-icon';
+          infoIcon.textContent = 'ℹ';
+          infoIcon.href = 'https://telegra.ph/Alienvape---Stas-04-24';
+          infoIcon.target = '_blank';
+          headingWrapper.appendChild(infoIcon);
+        }
+
+        flavourListEl.appendChild(headingWrapper);
 
         const vapeImage = document.createElement('img');
         vapeImage.className = 'vape-image';

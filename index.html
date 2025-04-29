@@ -3,13 +3,78 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Vape Nebula offers premium vape products with fast delivery across the Netherlands.">
+  <meta name="keywords" content="vape, e-cigarette, Netherlands, vape shop">
   <title>Vape Nebula</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Exo+2:wght@400;700&family=Montserrat:wght@400;600&family=Dancing+Script:wght@400;700&family=Impact&display=swap" rel="stylesheet">
   <style>
+    /* Reset default styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body with cosmic background */
+    body {
+      font-family: 'Montserrat', 'Roboto', 'Arial', sans-serif;
+      background: linear-gradient(180deg, #0a0a23 0%, #1a1a3d 100%);
+      color: #e0e0ff;
+      position: relative;
+      overflow-x: hidden;
+      min-height: 100vh;
+      overscroll-behavior: none;
+    }
+
+    /* Starry background effect */
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+      opacity: 0.6;
+      z-index: -3;
+    }
+
+    /* Nebula effect */
+    .nebulae {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 30% 70%, rgba(147, 0, 255, 0.3), transparent 70%),
+                  radial-gradient(circle at 70% 30%, rgba(0, 255, 191, 0.3), transparent 70%);
+      z-index: -2;
+      animation: nebulaPulse 15s infinite alternate;
+    }
+
+    /* Alien particles */
+    .alien-particles::before,
+    .alien-particles::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: #00ffcc;
+      box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+      animation: particleFloat 10s infinite linear;
+    }
+    .alien-particles::after {
+      background: #ff00ff;
+      box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+      animation: particleFloat 12s infinite linear reverse;
+      top: 80%;
+      left: 90%;
+    }
+
+    /* Animations */
     @keyframes vaporwaveFade {
-      0% { text-shadow: 0 0 5px #fff, 0 0 10px #ff00f2, 0 0 20px #ff00f2, 0 0 40px #00ffe7; }
-      50% { text-shadow: 0 0 10px #fff, 0 0 20px #ff00f2, 0 0 30px #ff00f2, 0 0 60px #00ffe7; }
-      100% { text-shadow: 0 0 5px #fff, 0 0 10px #ff00f2, 0 0 20px #ff00f2, 0 0 40px #00ffe7; }
+      0% { text-shadow: 0 0 5px #fff, 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #00ffcc; }
+      50% { text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 60px #00ffcc; }
+      100% { text-shadow: 0 0 5px #fff, 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #00ffcc; }
     }
 
     @keyframes float {
@@ -29,55 +94,19 @@
       100% { transform: translateX(-100%); }
     }
 
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(to bottom right, #120048, #310061, #8a00a2);
-      color: #fff;
+    @keyframes nebulaPulse {
+      0% { opacity: 0.5; transform: scale(1); }
+      100% { opacity: 0.8; transform: scale(1.05); }
     }
 
-    .heading-container {
-      position: relative;
-      display: inline-block;
-      margin: 0 auto;
-      width: 100%;
-      text-align: center;
+    @keyframes particleFloat {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(100vw, 100vh); }
     }
 
-    h1 {
-      position: relative;
-      z-index: 1;
-      padding: 1rem;
-      font-size: 2rem;
-      animation: vaporwaveFade 3s infinite;
-      color: #fff;
-      text-shadow: 0 0 5px #000, 0 0 15px #000;
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 0.5rem;
-      display: inline-block;
-    }
-
-    .heading-container::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        linear-gradient(45deg, transparent 49%, #ff00f2 49%, #ff00f2 51%, transparent 51%) 0 0 / 20px 20px,
-        linear-gradient(-45deg, transparent 49%, #00ffe7 49%, #00ffe7 51%, transparent 51%) 0 0 / 20px 20px,
-        linear-gradient(to bottom right, #8a00a2, #310061);
-      opacity: 0.7;
-      animation: gridMove 10s linear infinite;
-      box-shadow: 0 0 20px #ff00f2, 0 0 30px #00ffe7;
-      z-index: 0;
-      border-radius: 1rem;
-    }
-
-    @keyframes gridMove {
-      0% { background-position: 0 0; }
-      100% { background-position: 40px 40px; }
+    @keyframes popUp {
+      0% { opacity: 0; transform: scale(0.7) translateY(20px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
     }
 
     @keyframes neonPulse {
@@ -86,23 +115,54 @@
       100% { opacity: 0.7; }
     }
 
-    h2.vape-heading {
-      font-family: 'Roboto', sans-serif;
-      font-size: 1.8rem;
-      text-align: center;
-      margin: 1rem 0;
-      background: linear-gradient(to right, #8a00a2, #00b7eb, #ff69b4);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 10px #ff00f2, 0 0 20px #00ffe7, 0 0 30px #8a00a2;
+    @keyframes flavorGlow {
+      0% {
+        background: rgba(10, 10, 40, 0.7);
+        border-color: #00ffcc;
+        box-shadow: 0 0 10px #00ffcc, 0 0 20px #ff00ff;
+      }
+      50% {
+        background: linear-gradient(45deg, #ff00ff, #00ffcc);
+        border-color: #ff00ff;
+        box-shadow: 0 0 20px #ff00ff, 0 0 30px #00ffcc;
+      }
+      100% {
+        background: rgba(50, 50, 100, 0.9);
+        border-color: #ff00ff;
+        box-shadow: 0 0 15px #ff00ff, 0 0 25px #00ffcc;
+      }
     }
 
+    /* Heading container */
+    .heading-container {
+      position: relative;
+      display: inline-block;
+      margin: 0 auto;
+      width: 100%;
+      text-align: center;
+      z-index: 1;
+    }
+
+    h1 {
+      font-family: 'Exo 2', 'Roboto', sans-serif;
+      font-size: 2.5rem;
+      padding: 1rem;
+      animation: vaporwaveFade 3s infinite;
+      color: #e0e0ff;
+      text-shadow: 0 0 10px #00ffcc, 0 0 20px #ff00ff;
+      background: rgba(10, 10, 40, 0.7);
+      border-radius: 10px;
+      display: inline-block;
+    }
+
+    /* Scrolling text */
     .scrolling-text {
       overflow: hidden;
       width: 100%;
-      background: rgba(0, 0, 0, 0.3);
+      background: rgba(10, 10, 40, 0.5);
       padding: 0.5rem 0;
-      box-shadow: 0 0 10px #ff00f2;
+      box-shadow: 0 0 10px #ff00ff;
+      border: 1px solid #00ffcc;
     }
 
     .scrolling-text-container {
@@ -113,24 +173,25 @@
     }
 
     .scrolling-text p {
+      font-family: 'Montserrat', sans-serif;
       font-size: 1rem;
       margin: 0;
       padding-right: 2rem;
-      background: linear-gradient(to right, #ff00f2, #00ffe7);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 5px #000;
+      color: #00ffcc;
+      text-shadow: 0 0 5px #ff00ff;
     }
 
+    /* Filter header */
     .filter-header {
       display: flex;
       justify-content: center;
       gap: 1rem;
       padding: 1rem;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 1rem;
+      background: rgba(10, 10, 40, 0.9);
+      border: 1px solid #ff00ff;
+      border-radius: 10px;
       margin: 1rem;
-      box-shadow: 0 0 10px #ff00f2, 0 0 20px #00ffe7;
+      box-shadow: 0 0 10px #00ffcc, 0 0 20px #ff00ff;
       animation: neonPulse 2s infinite;
     }
 
@@ -142,162 +203,151 @@
 
     .filter-icon {
       font-size: 1.2rem;
-      color: #fff;
-      text-shadow: 0 0 5px #ff00f2, 0 0 10px #00ffe7;
-      padding: 0.2rem;
+      color: #e0e0ff;
+      text-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffcc;
     }
 
     .filter-header select {
-      background: rgba(0, 0, 0, 0.5);
-      color: #fff;
-      border: 2px solid #ff00f2;
-      border-radius: 0.5rem;
+      background: rgba(50, 50, 100, 0.5);
+      color: #e0e0ff;
+      border: 2px solid #ff00ff;
+      border-radius: 10px;
       padding: 0.5rem 0.75rem;
+      font-family: 'Montserrat', sans-serif;
       font-size: 1rem;
       cursor: pointer;
       transition: border-color 0.2s;
     }
 
     .filter-header select:hover {
-      border-color: #00ffe7;
+      border-color: #00ffcc;
     }
 
-    .vape-list, .flavour-list, .cart {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+    /* Vape and flavor lists */
+    .vape-list, .flavour-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 1rem;
       padding: 1rem;
-      visibility: visible;
-      opacity: 1;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 1rem;
+      position: relative;
+      background: rgba(10, 10, 40, 0.7);
+      border: 2px solid #00ffcc;
+      border-radius: 10px;
       padding: 1rem;
-      width: 180px;
       text-align: center;
       cursor: pointer;
-      transition: 0.3s;
-      border: 2px solid #000;
-      animation: float 3s ease-in-out infinite;
-      opacity: 1;
-      visibility: visible;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+      animation: float 3s ease-in-out infinite, popUp 0.5s ease forwards;
+      box-shadow: 0 0 10px #00ffcc, 0 0 20px #ff00ff;
     }
 
-    .card:hover, .card.selected {
+    .card:hover {
       transform: scale(1.05);
-      background: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 15px #00ffcc, 0 0 30px #ff00ff;
+    }
+
+    .card.selected {
+      animation: flavorGlow 1s ease-in-out forwards;
+      transform: scale(1.05);
     }
 
     .card img {
       width: 100%;
-      border-radius: 0.5rem;
+      height: 60%;
+      object-fit: contain;
+      border-radius: 8px;
       margin-bottom: 0.5rem;
-      object-fit: cover;
     }
 
     .flavour-list img.vape-image {
       max-width: 200px;
-      border-radius: 0.5rem;
+      border-radius: 10px;
       margin: 1rem auto;
       display: block;
-      box-shadow: 0 0 10px #ff00f2;
+      box-shadow: 0 0 10px #ff00ff;
       cursor: pointer;
-    }
-
-    .info-icon {
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      background: #ff00f2;
-      color: #000;
-      border-radius: 50%;
-      text-align: center;
-      line-height: 30px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      margin-left: 1rem;
-      transition: background 0.2s;
-      animation: infoFloat 2s ease-in-out infinite;
-    }
-
-    .info-icon:hover {
-      background: #00ffe7;
     }
 
     .card-name {
+      font-family: 'Exo 2', sans-serif;
       font-size: 1.2rem;
-      font-weight: bold;
-      color: #ffffff;
-      text-shadow: 0 0 5px #ff00f2, 0 0 10px #00ffe7;
+      font-weight: 700;
+      color: #00ffcc;
+      text-shadow: 0 0 5px #ff00ff;
       margin-bottom: 0.3rem;
     }
 
     .card-description {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 0.9rem;
-      font-weight: normal;
+      color: #e0e0ff;
+      text-shadow: 0 0 3px #ff00ff;
       margin-bottom: 0.3rem;
-      text-shadow: 0 0 3px #000;
     }
 
     .card-price {
+      font-family: 'Exo 2', sans-serif;
       font-size: 1.2rem;
-      font-weight: bold;
-      color: #ffffff;
-      text-shadow: 0 0 3px #ff00f2, 0 0 8px #00ffe7;
+      font-weight: 700;
+      color: #ff00ff;
+      text-shadow: 0 0 5px #00ffcc;
     }
 
+    /* Buttons */
     button {
-      background: #ff00f2;
-      color: #000;
-      font-weight: bold;
+      background: linear-gradient(45deg, #ff00ff, #00ffcc);
+      color: #0a0a23;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
       border: none;
       padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
+      border-radius: 25px;
       cursor: pointer;
-      margin: 1rem;
-      transition: background 0.2s;
+      transition: transform 0.2s, box-shadow 0.3s;
     }
 
     button:hover {
-      background: #00ffe7;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #ff00ff;
     }
 
     button:disabled {
-      background: #555;
+      background: linear-gradient(45deg, #666, #999);
       cursor: not-allowed;
     }
 
+    /* Cart */
     .cart {
       flex-direction: column;
       align-items: center;
       padding: 2rem;
-      background: rgba(0, 0, 0, 0.2);
-      border-radius: 1rem;
-      box-shadow: 0 0 20px #ff00f2;
+      background: rgba(10, 10, 40, 0.7);
+      border: 1px solid #ff00ff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #00ffcc;
+      margin: 1rem;
     }
 
     .cart h2 {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Exo 2', sans-serif;
       font-size: 2rem;
-      font-weight: 700;
-      text-shadow: 0 0 10px #ff00f2;
+      color: #00ffcc;
+      text-shadow: 0 0 10px #ff00ff;
       margin-bottom: 1.5rem;
     }
 
     .cart-item {
-      display: flex;
-      flex-direction: column;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-      border-radius: 1rem;
+      background: rgba(50, 50, 100, 0.5);
+      border: 1px solid #00ffcc;
+      border-radius: 10px;
       padding: 1rem;
       width: 100%;
       max-width: 500px;
       margin-bottom: 1rem;
-      box-shadow: 0 0 10px #ff00f2, 0 0 20px #00ffe7;
+      box-shadow: 0 0 10px #ff00ff;
       animation: neonPulse 2s infinite;
     }
 
@@ -309,11 +359,10 @@
     }
 
     .cart-item-name {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Exo 2', sans-serif;
       font-size: 1.1rem;
-      font-weight: 700;
-      color: #ffffff;
-      text-shadow: 0 0 5px #ff00f2, 0 0 10px #00ffe7;
+      color: #00ffcc;
+      text-shadow: 0 0 5px #ff00ff;
     }
 
     .cart-controls {
@@ -328,30 +377,30 @@
     }
 
     .cart-item-price {
+      font-family: 'Montserrat', sans-serif;
       font-size: 0.9rem;
-      color: #ffffff;
-      text-shadow: 0 0 3px #ff00f2, 0 0 8px #00ffe7;
+      color: #ff00ff;
+      text-shadow: 0 0 3px #00ffcc;
     }
 
     .delivery-fee {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 1.1rem;
-      color: #ff00f2;
+      color: #ff00ff;
       margin-top: 1rem;
       width: 100%;
       max-width: 500px;
       text-align: right;
     }
 
-    .cart-button {
+    /* Cart and contact buttons */
+    .cart-button, .contact-button {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
       width: 60px;
       height: 60px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #ff00f2, #00ffe7);
-      box-shadow: 0 0 10px #ff00f2, 0 0 20px #00ffe7;
+      background: linear-gradient(45deg, #ff00ff, #00ffcc);
+      box-shadow: 0 0 10px #00ffcc, 0 0 20px #ff00ff;
       animation: neonPulse 2s infinite;
       display: flex;
       justify-content: center;
@@ -359,33 +408,26 @@
       font-size: 1.5rem;
       cursor: pointer;
       z-index: 1000;
+    }
+
+    .cart-button {
+      bottom: 20px;
+      right: 20px;
     }
 
     .contact-button {
-      position: fixed;
       bottom: 20px;
       left: 20px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #ff00f2, #00ffe7);
-      box-shadow: 0 0 10px #ff00f2, 0 0 20px #00ffe7;
-      animation: neonPulse 2s infinite;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.5rem;
-      cursor: pointer;
-      z-index: 1000;
     }
 
+    /* Modal */
     .modal {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.95);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -396,21 +438,26 @@
       position: relative;
       max-width: 90vw;
       max-height: 80vh;
+      background: rgba(10, 10, 40, 0.9);
+      border: 1px solid #ff00ff;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 0 20px #00ffcc;
     }
 
     .modal-content img {
       width: 100%;
       height: auto;
-      border-radius: 0.5rem;
-      box-shadow: 0 0 20px #ff00f2;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #ff00ff;
     }
 
     .close-button {
       position: absolute;
       top: -40px;
       right: -40px;
-      background: #ff00f2;
-      color: #000;
+      background: #ff00ff;
+      color: #0a0a23;
       border: none;
       border-radius: 50%;
       width: 40px;
@@ -421,22 +468,35 @@
     }
 
     .close-button:hover {
-      background: #00ffe7;
+      background: #00ffcc;
     }
 
-    @media (max-width: 600px) {
+    /* Info icon */
+    .info-icon {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background: #ff00ff;
+      color: #0a0a23;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-left: 1rem;
+      transition: background 0.2s;
+      animation: infoFloat 2s ease-in-out infinite;
+    }
+
+    .info-icon:hover {
+      background: #00ffcc;
+    }
+
+    /* Media queries */
+    @media (max-width: 768px) {
       h1 {
-        font-size: 1.5rem;
+        font-size: 2rem;
         padding: 0.75rem;
-      }
-
-      .heading-container::before {
-        background-size: 15px 15px;
-        box-shadow: 0 0 10px #ff00f2, 0 0 15px #00ffe7;
-      }
-
-      h2.vape-heading {
-        font-size: 1.4rem;
       }
 
       .scrolling-text p {
@@ -449,11 +509,6 @@
         gap: 0.5rem;
         margin: 0.5rem;
         padding: 0.75rem;
-        box-shadow: 0 0 8px #ff00f2, 0 0 15px #00ffe7;
-      }
-
-      .filter-item {
-        gap: 0.3rem;
       }
 
       .filter-icon {
@@ -467,13 +522,11 @@
       }
 
       .card {
-        width: 150px;
         padding: 0.75rem;
       }
 
       .card-name {
         font-size: 1rem;
-        text-shadow: 0 0 3px #ff00f2, 0 0 8px #00ffe7;
       }
 
       .card-description {
@@ -482,10 +535,10 @@
 
       .card-price {
         font-size: 1.1rem;
-        text-shadow: 0 0 2px #ff00f2, 0 0 6px #00ffe7;
       }
 
-      .vape-list, .flavour-list, .cart {
+      .vape-list, .flavour-list {
+        grid-template-columns: 1fr;
         gap: 0.75rem;
         padding: 0.75rem;
       }
@@ -495,7 +548,7 @@
       }
 
       .cart {
-        padding: 0.75rem;
+        padding: 1rem;
         margin: 0.5rem;
       }
 
@@ -507,18 +560,14 @@
         max-width: 95vw;
         padding: 0.75rem;
         margin: 0.5rem auto;
-        border: 1px solid #ff00f2;
-        box-shadow: 0 0 8px #ff00f2, 0 0 15px #00ffe7;
       }
 
       .cart-item-name {
         font-size: 1rem;
-        text-shadow: 0 0 3px #ff00f2, 0 0 8px #00ffe7;
       }
 
       .cart-item-price {
         font-size: 0.9rem;
-        text-shadow: 0 0 2px #ff00f2, 0 0 6px #00ffe7;
       }
 
       .cart-controls button {
@@ -529,40 +578,11 @@
       .delivery-fee {
         font-size: 1rem;
         text-align: center;
-        padding: 0;
       }
 
-      .cart .btn-row {
-        flex-direction: column;
-        gap: 0.5rem;
-        align-items: center;
-      }
-
-      .cart .btn-row button {
-        width: 100%;
-        max-width: 95vw;
-        padding: 0.6rem 1.2rem;
-        font-size: 1rem;
-      }
-
-      .cart .total {
-        text-align: center;
-        font-size: 1.1rem;
-      }
-
-      .cart-button {
+      .cart-button, .contact-button {
         width: 50px;
         height: 50px;
-        bottom: 15px;
-        right: 15px;
-        font-size: 1.2rem;
-      }
-
-      .contact-button {
-        width: 50px;
-        height: 50px;
-        bottom: 15px;
-        left: 15px;
         font-size: 1.2rem;
       }
 
@@ -586,9 +606,50 @@
         font-size: 1rem;
       }
     }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .vape-list, .flavour-list {
+        gap: 0.5rem;
+      }
+
+      .card {
+        padding: 0.5rem;
+      }
+
+      .card-name {
+        font-size: 0.9rem;
+      }
+
+      .card-description {
+        font-size: 0.7rem;
+      }
+
+      .card-price {
+        font-size: 1rem;
+      }
+
+      .cart h2 {
+        font-size: 1.2rem;
+      }
+
+      .cart-item-name {
+        font-size: 0.9rem;
+      }
+
+      .cart-item-price {
+        font-size: 0.8rem;
+      }
+    }
   </style>
 </head>
 <body>
+  <div class="stars"></div>
+  <div class="nebulae"></div>
+  <div class="alien-particles"></div>
   <div class="heading-container">
     <h1>⚡ STAS_VAPE ⚡</h1>
   </div>
@@ -627,7 +688,7 @@
   <div id="filterHeader" class="filter-header">
     <div class="filter-item">
       <span class="filter-icon">🏷️</span>
-      <select id="markFilter">
+      <select id="markFilter" aria-label="Фильтр по марке">
         <option value="All">Все Марки</option>
         <option value="ALIENVAPE">ALIENVAPE</option>
         <option value="TORNADO">TORNADO</option>
@@ -637,11 +698,12 @@
         <option value="IJOY">IJOY</option>
         <option value="SHISHA VAPE">SHISHA VAPE</option>
         <option value="HAYATI">HAYATI</option>
+        <option value="Cloudburst">Cloudburst</option>
       </select>
     </div>
     <div class="filter-item">
       <span class="filter-icon">%</span>
-      <select id="nicotineFilter">
+      <select id="nicotineFilter" aria-label="Фильтр по никотину">
         <option value="All">Все Никотин</option>
         <option value="2%">2%</option>
         <option value="2.5%">2.5%</option>
@@ -651,7 +713,7 @@
     </div>
     <div class="filter-item">
       <span class="filter-icon">💨</span>
-      <select id="puffFilter">
+      <select id="puffFilter" aria-label="Фильтр по затяжкам">
         <option value="All">Все Затяжки</option>
         <option value="600">600</option>
         <option value="1000">1000</option>
@@ -670,7 +732,7 @@
     </div>
     <div class="filter-item">
       <span class="filter-icon">€</span>
-      <select id="priceFilter">
+      <select id="priceFilter" aria-label="Фильтр по цене">
         <option value="All">Все Цены</option>
         <option value="10">€10</option>
         <option value="15">€15</option>
@@ -685,21 +747,20 @@
   <div id="vapeList" class="vape-list"></div>
   <div id="flavourList" class="flavour-list" style="display:none;"></div>
   <div id="cart" class="cart" style="display:none;"></div>
-  <div class="cart-button" onclick="showCart()">🛒</div>
-  <div class="contact-button" onclick="window.open('https://t.me/stas_vape_nl', '_blank')">👑</div>
+  <div class="cart-button" onclick="showCart()" aria-label="Открыть корзину">🛒</div>
+  <div class="contact-button" onclick="window.open('https://t.me/stas_vape_nl', '_blank')" aria-label="Связаться через Telegram">👑</div>
 
   <script>
     // Scrolling text setup for infinite loop
     function setupScrollingText() {
       try {
         const container = document.querySelector('.scrolling-text-container');
+        if (!container) throw new Error('Scrolling text container not found');
         const originalContent = container.innerHTML;
         container.innerHTML += originalContent; // Clone content for seamless loop
-
         const textWidth = container.scrollWidth / 2; // Width of original content
         const speed = 100; // Pixels per second
         const duration = textWidth / speed; // Duration in seconds
-
         container.style.animationDuration = `${duration}s`;
       } catch (error) {
         console.error('Error in setupScrollingText:', error);
@@ -707,6 +768,18 @@
     }
 
     const vapes = [
+      {
+        name: "Cloudburst 20K",
+        puffs: 20000,
+        nicotine: "6%",
+        price: 25,
+        image: "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/68112f384bff4cff9cc6fbd6_%D0%A2%D0%B5%D0%BA%D1%81%D1%82%20%D0%B0%D0%B1%D0%B7%D0%B0%D1%86%D0%B0.jpg",
+        flavours: [
+          "Blue Razz", "Blueberry", "Blueberry Mint", "Cherry Cola", "Cherry Ice",
+          "Double Apple", "Grape Ice", "Hookah Banana", "Kiwi Passion Fruit", "Lemon Mint",
+          "Mango Ice", "Pineapple", "Pineapple Ice", "Watermelon Ice"
+        ]
+      },
       {
         name: "ALIENVAPE HHC",
         puffs: 1000,
@@ -757,7 +830,11 @@
         nicotine: "2.5%",
         price: 25,
         image: "https://cdn.prod.website-files.com/6685befcece47fe6d2a75ef8/6800fd637ad8b0c49e9b4a8d_randm-fumot-tornado-max-20000.jpg.webp",
-        flavours: ["Pineapple Ice", "Blue Razz Ice", "Grape Ice", "Sour Apple"]
+        flavours: [
+          "Blue Razz Ice", "Blueberry Bubblegum", "Blueberry on Ice", "Blueberry Raspberry", "Grape Ice",
+          "Gummy Bear", "Mixed Berries", "Peach Berry", "Peach Ice", "Red Apple Lemon", "Vimto",
+          "Sour Apple", "Pineapple Ice"
+        ]
       },
       {
         name: "TORNADO 25K",
@@ -891,7 +968,7 @@
       "Blueberry Raspberry": "🫐", "Cola Ice": "🥤", "Dragon Fruit": "🐉", "Grape Ice": "🍇", "Gummy Bear": "🐻",
       "Mango on Ice": "🥭", "Peach Blueberry Candy": "🍑", "Peach Mango": "🍑", "Peach Ice": "🍑", "Pineapple Ice": "🍍",
       "Red Energy Ice": "⚡", "Strawberry Kiwi": "🍓", "Strawberry Banana": "🍓", "Strawberry Redbull": "🍓", "Strawberry Watermelon Lemonade": "🍓",
-      "Watermelon Ice": "🍉", "Pineapple Ice": "🍍", "Blue Razz Ice": "🫐", "Sour Apple": "🍏", "Double Apple": "🍎",
+      "Watermelon Ice": "🍉", "Blue Razz Ice": "🫐", "Sour Apple": "🍏", "Double Apple": "🍎",
       "Black Ice": "🖤", "Strawberry Ice": "🍓", "Miami Mint": "🌿", "Cherry Cola": "🍒", "Peachy Mango Pineapple": "🍑",
       "Strawberry Grape": "🍓", "Dr Blue": "🫐", "Cherry Ice": "🍒", "Strawberry Watermelon": "🍓", "Strawberry Ice Cream": "🍓",
       "Watermelon Bubblegum": "🍉", "Berry Mint": "🍓", "Grape Mint": "🍇", "Blackberry Ice": "🫐", "Berry Ice": "🍓",
@@ -908,7 +985,9 @@
       "Strawberry Raspberry Cherry Ice": "🍓", "Lychee Hami Melon": "🍈", "Mister Blue": "🫐",
       "Peach Berries": "🍑", "Pina Colada": "🍍", "Blue Razz": "🫐", "Skittles": "🍬", "Blended Berries": "🍓",
       "Cherry": "🍒", "Cherry Lime Eurasiatour": "🍒", "Cherry Berries": "🍒",
-      "Passionfruit Lemon Lime": "🍋", "Kiwi Lemon": "🥝", "Summer Dream": "☀️", "Strawberry Gummy Bear": "🍓", "Strawberry Kiwi": "🍓"
+      "Passionfruit Lemon Lime": "🍋", "Kiwi Lemon": "🥝", "Summer Dream": "☀️", "Strawberry Gummy Bear": "🍓",
+      "Blueberry": "🫐", "Blueberry Mint": "🫐", "Hookah Banana": "🍌", "Kiwi Passion Fruit": "🥝",
+      "Mango Ice": "🥭", "Pineapple": "🍍", "Peach Berry": "🍑", "Red Apple Lemon": "🍎", "Vimto": "🍇"
     };
 
     let cart = [];
@@ -922,16 +1001,15 @@
     const puffFilter = document.getElementById('puffFilter');
     const priceFilter = document.getElementById('priceFilter');
 
-    const neonColors = ['#ff00f2', '#00ffe7', '#8a00a2', '#00ff00', '#00b7eb'];
+    const neonColors = ['#ff00ff', '#00ffcc', '#8a00a2', '#00ff00', '#00b7eb'];
 
     function renderVapes() {
       try {
+        if (!vapeListEl) throw new Error('Vape list element not found');
         const mark = markFilter.value;
         const nicotine = nicotineFilter.value;
         const puffs = puffFilter.value;
         const price = priceFilter.value;
-
-        console.log('Filters:', { mark, nicotine, puffs, price });
 
         vapeListEl.innerHTML = '';
         const filteredVapes = vapes.filter(vape => {
@@ -942,14 +1020,12 @@
           return matchMark && matchNicotine && matchPuffs && matchPrice;
         });
 
-        console.log('Filtered vapes:', filteredVapes.length);
-
         if (filteredVapes.length === 0) {
           const noVapesMsg = document.createElement('p');
           noVapesMsg.textContent = 'Нет вейпов, соответствующих фильтрам';
           noVapesMsg.style.margin = '1rem';
-          noVapesMsg.style.fontFamily = "'Roboto', sans-serif";
-          noVapesMsg.style.textShadow = '0 0 5px #000';
+          noVapesMsg.style.fontFamily = "'Montserrat', sans-serif";
+          noVapesMsg.style.textShadow = '0 0 5px #ff00ff';
           vapeListEl.appendChild(noVapesMsg);
         } else {
           filteredVapes.forEach((vape, index) => {
@@ -957,7 +1033,7 @@
             card.className = 'card';
             card.style.boxShadow = `0 0 10px ${neonColors[index % neonColors.length]}`;
             card.innerHTML = `
-              <img src="${vape.image}" alt="${vape.name}">
+              <img src="${vape.image}" alt="${vape.name}" loading="lazy">
               <div class="card-name">${vape.name}</div>
               <div class="card-description">Никотин: ${vape.nicotine}</div>
               <div class="card-description">Затяжек: ${vape.puffs}</div>
@@ -969,12 +1045,14 @@
         }
       } catch (error) {
         console.error('Error in renderVapes:', error);
-        const errorMsg = document.createElement('p');
-        errorMsg.textContent = 'Ошибка при загрузке вейпов. Пожалуйста, попробуйте позже.';
-        errorMsg.style.margin = '1rem';
-        errorMsg.style.fontFamily = "'Roboto', sans-serif";
-        errorMsg.style.textShadow = '0 0 5px #000';
-        vapeListEl.appendChild(errorMsg);
+        if (vapeListEl) {
+          const errorMsg = document.createElement('p');
+          errorMsg.textContent = 'Ошибка при загрузке вейпов. Пожалуйста, попробуйте позже.';
+          errorMsg.style.margin = '1rem';
+          errorMsg.style.fontFamily = "'Montserrat', sans-serif";
+          errorMsg.style.textShadow = '0 0 5px #ff00ff';
+          vapeListEl.appendChild(errorMsg);
+        }
       }
     }
 
@@ -983,9 +1061,9 @@
         const modal = document.createElement('div');
         modal.className = 'modal';
         modal.innerHTML = `
-          <div class="modal-content">
-            <img src="${src}" alt="${alt}">
-            <button class="close-button">×</button>
+          <div class="modal-content" role="dialog" aria-label="Увеличенное изображение">
+            <img src="${src}" alt="${alt}" loading="lazy">
+            <button class="close-button" aria-label="Закрыть модальное окно">×</button>
           </div>
         `;
         document.body.appendChild(modal);
@@ -998,6 +1076,9 @@
         modal.onclick = (e) => {
           if (e.target === modal) closeModal();
         };
+        modal.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') closeModal();
+        });
       } catch (error) {
         console.error('Error in showImageModal:', error);
       }
@@ -1005,10 +1086,13 @@
 
     function showFlavours(vape) {
       try {
+        if (!flavourListEl || !vapeListEl || !cartEl || !filterHeaderEl) {
+          throw new Error('Required elements not found');
+        }
         vapeListEl.style.display = 'none';
         cartEl.style.display = 'none';
         filterHeaderEl.style.display = 'none';
-        flavourListEl.style.display = 'flex';
+        flavourListEl.style.display = 'grid';
         flavourListEl.innerHTML = '';
 
         const headingWrapper = document.createElement('div');
@@ -1018,7 +1102,10 @@
         headingWrapper.style.width = '100%';
 
         const heading = document.createElement('h2');
-        heading.className = 'vape-heading';
+        heading.style.fontFamily = "'Exo 2', sans-serif";
+        heading.style.fontSize = '1.8rem';
+        heading.style.color = '#00ffcc';
+        heading.style.textShadow = '0 0 10px #ff00ff';
         heading.textContent = `Выберите вкус для ${vape.name}`;
         headingWrapper.appendChild(heading);
 
@@ -1028,6 +1115,7 @@
           infoIcon.textContent = 'ℹ';
           infoIcon.href = 'https://telegra.ph/Alienvape---Stas-04-24';
           infoIcon.target = '_blank';
+          infoIcon.setAttribute('aria-label', 'Информация об ALIENVAPE');
           headingWrapper.appendChild(infoIcon);
         }
 
@@ -1036,22 +1124,26 @@
         const vapeImage = document.createElement('img');
         vapeImage.className = 'vape-image';
         vapeImage.src = vape.image;
-        vapeImage.alt = vape.name;
+        vapeImage.alt = `${vape.name} изображение`;
+        vapeImage.loading = 'lazy';
         vapeImage.onclick = () => showImageModal(vape.image, vape.name);
         flavourListEl.appendChild(vapeImage);
 
         const selectedFlavours = new Set();
 
         const flavourWrap = document.createElement('div');
-        flavourWrap.style.flexWrap = "wrap";
-        flavourWrap.style.display = "flex";
-        flavourWrap.style.justifyContent = "center";
-        flavourWrap.style.gap = "1rem";
+        flavourWrap.style.flexWrap = 'wrap';
+        flavourWrap.style.display = 'grid';
+        flavourWrap.style.gridTemplateColumns = 'repeat(auto-fit, minmax(180px, 1fr))';
+        flavourWrap.style.justifyContent = 'center';
+        flavourWrap.style.gap = '1rem';
 
         if (vape.flavours.length === 0) {
           const noFlavoursMsg = document.createElement('p');
           noFlavoursMsg.textContent = 'Нет доступных вкусов.';
           noFlavoursMsg.style.margin = '1rem';
+          noFlavoursMsg.style.fontFamily = "'Montserrat', sans-serif";
+          noFlavoursMsg.style.textShadow = '0 0 5px #ff00ff';
           flavourWrap.appendChild(noFlavoursMsg);
         } else {
           vape.flavours.forEach(flavour => {
@@ -1073,21 +1165,23 @@
         }
 
         const bottomButtons = document.createElement('div');
-        bottomButtons.style.width = "100%";
-        bottomButtons.style.display = "flex";
-        bottomButtons.style.justifyContent = "space-between";
-        bottomButtons.style.marginTop = "20px";
+        bottomButtons.style.width = '100%';
+        bottomButtons.style.display = 'flex';
+        bottomButtons.style.justifyContent = 'space-between';
+        bottomButtons.style.marginTop = '20px';
 
         const backBtn = document.createElement('button');
-        backBtn.textContent = "⬅ Назад";
+        backBtn.textContent = '⬅ Назад';
+        backBtn.setAttribute('aria-label', 'Вернуться к списку вейпов');
         backBtn.onclick = () => goBack();
 
         const addBtn = document.createElement('button');
-        addBtn.textContent = "➕ В корзину";
+        addBtn.textContent = '➕ В корзину';
+        addBtn.setAttribute('aria-label', 'Добавить в корзину');
         addBtn.disabled = vape.flavours.length === 0;
         addBtn.onclick = () => {
           if (vape.flavours.length > 0 && selectedFlavours.size === 0) {
-            alert("Пожалуйста, выберите хотя бы один вкус!");
+            alert('Пожалуйста, выберите хотя бы один вкус!');
             return;
           }
           selectedFlavours.forEach(flavour => {
@@ -1103,14 +1197,20 @@
         flavourListEl.appendChild(bottomButtons);
       } catch (error) {
         console.error('Error in showFlavours:', error);
+        if (flavourListEl) {
+          flavourListEl.innerHTML = '<p style="margin: 1rem; font-family: \'Montserrat\', sans-serif; text-shadow: 0 0 5px #ff00ff;">Ошибка при загрузке вкусов. Пожалуйста, попробуйте позже.</p>';
+        }
       }
     }
 
     function goBack() {
       try {
+        if (!flavourListEl || !vapeListEl || !cartEl || !filterHeaderEl) {
+          throw new Error('Required elements not found');
+        }
         flavourListEl.style.display = 'none';
         cartEl.style.display = 'none';
-        vapeListEl.style.display = 'flex';
+        vapeListEl.style.display = 'grid';
         filterHeaderEl.style.display = 'flex';
         renderVapes();
       } catch (error) {
@@ -1120,6 +1220,9 @@
 
     function showCart() {
       try {
+        if (!flavourListEl || !vapeListEl || !cartEl || !filterHeaderEl) {
+          throw new Error('Required elements not found');
+        }
         vapeListEl.style.display = 'none';
         flavourListEl.style.display = 'none';
         filterHeaderEl.style.display = 'none';
@@ -1132,6 +1235,7 @@
 
     function updateCart() {
       try {
+        if (!cartEl) throw new Error('Cart element not found');
         cartEl.innerHTML = '<h2>🛒 Корзина ✨</h2>';
         let total = 0;
         let totalQty = 0;
@@ -1158,6 +1262,7 @@
 
           const minus = document.createElement('button');
           minus.textContent = '−';
+          minus.setAttribute('aria-label', 'Уменьшить количество');
           minus.onclick = () => {
             if (item.qty > 1) item.qty--;
             else cart.splice(i, 1);
@@ -1169,6 +1274,7 @@
 
           const plus = document.createElement('button');
           plus.textContent = '+';
+          plus.setAttribute('aria-label', 'Увеличить количество');
           plus.onclick = () => {
             item.qty++;
             updateCart();
@@ -1206,88 +1312,59 @@
         total += deliveryFee;
 
         const btnRow = document.createElement('div');
-        btnRow.className = 'btn-row';
         btnRow.style.marginTop = '2rem';
         btnRow.style.display = 'flex';
         btnRow.style.justifyContent = 'space-between';
         btnRow.style.width = '100%';
+        btnRow.style.maxWidth = '500px';
 
-        const backButton = document.createElement('button');
-        backButton.textContent = '⬅ Назад';
-        backButton.onclick = () => goBack();
-        btnRow.appendChild(backButton);
+        const backBtn = document.createElement('button');
+        backBtn.textContent = '⬅ Назад';
+        backBtn.setAttribute('aria-label', 'Вернуться к списку вейпов');
+        backBtn.onclick = () => goBack();
 
-        if (cart.length) {
-          const totalDiv = document.createElement('div');
-          totalDiv.className = 'total';
-          totalDiv.style.marginTop = '1rem';
-          totalDiv.style.fontSize = '1.1rem';
-          totalDiv.style.fontFamily = "'Roboto', sans-serif";
-          totalDiv.innerHTML = `<strong>Итого: €${total.toFixed(2)}</strong>`;
-          cartEl.appendChild(totalDiv);
+        const orderBtn = document.createElement('button');
+        orderBtn.textContent = '📩 Оформить заказ';
+        orderBtn.setAttribute('aria-label', 'Оформить заказ через Telegram');
+        orderBtn.disabled = cart.length === 0;
+        orderBtn.onclick = () => {
+          let message = 'Заказ:\n';
+          cart.forEach(item => {
+            message += `${item.vape} (${item.flavour}) - ${item.qty} шт, €${item.price * item.qty}\n`;
+          });
+          message += `Итого: €${total.toFixed(2)}`;
+          if (deliveryFee > 0) {
+            message += `\nДоставка: €${deliveryFee.toFixed(2)}`;
+          } else {
+            message += '\nДоставка: Бесплатно';
+          }
+          const encodedMessage = encodeURIComponent(message);
+          window.open(`https://t.me/stas_vape_nl?text=${encodedMessage}`, '_blank');
+        };
 
-          const sendBtn = document.createElement('button');
-          sendBtn.textContent = '📨 Отправить заказ 🚀';
-          sendBtn.onclick = () => sendOrder();
-          btnRow.appendChild(sendBtn);
-        } else {
-          const emptyMsg = document.createElement('p');
-          emptyMsg.style.marginTop = '1rem';
-          emptyMsg.style.fontFamily = "'Roboto', sans-serif";
-          emptyMsg.textContent = 'Корзина пуста 😢';
-          cartEl.appendChild(emptyMsg);
-        }
-
+        btnRow.appendChild(backBtn);
+        btnRow.appendChild(orderBtn);
         cartEl.appendChild(btnRow);
       } catch (error) {
         console.error('Error in updateCart:', error);
+        if (cartEl) {
+          cartEl.innerHTML = '<p style="margin: 1rem; font-family: \'Montserrat\', sans-serif; text-shadow: 0 0 5px #ff00ff;">Ошибка при загрузке корзины. Пожалуйста, попробуйте позже.</p>';
+        }
       }
     }
 
-    function sendOrder() {
-      try {
-        if (cart.length === 0) {
-          alert("Корзина пуста!");
-          return;
-        }
-        let total = 0;
-        let totalQty = 0;
-        const messageLines = cart.map(item => {
-          total += item.qty * item.price;
-          totalQty += item.qty;
-          return `${item.vape} - ${item.flavour} x${item.qty} (€${item.price}/шт)`;
-        });
-        if (totalQty < 3) {
-          messageLines.push(`Доставка (от 3 штук бесплатная доставка): €10`);
-          total += 10;
-        }
-        const message = messageLines.join("\n");
-        const fullMessage = `NEW ORDER\n${message}\n\nИТОГО: €${total.toFixed(2)}`;
-        const encodedMessage = encodeURIComponent(fullMessage);
-        window.open(`https://t.me/stas_vape_nl?text=${encodedMessage}`, "_blank");
-        cart = [];
-        updateCart();
-      } catch (error) {
-        console.error('Error in sendOrder:', error);
-      }
-    }
-
-    // Attach event listeners
+    // Initialize
     try {
-      markFilter.onchange = renderVapes;
-      nicotineFilter.onchange = renderVapes;
-      puffFilter.onchange = renderVapes;
-      priceFilter.onchange = renderVapes;
-
-      // Initial render
-      window.onload = () => {
-        console.log('Page loaded, rendering vapes');
-        setupScrollingText();
-        renderVapes();
-      };
+      setupScrollingText();
+      renderVapes();
+      markFilter.addEventListener('change', renderVapes);
+      nicotineFilter.addEventListener('change', renderVapes);
+      puffFilter.addEventListener('change', renderVapes);
+      priceFilter.addEventListener('change', renderVapes);
+      window.addEventListener('resize', setupScrollingText);
     } catch (error) {
-      console.error('Error setting up event listeners:', error);
+      console.error('Initialization error:', error);
     }
-  </script>  
+  </script>
 </body>
 </html>

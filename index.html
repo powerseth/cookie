@@ -23,7 +23,7 @@
       position: relative;
       overflow-x: hidden;
       min-height: 100vh;
-      overscroll-behavior: none;
+      overscroll-behavior: contain;
     }
 
     /* Starry background effect */
@@ -52,6 +52,16 @@
     }
 
     /* Alien particles */
+    .alien-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
     .alien-particles::before,
     .alien-particles::after {
       content: '';
@@ -91,7 +101,7 @@
 
     @keyframes scrollText {
       0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
+      100% { transform: translateX(-50%); }
     }
 
     @keyframes nebulaPulse {
@@ -101,7 +111,7 @@
 
     @keyframes particleFloat {
       0% { transform: translate(0, 0); }
-      100% { transform: translate(100vw, 100vh); }
+      100% { transform: translate(50vw, 50vh); }
     }
 
     @keyframes popUp {
@@ -157,12 +167,13 @@
 
     /* Scrolling text */
     .scrolling-text {
-      overflow: hidden;
-      width: 100%;
+      overflow-x: hidden;
+      max-width: 100%;
       background: rgba(10, 10, 40, 0.5);
       padding: 0.5rem 0;
       box-shadow: 0 0 10px #ff00ff;
       border: 1px solid #00ffcc;
+      overscroll-behavior-x: contain;
     }
 
     .scrolling-text-container {
@@ -212,11 +223,13 @@
       color: #e0e0ff;
       border: 2px solid #ff00ff;
       border-radius: 10px;
-      padding: 0.5rem 0.75rem;
+      padding: 0.75rem;
       font-family: 'Montserrat', sans-serif;
       font-size: 1rem;
       cursor: pointer;
       transition: border-color 0.2s;
+      min-width: 120px;
+      min-height: 48px;
     }
 
     .filter-header select:hover {
@@ -242,6 +255,7 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
       animation: float 3s ease-in-out infinite, popUp 0.5s ease forwards;
       box-shadow: 0 0 10px #00ffcc, 0 0 20px #ff00ff;
+      touch-action: manipulation;
     }
 
     .card:hover {
@@ -273,7 +287,7 @@
 
     .card-name {
       font-family: 'Exo 2', sans-serif;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       font-weight: 700;
       color: #00ffcc;
       text-shadow: 0 0 5px #ff00ff;
@@ -282,7 +296,7 @@
 
     .card-description {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.9rem;
+      font-size: 1.1rem;
       color: #e0e0ff;
       text-shadow: 0 0 3px #ff00ff;
       margin-bottom: 0.3rem;
@@ -290,7 +304,7 @@
 
     .card-price {
       font-family: 'Exo 2', sans-serif;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: 700;
       color: #ff00ff;
       text-shadow: 0 0 5px #00ffcc;
@@ -303,10 +317,13 @@
       font-family: 'Montserrat', sans-serif;
       font-weight: 600;
       border: none;
-      padding: 0.75rem 1.5rem;
+      padding: 1rem 2rem;
       border-radius: 25px;
       cursor: pointer;
       transition: transform 0.2s, box-shadow 0.3s;
+      min-height: 48px;
+      font-size: 1.1rem;
+      touch-action: manipulation;
     }
 
     button:hover {
@@ -372,8 +389,9 @@
     }
 
     .cart-controls button {
-      padding: 0.5rem 1rem;
+      padding: 0.75rem 1.25rem;
       margin: 0;
+      min-height: 40px;
     }
 
     .cart-item-price {
@@ -396,8 +414,8 @@
     /* Cart and contact buttons */
     .cart-button, .contact-button {
       position: fixed;
-      width: 60px;
-      height: 60px;
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
       background: linear-gradient(45deg, #ff00ff, #00ffcc);
       box-shadow: 0 0 10px #00ffcc, 0 0 20px #ff00ff;
@@ -405,9 +423,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       cursor: pointer;
       z-index: 1000;
+      touch-action: manipulation;
     }
 
     .cart-button {
@@ -432,6 +451,7 @@
       justify-content: center;
       align-items: center;
       z-index: 1000;
+      overscroll-behavior: contain;
     }
 
     .modal-content {
@@ -454,17 +474,18 @@
 
     .close-button {
       position: absolute;
-      top: -40px;
-      right: -40px;
+      top: -48px;
+      right: -48px;
       background: #ff00ff;
       color: #0a0a23;
       border: none;
       border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      font-size: 1.5rem;
+      width: 48px;
+      height: 48px;
+      font-size: 1.8rem;
       cursor: pointer;
       transition: background 0.2s;
+      touch-action: manipulation;
     }
 
     .close-button:hover {
@@ -517,8 +538,9 @@
 
       .filter-header select {
         width: 100%;
-        font-size: 0.9rem;
-        padding: 0.4rem 0.6rem;
+        font-size: 1rem;
+        padding: 0.75rem;
+        min-height: 48px;
       }
 
       .card {
@@ -526,11 +548,11 @@
       }
 
       .card-name {
-        font-size: 1rem;
+        font-size: 1.2rem;
       }
 
       .card-description {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
       }
 
       .card-price {
@@ -573,6 +595,7 @@
       .cart-controls button {
         padding: 0.5rem 1rem;
         font-size: 1rem;
+        min-height: 40px;
       }
 
       .delivery-fee {
@@ -581,9 +604,9 @@
       }
 
       .cart-button, .contact-button {
-        width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
       }
 
       .modal-content {
@@ -592,11 +615,11 @@
       }
 
       .close-button {
-        top: -30px;
-        right: -30px;
-        width: 30px;
-        height: 30px;
-        font-size: 1.2rem;
+        top: -40px;
+        right: -40px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
       }
 
       .info-icon {
@@ -621,11 +644,11 @@
       }
 
       .card-name {
-        font-size: 0.9rem;
+        font-size: 1.1rem;
       }
 
       .card-description {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
       }
 
       .card-price {
@@ -745,7 +768,7 @@
     </div>
   </div>
   <div id="vapeList" class="vape-list"></div>
-  <div id="flavourList" class="flavour-list" style="display:none;"></div>
+  <div id="flavourList" class="flavour-list" style=" Alkaline Phosphatase (ALP) (IU/L)  display:none;"></div>
   <div id="cart" class="cart" style="display:none;"></div>
   <div class="cart-button" onclick="showCart()" aria-label="Открыть корзину">🛒</div>
   <div class="contact-button" onclick="window.open('https://t.me/stas_vape_nl', '_blank')" aria-label="Связаться через Telegram">👑</div>
@@ -759,7 +782,7 @@
         const originalContent = container.innerHTML;
         container.innerHTML += originalContent; // Clone content for seamless loop
         const textWidth = container.scrollWidth / 2; // Width of original content
-        const speed = 100; // Pixels per second
+        const speed = window.innerWidth <= 768 ? 50 : 100; // Slower on mobile
         const duration = textWidth / speed; // Duration in seconds
         container.style.animationDuration = `${duration}s`;
       } catch (error) {
